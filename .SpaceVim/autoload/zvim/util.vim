@@ -103,15 +103,6 @@ function! zvim#util#BufferEmpty() abort
     endif
 endfunction
 
-function! zvim#util#listDirs(dir) abort
-    let dir = fnamemodify(a:dir, ':p')
-    if isdirectory(dir)
-        let cmd = printf('ls -F %s | grep /$', dir)
-        return map(systemlist(cmd), 'v:val[:-2]')
-    endif
-    return []
-endfunction
-
 function! zvim#util#OpenVimfiler() abort
     if bufnr('vimfiler') == -1
         VimFiler
@@ -126,52 +117,6 @@ function! zvim#util#OpenVimfiler() abort
         VimFiler
         AirlineRefresh
     endif
-endfunction
-
-let s:plugins_argv = ['-update', '-openurl']
-
-function! zvim#util#complete_plugs(ArgLead, CmdLine, CursorPos) abort
-    if a:CmdLine =~# 'Plugin\s*$' || a:ArgLead =~# '^-[a-zA-Z]*'
-        return join(s:plugins_argv, "\n")
-    endif
-    return join(plugins#list(), "\n")
-endfunction
-
-function! zvim#util#Plugin(...) abort
-    let adds = []
-    let updates = []
-    let flag = 0
-    for a in a:000
-        if flag == 1
-            call add(adds, a)
-        elseif flag == 2
-            call add(updates, a)
-        endif
-        if a ==# '-update'
-            let flag = 1
-        elseif a ==# '-openurl'
-            let flag = 2
-        endif
-    endfor
-    echo string(adds) . "\n" . string(updates)
-endfunction
-
-function! zvim#util#complete_project(ArgLead, CmdLine, CursorPos) abort
-    let dir = get(g:,'spacevim_src_root', '~')
-    "return globpath(dir, '*')
-    let result = split(globpath(dir, '*'), "\n")
-    let ps = []
-    for p in result
-        if isdirectory(p) && isdirectory(p. '\' . '.git')
-            call add(ps, fnamemodify(p, ':t'))
-        endif
-    endfor
-    return join(ps, "\n")
-endfunction
-
-function! zvim#util#OpenProject(p) abort
-    let dir = get(g:, 'spacevim_src_root', '~') . a:p
-    exe 'CtrlP '. dir
 endfunction
 
 fu! zvim#util#Generate_ignore(ignore,tool) abort
