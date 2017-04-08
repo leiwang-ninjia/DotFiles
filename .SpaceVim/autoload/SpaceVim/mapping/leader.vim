@@ -7,7 +7,6 @@
 "=============================================================================
 
 function! SpaceVim#mapping#leader#defindglobalMappings() abort
-  inoremap <silent> <Leader><Tab> :<C-r>=MyLeaderTabfunc()<CR>
 
   "for buftabs
   noremap <silent><Leader>bp :bprev<CR>
@@ -49,13 +48,8 @@ function! SpaceVim#mapping#leader#defindglobalMappings() abort
   call SpaceVim#mapping#def('nnoremap <silent>', '<Leader>ww', ':wincmd w<CR>', 'Switch to next window or tab','wincmd w')
 
   "irssi like hot key
-  nnoremap <silent> <leader>b1 :<C-u>call <SID>tobur(1)<CR>
-  nnoremap <silent> <leader>b2 :<C-u>call <SID>tobur(2)<CR>
-  nnoremap <silent> <leader>b3 :<C-u>call <SID>tobur(3)<CR>
-  nnoremap <silent> <leader>b4 :<C-u>call <SID>tobur(4)<CR>
-  nnoremap <silent> <leader>b5 :<C-u>call <SID>tobur(5)<CR>
-  nnoremap <silent><M-Right> :<C-U>call <SID>tobur("bnext")<CR>
-  nnoremap <silent><M-Left> :<C-U>call <SID>tobur("bprev")<CR>
+  nnoremap <silent><M-Right> :bnext<CR>
+  nnoremap <silent><M-Left> :bprev<CR>
 
   let g:_spacevim_mappings.t = {'name' : 'Toggle editor visuals'}
   nmap <Leader>ts :setlocal spell!<cr>
@@ -304,23 +298,4 @@ function! SpaceVim#mapping#leader#getName(key) abort
   endif
 endfunction
 
-fu! s:tobur(num) abort
-  if index(get(g:,'spacevim_altmoveignoreft',[]), &filetype) == -1
-    if a:num ==# 'bnext'
-      bnext
-    elseif a:num ==# 'bprev'
-      bprev
-    else
-      let ls = split(execute(':ls'), "\n")
-      let buffers = []
-      for b in ls
-        let nr = matchstr(b, '\d\+')
-        call add(buffers, nr)
-      endfor
-      if len(buffers) >= a:num
-        exec 'buffer ' . buffers[a:num - 1]
-      endif
-    endif
-  endif
-endf
 " vim:set et sw=2 cc=80:

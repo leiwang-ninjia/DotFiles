@@ -26,6 +26,5 @@ if has('nvim')
     call zvim#util#source_rc('neovim.vim')
 endif
 
-call zvim#util#source_rc('commands.vim')
 filetype plugin indent on
 syntax on
