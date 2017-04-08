@@ -15,7 +15,7 @@ function! SpaceVim#autocmds#init() abort
     autocmd BufEnter * if (winnr('$') == 1 && &buftype ==# 'quickfix' ) |
           \   bd|
           \   q | endif
-    autocmd FileType jsp call JspFileTypeInit()
+    "autocmd FileType jsp call JspFileTypeInit()
     autocmd FileType html,css,jsp EmmetInstall
     autocmd BufRead,BufNewFile *.pp setfiletype puppet
     autocmd BufEnter,WinEnter,InsertLeave * set cursorline
@@ -38,18 +38,30 @@ function! SpaceVim#autocmds#init() abort
     autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
     autocmd Filetype html setlocal omnifunc=htmlcomplete#CompleteTags
     autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
-    autocmd FileType xml call XmlFileTypeInit()
     autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
     autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
     autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
     autocmd BufEnter *
           \   if empty(&buftype) && has('nvim') && &filetype != 'help'
-          \|      nnoremap <silent><buffer> <C-]> :call MyTagfunc()<CR>
-          \|      nnoremap <silent><buffer> <C-[> :call MyTagfuncBack()<CR>
+          \|      nnoremap <silent><buffer> <C-]> :call <SID>MyTagfunc()<CR>
+          \|      nnoremap <silent><buffer> <C-[> :call <SID>MyTagfuncBack()<CR>
           \|  else
-            \|      nnoremap <silent><buffer> <leader>] :call MyTagfunc()<CR>
-            \|      nnoremap <silent><buffer> <leader>[ :call MyTagfuncBack()<CR>
+            \|      nnoremap <silent><buffer> <leader>] :call <SID>MyTagfunc()<CR>
+            \|      nnoremap <silent><buffer> <leader>[ :call <SID>MyTagfuncBack()<CR>
             \|  endif
+
+    function! s:MyTagfunc() abort
+      mark H
+      let s:MyTagfunc_flag = 1
+      UniteWithCursorWord -immediately tag
+    endfunction
+
+    function! s:MyTagfuncBack() abort
+      if exists('s:MyTagfunc_flag')&&s:MyTagfunc_flag
+        exe "normal! `H"
+        let s:MyTagfunc_flag =0
+      endif
+    endfunction
     "}}}
     " autocmd FileType python,coffee call zvim#util#check_if_expand_tab()
     " Instead of reverting the cursor to the last position in the buffer, we
