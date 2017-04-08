@@ -8,6 +8,7 @@ endfunction
 function! WINDOWS()
     return (has('win16') || has('win32') || has('win64'))
 endfunction
+
 function! OnmiConfigForJsp()
     let pos1 = search("</script>","nb",line("w0"))
     let pos2 = search("<script","nb",line("w0"))
@@ -43,59 +44,11 @@ function! ToggleBG()
         set background=dark
     endif
 endfunction
-function! BracketsFunc()
-    let line = getline('.')
-    let col = col('.')
-    if line[col - 2] == "]"
-        return "{}\<esc>i"
-    else
-        return "{\<cr>}\<esc>O"
-    endif
-endf
+
 function! XmlFileTypeInit()
     set omnifunc=xmlcomplete#CompleteTags
     if filereadable("AndroidManifest.xml")
         set dict+=~/.vim/bundle/vim-dict/dict/android_xml.dic
-    endif
-endf
-function! WSDAutoComplete(char)
-    if(getline(".")=~?'^\s*.*\/\/')==0
-        let line = getline('.')
-        let col = col('.')
-        if a:char == "."
-            return a:char."\<c-x>\<c-o>\<c-p>"
-        elseif line[col - 2] == " "||line[col -2] == "("||line[col - 2] == ","
-            return a:char."\<c-x>\<c-o>\<c-p>"
-        elseif line[col - 3] == " "&&line[col - 2] =="@"
-            return a:char."\<c-x>\<c-o>\<c-p>"
-        else
-            return a:char
-        endif
-    else
-        "bug exists
-        normal! ma
-        let commentcol = searchpos('//','b',line('.'))[1]
-        normal! `a
-        if commentcol == 0
-            return a:char."\<c-x>\<c-o>\<c-p>"
-        else
-            return "\<Right>".a:char
-        endif
-    endif
-endf
-function! ClosePair(char)
-    if getline('.')[col('.') - 1] == a:char
-        return "\<Right>"
-    else
-        return a:char
-    endif
-endf
-
-function! CloseBracket()
-    if match(getline(line('.') + 1), '\s*}') < 0
-        return "\<CR>}"
-    else
-        return "\<Esc>j0f}a"
     endif
 endf
 
@@ -145,15 +98,3 @@ function! MyLeaderTabfunc() abort
         return neocomplete#start_manual_complete(['omni'])
     endif
 endfunction
-
-func! Update_current_plugin()
-    try
-        let a_save = @a
-        let @a=''
-        normal! "ayi'
-        let plug_name = match(@a, '/') >= 0 ? split(@a, '/')[1] : @a
-    finally
-        let @a = a_save
-    endtry
-    call dein#update([plug_name])
-endf

@@ -16,7 +16,7 @@ function! SpaceVim#mapping#leader#defindglobalMappings() abort
   "background
   noremap <silent><leader>bg :call ToggleBG()<CR>
   "numbers
-  noremap <silent><leader>nu :call ToggleNumber()<CR>
+  noremap <silent><leader>tn :call ToggleNumber()<CR>
 
   " yark and paste
   vmap <Leader>y "+y
