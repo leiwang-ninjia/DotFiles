@@ -7,16 +7,23 @@
 "=============================================================================
 
 function! SpaceVim#mapping#leader#defindglobalMappings() abort
-  inoremap <silent> <Leader><Tab> <C-r>=MyLeaderTabfunc()<CR>
+  inoremap <silent> <Leader><Tab> :<C-r>=MyLeaderTabfunc()<CR>
 
   "for buftabs
   noremap <silent><Leader>bp :bprev<CR>
   noremap <silent><Leader>bn :bnext<CR>
 
   "background
-  noremap <silent><leader>bg :call ToggleBG()<CR>
-  "numbers
-  noremap <silent><leader>tn :call ToggleNumber()<CR>
+  noremap <silent><leader>bg :call <SID>ToggleBG()<CR>
+  function! s:ToggleBG()
+    let s:tbg = &background
+    " Inversion
+    if s:tbg == "dark"
+      set background=light
+    else
+      set background=dark
+    endif
+  endfunction
 
   " yark and paste
   vmap <Leader>y "+y
@@ -26,7 +33,6 @@ function! SpaceVim#mapping#leader#defindglobalMappings() abort
   vmap <Leader>p "+p
   vmap <Leader>P "+P
 
-  cnoremap <Leader><C-F> <C-F>
   "When pressing <leader>cd switch to the directory of the open buffer
   map <Leader>cd :cd %:p:h<CR>:pwd<CR>
 
