@@ -4,6 +4,7 @@ function! SpaceVim#layers#edit#plugins() abort
                 \ ['junegunn/vim-emoji'],
                 \ ['terryma/vim-multiple-cursors'],
                 \ ['terryma/vim-expand-region'],
+                \ ['junegunn/vim-easy-align'],
                 \ ['scrooloose/nerdcommenter'],
                 \ ['mattn/emmet-vim',                        { 'on_cmd' : 'EmmetInstall'}],
                 \ ['easymotion/vim-easymotion',{'on_map' : '<Plug>(easymotion-prefix)', 'on_func' : 'EasyMotion#go'}],
