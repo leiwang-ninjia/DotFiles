@@ -58,6 +58,8 @@ nnoremap  [q  :cprev<CR>
 nnoremap  ]q  :cprev<CR>
 nnoremap  [l  :lprev<CR>
 nnoremap  ]l  :lprev<CR>
+nnoremap [b :bprevious<cr>
+nnoremap ]b :bnext<cr>
 
 nnoremap <Leader>ff :FZF<CR>
 
