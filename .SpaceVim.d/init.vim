@@ -61,6 +61,27 @@ nnoremap  ]l  :lprev<CR>
 nnoremap [b :bprevious<cr>
 nnoremap ]b :bnext<cr>
 
+set scrolloff=4
+set pastetoggle=<F9>
+
+silent! set ttymouse=xterm2
+set mouse=a
+
+if exists('&colorcolumn')
+  set colorcolumn=80
+endif
+
+set nostartofline
+nnoremap <F10> :NERDTreeToggle<cr>
 nnoremap <Leader>ff :FZF<CR>
 
+inoremap <C-h> <C-o>h
+inoremap <C-l> <C-o>a
+inoremap <C-j> <C-o>j
+inoremap <C-k> <C-o>k
+inoremap <C-^> <C-o><C-^>
+
+"map  gc  <Plug>Commentary
+nnoremap ]t :tabn<cr>
+nnoremap [t :tabp<cr>
 
