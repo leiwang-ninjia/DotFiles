@@ -63,6 +63,8 @@ function! SpaceVim#autocmds#init() abort
       endif
     endfunction
     "}}}
+    "let g:spacevim_keep_trailing_whitespace = 1
+    autocmd FileType c,cpp,java,go,php,javascript,puppet,python,rust,twig,xml,yml,perl,sql autocmd BufWritePre <buffer> if !exists('g:spacevim_keep_trailing_whitespace') | call StripTrailingWhitespace() | endif
     " autocmd FileType python,coffee call zvim#util#check_if_expand_tab()
     " Instead of reverting the cursor to the last position in the buffer, we
     " set it to the first line when editing a git commit message
