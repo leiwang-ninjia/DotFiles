@@ -66,7 +66,7 @@ function! SpaceVim#autocmds#init() abort
     " autocmd FileType python,coffee call zvim#util#check_if_expand_tab()
     " Instead of reverting the cursor to the last position in the buffer, we
     " set it to the first line when editing a git commit message
-    " au FileType gitcommit au! BufEnter COMMIT_EDITMSG call setpos('.', [0, 1, 1, 0])
+    au FileType gitcommit au! BufEnter COMMIT_EDITMSG call setpos('.', [0, 1, 1, 0])
     "autocmd InsertEnter * call s:fixindentline()
     autocmd VimEnter * if !argc() | call SpaceVim#welcome() | endif
   augroup END
