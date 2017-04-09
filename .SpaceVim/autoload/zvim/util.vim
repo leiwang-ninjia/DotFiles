@@ -95,14 +95,6 @@ fu! zvim#util#check_if_expand_tab() abort
     endif
 endf
 
-function! zvim#util#BufferEmpty() abort
-    let l:current = bufnr('%')
-    if ! getbufvar(l:current, '&modified')
-        enew
-        silent! execute 'bdelete '.l:current
-    endif
-endfunction
-
 function! zvim#util#OpenVimfiler() abort
     if bufnr('vimfiler') == -1
         VimFiler

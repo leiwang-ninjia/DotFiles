@@ -96,66 +96,17 @@ function! SpaceVim#mapping#leader#defindglobalMappings() abort
   nnoremap <Leader>d m`YP``
   vnoremap <Leader>d YPgv
 
-  call SpaceVim#mapping#def('vnoremap', '<Leader>S',
-        \ "y:execute @@<CR>:echo 'Sourced selection.'<CR>",
-        \ 'Sourced selection.',
-        \ "echo 'Use <leader>S to sourced selection.'")
-  call SpaceVim#mapping#def('nnoremap', '<Leader>S',
-        \ "^vg_y:execute @@<CR>:echo 'Sourced line.'<CR>",
-        \ 'Source line',
-        \ "echo 'Use <leader>S to sourced line.'")
-
-  call SpaceVim#mapping#def('nnoremap <silent>', '<Leader>sv',
-        \ ':call SpaceVim#mapping#split_previous_buffer()<CR>',
-        \ 'Open previous buffer in split window',
-        \ 'call SpaceVim#mapping#split_previous_buffer()',
-        \ 'Split previout buffer')
-  call SpaceVim#mapping#def('nnoremap <silent>', '<Leader>sg',
-        \ ':call SpaceVim#mapping#vertical_split_previous_buffer()<CR>',
-        \ 'Open previous buffer in vsplit window' ,
-        \ 'call SpaceVim#mapping#vertical_split_previous_buffer()')
-
   call SpaceVim#mapping#def('nnoremap <silent>', '<leader>w-',
           \ ':<C-u>split<CR>', 'split window', 'split')
   call SpaceVim#mapping#def('nnoremap <silent>', '<leader>w/',
           \ ':<C-u>vsplit<CR>', 'vsplit window', 'vsplit')
   call SpaceVim#mapping#def('nnoremap <silent>', '<leader>wm',
           \ ':<C-u>only<CR>', 'Close other windows', 'only')
-endfunction
-
-function! SpaceVim#mapping#leader#defindWindowsLeader(key) abort
-  if !empty(a:key)
-    call SpaceVim#mapping#def('nnoremap', '[Window]', '<Nop>',
-          \ 'Defind window prefix', 'normal [Window]')
-    call SpaceVim#mapping#def('nmap' , a:key, '[Window]',
-          \ 'Use ' . a:key . ' as window prefix', 'normal ' . a:key)
-
-    call SpaceVim#mapping#def('nnoremap <silent>', '[Window]p',
-          \ ':<C-u>vsplit<CR>:wincmd w<CR>',
-          \ 'vsplit vertically,switch to next window','vsplit | wincmd w')
-    call SpaceVim#mapping#def('nnoremap <silent>', '[Window]v',
-          \ ':<C-u>split<CR>', 'split window', 'split')
-    call SpaceVim#mapping#def('nnoremap <silent>', '[Window]g',
-          \ ':<C-u>vsplit<CR>', 'vsplit window', 'vsplit')
-    call SpaceVim#mapping#def('nnoremap <silent>', '[Window]t',
-          \ ':<C-u>tabnew<CR>', 'Create new tab', 'tabnew')
-    call SpaceVim#mapping#def('nnoremap <silent>', '[Window]o',
-          \ ':<C-u>only<CR>', 'Close other windows', 'only')
-    call SpaceVim#mapping#def('nnoremap <silent>', '[Window]x',
-          \ ':<C-u>call zvim#util#BufferEmpty()<CR>',
-          \ 'Empty current buffer', 'call zvim#util#BufferEmpty()')
-    call SpaceVim#mapping#def('nnoremap <silent>', '[Window]\',
-          \ ':<C-u>b#<CR>', 'Switch to the last buffer','b#')
-    call SpaceVim#mapping#def('nnoremap <silent>', '[Window]q',
+  call SpaceVim#mapping#def('nnoremap <silent>', '<leader>wq',
           \ ':<C-u>close<CR>', 'Close current windows','close')
-    call SpaceVim#mapping#def('nnoremap <silent>', '[Window]Q',
-          \ ':<C-u>call SpaceVim#mapping#close_current_buffer()<CR>',
-          \ 'delete current windows',
-          \ 'call SpaceVim#mapping#close_current_buffer()')
-    call SpaceVim#mapping#def('nnoremap <silent>', '[Window]c',
-          \ ':<C-u>call SpaceVim#mapping#clearBuffers()<CR>',
-          \ 'Clear all the buffers', 'call SpaceVim#mapping#clearBuffers()')
-  endif
+
+  call SpaceVim#mapping#def('nnoremap <silent>', '<leader>bd',
+          \ ':<C-u>bdelete<CR>','Empty current buffer', 'bdelete')
 endfunction
 
 function! SpaceVim#mapping#leader#defindDeniteLeader(key) abort

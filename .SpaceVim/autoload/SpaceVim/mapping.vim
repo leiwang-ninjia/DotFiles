@@ -116,63 +116,6 @@ function! SpaceVim#mapping#enter() abort
   endif
 endfunction
 
-function! SpaceVim#mapping#clearBuffers() abort
-  let blisted = filter(range(1, bufnr('$')), 'buflisted(v:val)')
-  for i in blisted
-    if i != bufnr('%')
-      try 
-        exe 'bw ' . i
-      catch
-      endtry
-    endif
-  endfor
-endfunction
-
-function! SpaceVim#mapping#split_previous_buffer() abort
-  if bufnr('#') == -1
-    call SpaceVim#util#echoWarn('There is no previous buffer')
-  else
-    split
-    wincmd w
-    e#
-  endif
-
-endfunction
-
-function! SpaceVim#mapping#vertical_split_previous_buffer() abort
-  if bufnr('#') == -1
-    call SpaceVim#util#echoWarn('There is no previous buffer')
-  else
-    vsplit
-    wincmd w
-    e#
-  endif
-endfunction
-
-function! SpaceVim#mapping#close_current_buffer() abort
-  let buffers = g:_spacevim_list_buffers
-  let bn = bufnr('%')
-  let index = index(buffers, bn) 
-  if index != -1
-    if index == 0
-      if len(buffers) > 1
-        exe 'b' . buffers[1]
-        exe 'bd' . bn
-      else
-        exe 'bd ' . bn
-      endif
-    elseif index > 0
-      if index + 1 == len(buffers)
-        exe 'b' . buffers[index - 1]
-        exe 'bd' . bn
-      else
-        exe 'b' . buffers[index + 1]
-        exe 'bd' . bn
-      endif
-    endif
-  endif
-endfunction
-
 function! SpaceVim#mapping#close_term_buffer(...) abort
   let buffers = g:_spacevim_list_buffers
   let abuf = str2nr(g:_spacevim_termclose_abuf)
