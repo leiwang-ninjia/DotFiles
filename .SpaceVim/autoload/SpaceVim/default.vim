@@ -3,6 +3,86 @@ function! SpaceVim#default#SetOptions() abort
 
   " basic vim settiing
 
+  set nocompatible        " Must be first line
+
+" General {
+
+    " if !has('gui')
+        "set term=$TERM          " Make arrow and other keys work
+    " endif
+    filetype plugin indent on   " Automatically detect file types.
+    syntax on                   " Syntax highlighting
+    set mouse=a                 " Automatically enable mouse usage
+    set mousehide               " Hide the mouse cursor while typing
+    "scriptencoding utf-8
+
+    if has('clipboard')
+      if has('unnamedplus')  " When possible use + register for copy-paste
+        set clipboard=unnamed,unnamedplus
+      else         " On mac and Windows, use * register for copy-paste
+        set clipboard=unnamed
+      endif
+    endif
+
+    " Most prefer to automatically switch to the current file directory when
+    " a new buffer is opened; to prevent this behavior, add the following to
+    " your .vimrc.before.local file:
+    "   let g:spf13_no_autochdir = 1
+    if !exists('g:spf13_no_autochdir')
+      autocmd BufEnter * if bufname("") !~ "^\[A-Za-z0-9\]*://" | lcd %:p:h | endif
+      " Always switch to the current file directory
+    endif
+
+    "set autowrite                       " Automatically write a file when leaving a modified buffer
+    set shortmess+=filmnrxoOtT          " Abbrev. of messages (avoids 'hit enter')
+    set viewoptions=folds,options,cursor,unix,slash " Better Unix / Windows compatibility
+    set virtualedit=onemore             " Allow for cursor beyond last character
+    set history=1000                    " Store a ton of history (default is 20)
+    set spell                           " Spell checking on
+    set hidden                          " Allow buffer switching without saving
+    set iskeyword-=.                    " '.' is an end of word designator
+    set iskeyword-=#                    " '#' is an end of word designator
+    set iskeyword-=-                    " '-' is an end of word designator
+
+    " http://vim.wikia.com/wiki/Restore_cursor_to_file_position_in_previous_editing_session
+    " Restore cursor to file position in previous editing session
+    " To disable this, add the following to your .vimrc.before.local file:
+    "   let g:spf13_no_restore_cursor = 1
+    if !exists('g:spf13_no_restore_cursor')
+      function! ResCur()
+        if line("'\"") <= line("$")
+          silent! normal! g`"
+          return 1
+        endif
+      endfunction
+
+      augroup resCur
+        autocmd!
+        autocmd BufWinEnter * call ResCur()
+      augroup END
+    endif
+
+    " Setting up the directories {
+        set backup                  " Backups are nice ...
+        if has('persistent_undo')
+            set undofile                " So is persistent undo ...
+            set undolevels=1000         " Maximum number of changes that can be undone
+            set undoreload=10000        " Maximum number lines to save for undo on a buffer reload
+        endif
+
+        " To disable views add the following to your .vimrc.before.local file:
+        "   let g:spf13_no_views = 1
+        if !exists('g:spf13_no_views')
+            " Add exclusions to mkview and loadview
+            " eg: *.*, svn-commit.tmp
+            let g:skipview_files = [
+                \ '\[example pattern\]'
+                \ ]
+        endif
+    " }
+
+" }
+
 " Vim UI {
 
     if !exists('g:override_spf13_bundles') && filereadable(expand("~/.vim/bundle/vim-colors-solarized/colors/solarized.vim"))
@@ -106,12 +186,12 @@ function! SpaceVim#default#SetOptions() abort
   set autoread
 
   " backup
-  set nobackup
-  set noundofile
+  "set nobackup
+  "set noundofile
 
   " no fold enable
-  set nofoldenable
-  set nowritebackup
+  " set nofoldenable
+  " set nowritebackup
   set matchtime=0
   "menuone: show the pupmenu when only one match
   " disable preview scratch window,
@@ -122,8 +202,6 @@ function! SpaceVim#default#SetOptions() abort
   set pumheight=15
   set laststatus=2
   set wildignorecase
-  set mouse=nv
-  set hidden
   set ttimeout
   set ttimeoutlen=50
   set background=dark
@@ -178,6 +256,9 @@ endfunction
 function! SpaceVim#default#SetMappings() abort
 
   "mapping
+  " Yank from the cursor to the end of the line, to be consistent with C and D.
+  nnoremap Y y$
+
   imap <silent><expr><TAB> SpaceVim#mapping#tab#i_tab()
   imap <expr><S-TAB> pumvisible() ? "\<C-p>" : ""
   imap <silent><expr><S-TAB> SpaceVim#mapping#shift_tab()
