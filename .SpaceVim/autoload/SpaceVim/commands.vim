@@ -34,13 +34,14 @@ function! SpaceVim#commands#load() abort
   command! -nargs=*
         \ -complete=custom,SpaceVim#commands#complete_plugin
         \ SPUpdate call SpaceVim#commands#update_plugin(<f-args>)
+
 endfunction
 
 " @vimlint(EVL103, 1, a:ArgLead)
 " @vimlint(EVL103, 1, a:CmdLine)
 " @vimlint(EVL103, 1, a:CursorPos)
 function! SpaceVim#commands#complete_plugin(ArgLead, CmdLine, CursorPos) abort
-  return join(g:_spacevim_plugins, "\n")
+  return join(keys(dein#get()), "\n")
 endfunction
 " @vimlint(EVL103, 0, a:ArgLead)
 " @vimlint(EVL103, 0, a:CmdLine)
@@ -64,14 +65,17 @@ function! SpaceVim#commands#config(...) abort
   endif
 endfunction
 
-function! SpaceVim#commands#update_plugin(plug) abort
+function! SpaceVim#commands#update_plugin(...) abort
   if g:spacevim_plugin_manager ==# 'neobundle'
   elseif g:spacevim_plugin_manager ==# 'dein'
-    call dein#update([a:plug])
+    if a:0 == 0
+      call dein#update()
+    else
+      call dein#install(a:000)
+    endif
   elseif g:spacevim_plugin_manager ==# 'vim-plug'
   endif
 endfunction
-
 
 function! SpaceVim#commands#version() abort
   echo 'SpaceVim ' . g:spacevim_version . '-' . s:SHA() . "\n" .

@@ -194,6 +194,9 @@ let g:spacevim_filemanager             = 'vimfiler'
 " Options are dein, neobundle, or vim-plug.
 let g:spacevim_plugin_manager          = 'dein'
 ""
+" Set the max process of SpaceVim plugin manager
+let g:spacevim_plugin_manager_max_processes = 8
+""
 " Enable/Disable checkinstall on SpaceVim startup. Default is 1.
 " >
 "   let g:spacevim_checkinstall = 1
@@ -206,7 +209,8 @@ let g:spacevim_checkinstall            = 1
 " <
 let g:spacevim_enable_debug            = 0
 ""
-" Set the debug level of SpaceVim. Default is 1.
+" Set the debug level of SpaceVim. Default is 1. see
+" |SpaceVim#logger#setLevel()|
 let g:spacevim_debug_level             = 1
 let g:spacevim_hiddenfileinfo          = 1
 let g:spacevim_plugin_groups_exclude   = []
@@ -265,6 +269,12 @@ let g:spacevim_enable_powerline_fonts  = 1
 "   let g:spacevim_lint_on_save = 0
 " <
 let g:spacevim_lint_on_save            = 1
+""
+" Enable/Disable lint on the fly feature of SpaceVim's maker. Default is 0.
+" >
+"   let g:spacevim_lint_on_the_fly = 0
+" <
+let g:spacevim_lint_on_the_fly         = 0
 ""
 " Enable/Disable vimfiler in the welcome windows. Default is 1. 
 " This will cause vim to start up slowly if there are too many files in the
