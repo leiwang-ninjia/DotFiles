@@ -32,8 +32,31 @@ function! SpaceVim#mapping#leader#defindglobalMappings() abort
   vmap <Leader>p "+p
   vmap <Leader>P "+P
 
+  " Allow using the repeat operator with a visual selection (!)
+  " http://stackoverflow.com/a/8064607/127816
+  vnoremap . :normal .<CR>
+
+  " Some helpers to edit mode
+  " http://vimcasts.org/e/14
+  cnoremap %% <C-R>=fnameescape(expand('%:h')).'/'<cr>
+  map <leader>ew :e %%
+  map <leader>es :sp %%
+  map <leader>ev :vsp %%
+  map <leader>et :tabe %%
+
   "When pressing <leader>cd switch to the directory of the open buffer
   map <Leader>cd :cd %:p:h<CR>:pwd<CR>
+  " Shortcuts
+  " Change Working Directory to that of the current file
+  "cmap cwd lcd %:p:h
+  "cmap cd. lcd %:p:h
+
+  " Map <Leader>ff to display all lines with keyword under cursor
+  " and ask which one to jump to
+  nmap <Leader>ss [I:let nr = input("Which one: ")<Bar>exe "normal " . nr ."[\t"<CR>
+
+  " Easier formatting
+  " nnoremap <silent> <leader>q gwip
 
   " Fast saving
   call SpaceVim#mapping#def('nnoremap', '<Leader>fs', ':w<CR>',
