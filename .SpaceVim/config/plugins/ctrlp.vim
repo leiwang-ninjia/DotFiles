@@ -18,9 +18,9 @@ let g:ctrlp_custom_ignore = get(g:, 'ctrlp_custom_ignore', {
       \ })
 if executable('rg') && !exists('g:ctrlp_user_command')
   let g:ctrlp_user_command = 'rg %s --no-ignore --hidden --files -g "" '
-        \ . join(zvim#util#Generate_ignore(g:spacevim_wildignore,'rg'))
+        \ . join(<SID>Generate_ignore(g:spacevim_wildignore,'rg'))
 elseif executable('ag') && !exists('g:ctrlp_user_command')
-  let g:ctrlp_user_command = 'ag %s --hidden -i  -g "" ' . join(zvim#util#Generate_ignore(g:spacevim_wildignore,'ag'))
+  let g:ctrlp_user_command = 'ag %s --hidden -i  -g "" ' . join(<SID>Generate_ignore(g:spacevim_wildignore,'ag'))
 endif
 if !exists('g:ctrlp_match_func') && (has('python') || has('python3'))
   let g:ctrlp_match_func = { 'match': 'pymatcher#PyMatch'  }
@@ -55,4 +55,19 @@ augroup Fix_command_in_help_buffer
   au FileType help exec "nnoremap <silent><buffer> q :q<CR>"
 augroup END
 
+fu! s:Generate_ignore(ignore,tool) abort
+    let ignore = []
+    if a:tool ==# 'ag'
+        for ig in split(a:ignore,',')
+            call add(ignore, '--ignore')
+            call add(ignore, ig )
+        endfor
+    elseif a:tool ==# 'rg'
+        for ig in split(a:ignore,',')
+            call add(ignore, '-g')
+            call add(ignore, '!' . ig)
+        endfor
+    endif
+    return ignore
+endf
 " vim:set et sw=2:

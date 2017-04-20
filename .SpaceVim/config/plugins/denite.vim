@@ -38,13 +38,13 @@ if !s:sys.isWindows
     " Note: It is slower than ag
     call denite#custom#var('file_rec', 'command',
           \ ['rg', '--hidden', '--files', '--glob', '!.git', '']
-          \ + zvim#util#Generate_ignore(g:spacevim_wildignore, 'rg')
+          \ + <SID>Generate_ignore(g:spacevim_wildignore, 'rg')
           \ )
   elseif executable('ag')
     " Change file_rec command.
     call denite#custom#var('file_rec', 'command',
           \ ['ag' , '--nocolor', '--nogroup', '-g', '']
-          \ + zvim#util#Generate_ignore(g:spacevim_wildignore, 'ag')
+          \ + <SID>Generate_ignore(g:spacevim_wildignore, 'ag')
           \ )
   endif
 else
@@ -55,6 +55,22 @@ else
           \ ['pt', '--follow', '--nocolor', '--nogroup', '-g:', ''])
   endif
 endif
+
+fu! s:Generate_ignore(ignore,tool) abort
+    let ignore = []
+    if a:tool ==# 'ag'
+        for ig in split(a:ignore,',')
+            call add(ignore, '--ignore')
+            call add(ignore, ig )
+        endfor
+    elseif a:tool ==# 'rg'
+        for ig in split(a:ignore,',')
+            call add(ignore, '-g')
+            call add(ignore, '!' . ig)
+        endfor
+    endif
+    return ignore
+endf
 
 
 " FIND and GREP COMMANDS
