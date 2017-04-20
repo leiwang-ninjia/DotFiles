@@ -390,13 +390,30 @@ function! SpaceVim#default#SetMappings() abort
     call setpos('.', save_cursor)
   endfunction
 
-  call SpaceVim#mapping#def('nnoremap <silent>', '<C-c>', ':<c-u>call zvim#util#CopyToClipboard()<cr>',
-        \ 'Copy buffer absolute path to X11 clipboard','call zvim#util#CopyToClipboard()')
-  call SpaceVim#mapping#def('nnoremap <silent>', 'q', ':<C-u>call zvim#util#SmartClose()<cr>',
+  call SpaceVim#mapping#def('nnoremap <silent>', 'q', ':<C-u>call <SID>SmartClose()<cr>',
         \ 'Smart close windows',
-        \ 'call zvim#util#SmartClose()')
-endfunction
+        \ 'call SmartClose()')
 
+  function! s:SmartClose() abort
+    let ignorewin = get(g:,'spacevim_smartcloseignorewin',[])
+    let ignoreft = get(g:, 'spacevim_smartcloseignoreft',[])
+    let win_count = winnr('$')
+    let num = win_count
+    for i in range(1,win_count)
+      if index(ignorewin , bufname(winbufnr(i))) != -1 || index(ignoreft, getbufvar(bufname(winbufnr(i)),'&filetype')) != -1
+        let num = num - 1
+      endif
+      if getbufvar(winbufnr(i),'&buftype') ==# 'quickfix'
+        let num = num - 1
+      endif
+    endfor
+    if num == 1
+    else
+      close
+    endif
+  endfunction
+
+endfunction
 
 function! SpaceVim#default#UseSimpleMode() abort
 
