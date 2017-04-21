@@ -122,7 +122,7 @@ function! zvim#plug#end() abort
     endif
 endfunction
 
-function! s:source_rc(file) abort
+function! Gsource_rc(file) abort
     if filereadable(g:Config_Main_Home. '/' . a:file)
         execute 'source ' . g:Config_Main_Home  . '/' . a:file
     endif
@@ -132,11 +132,11 @@ function! zvim#plug#defind_hooks(bundle) abort
     if g:spacevim_plugin_manager ==# 'neobundle'
         let s:hooks = neobundle#get_hooks(a:bundle)
         func! s:hooks.on_source(bundle) abort
-            call <SID>source_rc('plugins/' . split(a:bundle['name'],'\.')[0] . '.vim')
+            call Gsource_rc('plugins/' . split(a:bundle['name'],'\.')[0] . '.vim')
         endf
     elseif g:spacevim_plugin_manager ==# 'dein'
         call dein#config(g:dein#name, {
-                    \ 'hook_source' : "call zvim#util#source_rc('plugins/" . split(g:dein#name,'\.')[0] . ".vim')"
+                    \ 'hook_source' : "call Gsource_rc('plugins/" . split(g:dein#name,'\.')[0] . ".vim')"
                     \ })
     endif
 endfunction
@@ -208,9 +208,9 @@ endfunction
 
 function! zvim#plug#loadPluginBefore(plugin) abort
     if matchend(a:plugin, '.vim') == len(a:plugin)
-        call <SID>source_rc('plugins_before/' . a:plugin)
+        call Gsource_rc('plugins_before/' . a:plugin)
     else
-        call <SID>source_rc('plugins_before/' . a:plugin . '.vim')
+        call Gsource_rc('plugins_before/' . a:plugin . '.vim')
     endif
 endfunction
 
