@@ -9,10 +9,6 @@ function! SpaceVim#commands#load() abort
   " feature is included, when there is a '-' it is excluded.
   command! -nargs=0 SPVersion call SpaceVim#commands#version()
   ""
-  " Set or check SpaceVim option. {opt} should be the option name of
-  " spacevim, This command will use [value] as the value of option name.
-  command! -nargs=+ SPSet call SpaceVim#options#set(<f-args>)
-  ""
   ""
   " edit custom config file of SpaceVim, by default this command will open
   " global custom configuration file, '-l' option will load local custom
