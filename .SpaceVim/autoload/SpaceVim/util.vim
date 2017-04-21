@@ -6,10 +6,4 @@ function! SpaceVim#util#globpath(path, expr) abort
   endif
 endfunction
 
-function! SpaceVim#util#echoWarn(msg) abort
-  echohl WarningMsg
-  echo a:msg
-  echohl None
-endfunction
-
 " vim:set et sw=2 cc=80:
