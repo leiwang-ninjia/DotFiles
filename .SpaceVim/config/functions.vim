@@ -43,4 +43,5 @@ function! StripTrailingWhitespace()
 	let @/=_s
 	call cursor(l, c)
 endfunction
+
 " }
