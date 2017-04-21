@@ -20,7 +20,6 @@ function! SpaceVim#layers#tools#plugins() abort
         \ { 'on_cmd' : 'RainbowParentheses'}],
         \ ['godlygeek/tabular',           { 'on_cmd' : 'Tabularize'}],
         \ ['airblade/vim-gitgutter',      { 'on_cmd' : 'GitGutterEnable'}],
-        \ ['wsdjeg/job.vim',              { 'merged' : 0}],
         \ ['junegunn/fzf',                { 'on_cmd' : 'FZF'}],
         \ ['TaskList.vim',                { 'on_cmd' : 'TaskList'}],
         \ ['taglist.vim',         { 'on_cmd' : 'TlistToggle', 'loadconf' : 1}],
