@@ -1,11 +1,11 @@
 scriptencoding utf-8
 function! SpaceVim#plugins#load() abort
-  if zvim#plug#enable_plug()
-    call zvim#plug#begin(g:spacevim_plugin_bundle_dir)
-    call zvim#plug#fetch()
+  if SpaceVim#plug#enable_plug()
+    call SpaceVim#plug#begin(g:spacevim_plugin_bundle_dir)
+    call SpaceVim#plug#fetch()
     call s:load_plugins()
     call s:disable_plugins(g:spacevim_disabled_plugins)
-    call zvim#plug#end()
+    call SpaceVim#plug#end()
   endif
 
 endfunction
@@ -13,24 +13,24 @@ function! s:load_plugins() abort
   for group in g:spacevim_plugin_groups
     for plugin in s:getLayerPlugins(group)
       if len(plugin) == 2
-        call zvim#plug#add(plugin[0], plugin[1])
-        if zvim#plug#tap(split(plugin[0], '/')[-1]) && get(plugin[1], 'loadconf', 0 )
-          call zvim#plug#defind_hooks(split(plugin[0], '/')[-1])
+        call SpaceVim#plug#add(plugin[0], plugin[1])
+        if SpaceVim#plug#tap(split(plugin[0], '/')[-1]) && get(plugin[1], 'loadconf', 0 )
+          call SpaceVim#plug#defind_hooks(split(plugin[0], '/')[-1])
         endif
-        if zvim#plug#tap(split(plugin[0], '/')[-1]) && get(plugin[1], 'loadconf_before', 0 )
-          call zvim#plug#loadPluginBefore(split(plugin[0], '/')[-1])
+        if SpaceVim#plug#tap(split(plugin[0], '/')[-1]) && get(plugin[1], 'loadconf_before', 0 )
+          call SpaceVim#plug#loadPluginBefore(split(plugin[0], '/')[-1])
         endif
       else
-        call zvim#plug#add(plugin[0])
+        call SpaceVim#plug#add(plugin[0])
       endif
     endfor
     call s:loadLayerConfig(group)
   endfor
   for plugin in g:spacevim_custom_plugins
     if len(plugin) == 2
-      call zvim#plug#add(plugin[0], plugin[1])
+      call SpaceVim#plug#add(plugin[0], plugin[1])
     else
-      call zvim#plug#add(plugin[0])
+      call SpaceVim#plug#add(plugin[0])
     endif
   endfor
 endfunction
