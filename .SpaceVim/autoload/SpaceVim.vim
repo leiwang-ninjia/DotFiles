@@ -366,9 +366,17 @@ let g:spacevim_leader_guide_submode_mappings = {'<C-C>': "win_close"}
 command -nargs=1 LeaderGuide call SpaceVim#mapping#guide#start_by_prefix('0', <args>)
 "====
 
+function! s:SpaceVimutilglobpath(path, expr) abort
+  if has('patch-7.4.279')
+    return globpath(a:path, a:expr, 1, 1)
+  else
+    return split(globpath(a:path, a:expr), '\n')
+  endif
+endfunction
+
 function! SpaceVim#loadCustomConfig() abort
-  let custom_confs_old = SpaceVim#util#globpath(getcwd(), '.local.vim')
-  let custom_confs = SpaceVim#util#globpath(getcwd(), '.SpaceVim.d/init.vim')
+  let custom_confs_old = s:SpaceVimutilglobpath(getcwd(), '.local.vim')
+  let custom_confs = s:SpaceVimutilglobpath(getcwd(), '.SpaceVim.d/init.vim')
   let custom_glob_conf_old = expand('~/.local.vim')
   let custom_glob_conf = expand('~/.SpaceVim.d/init.vim')
   " the old value will be remove
