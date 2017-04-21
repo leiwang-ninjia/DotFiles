@@ -53,10 +53,6 @@ function! SpaceVim#logger#viewLog(...) abort
   let info .= "\n```\n"
   let info .= "\n\n"
 
-  let info .= "### SpaceVim Health checking :\n\n"
-  let info .= SpaceVim#health#report()
-  let info .= "\n\n"
-
   let info .= "### SpaceVim runtime log :\n\n"
   let info .= "```log\n"
 
