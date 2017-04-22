@@ -12,9 +12,9 @@ let g:spacevim_enable_guicolors = 0
 let g:spacevim_windows_leader = '\'
 
 " Set unite work flow shortcut leader [Unite], default is `f`
-let g:spacevim_unite_leader = ',,'
+let g:spacevim_unite_leader = ','
 
-let g:spacevim_denite_leader = ','
+let g:spacevim_denite_leader = ',,'
 
 " Enable/Disable realtime leader guide. Default is 0.
 let g:spacevim_realtime_leader_guide = 1
