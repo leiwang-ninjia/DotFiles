@@ -297,61 +297,6 @@ let g:spacevim_wildignore
 let g:_spacevim_mappings = {}
 " TODO merge leader guide
 
-if !exists('g:leaderGuide_vertical')
-  let g:leaderGuide_vertical = 0
-endif
-
-let g:spacevim_leader_guide_vertical = 0
-
-if !exists('g:leaderGuide_sort_horizontal')
-  let g:leaderGuide_sort_horizontal = 0
-endif
-
-let g:spacevim_leader_guide_sort_horizontal = 0
-
-if !exists('g:leaderGuide_position')
-  let g:leaderGuide_position = 'botright'
-endif
-
-let g:spacevim_leader_guide_position = 'botright'
-
-if !exists('g:leaderGuide_run_map_on_popup')
-  let g:leaderGuide_run_map_on_popup = 1
-endif
-
-let g:spacevim_leader_guide_run_map_on_popup = 1
-
-if !exists("g:leaderGuide_hspace")
-  let g:leaderGuide_hspace = 5
-endif
-
-let g:spacevim_leader_guide_hspace = 5
-
-if !exists("g:leaderGuide_flatten")
-  let g:leaderGuide_flatten = 1
-endif
-
-let g:spacevim_leader_guide_flatten = 1
-
-if !exists("g:leaderGuide_default_group_name")
-  let g:leaderGuide_default_group_name = ""
-endif
-
-let g:spacevim_leader_guide_default_group_name = ""
-
-if !exists("g:leaderGuide_max_size")
-  let g:leaderGuide_max_size = 0
-endif
-
-let g:spacevim_leader_guide_max_size = 0
-
-if !exists("g:leaderGuide_submode_mappings")
-  let g:leaderGuide_submode_mappings = {'<C-C>': "win_close"}
-endif
-
-let g:spacevim_leader_guide_submode_mappings = {'<C-C>': "win_close"}
-
-
 function! s:SpaceVimutilglobpath(path, expr) abort
   if has('patch-7.4.279')
     return globpath(a:path, a:expr, 1, 1)
@@ -439,13 +384,6 @@ function! SpaceVim#end() abort
     silent exec 'lan ' . g:spacevim_language
   endif
 
-  if g:spacevim_realtime_leader_guide
-    nnoremap <silent><nowait> <leader> :<c-u>LeaderGuide get(g:, 'mapleader', '\')<CR>
-    vnoremap <silent> <leader> :<c-u>LeaderGuideVisual get(g:, 'mapleader', '\')<CR>
-  endif
-  let g:leaderGuide_max_size = 15
-  let g:leaderGuide_submode_mappings = 
-        \ { '<C-C>': 'win_close', '<PageDown>': 'page_down', '<PageUp>': 'page_up'}
   call SpaceVim#plugins#load()
 endfunction
 

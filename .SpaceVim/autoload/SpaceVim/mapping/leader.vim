@@ -137,8 +137,6 @@ function! SpaceVim#mapping#leader#defindDeniteLeader(key) abort
     if a:key == 'F'
       nnoremap <leader>F F
     endif
-    exe 'nnoremap <silent><nowait> [denite] :<c-u>LeaderGuide "' .
-          \ a:key . '"<CR>'
     exe 'nmap ' .a:key . ' [denite]'
     let g:_spacevim_mappings_denite = {}
     nnoremap <silent> [denite]r
@@ -172,8 +170,6 @@ function! SpaceVim#mapping#leader#defindUniteLeader(key) abort
       nnoremap <leader>f f
     endif
     " The prefix key.
-    exe 'nnoremap <silent><nowait> [unite] :<c-u>LeaderGuide "' .
-          \ a:key . '"<CR>'
     exe 'nmap ' .a:key . ' [unite]'
     let g:_spacevim_mappings_unite = {}
     nnoremap <silent> [unite]r
