@@ -77,8 +77,13 @@ let g:spacevim_vim_plug_installed      = 0
 "   let g:spacevim_plugin_bundle_dir = '~/.cache/vimplugs'
 " <
 
+let s:system = {}
+
+let s:system['isWindows'] = has('win16') || has('win32') || has('win64')
+let s:system['isLinux'] = has('unix') && !has('macunix') && !has('win32unix')
+let s:system['isOSX'] = has('macunix')
+
 let s:file = {}
-let s:system = SpaceVim#api#import('system')
 
 if s:system.isWindows
   let s:file['separator'] = '\'

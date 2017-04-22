@@ -10,7 +10,6 @@ SpaceVim provide many public apis, you can use this apis in your plugins. SpaceV
 
 ```viml
 
-let s:file = SpaceVim#api#import('file')
 let s:system = SpaceVim#api#import('system')
 
 if s:system.isWindows

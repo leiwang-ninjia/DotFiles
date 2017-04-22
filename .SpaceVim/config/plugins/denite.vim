@@ -1,7 +1,10 @@
 scriptencoding utf-8
 " load api
-let s:sys = SpaceVim#api#import('system')
+let s:sys = {}
 
+let s:sys['isWindows'] = has('win16') || has('win32') || has('win64')
+let s:sys['isLinux'] = has('unix') && !has('macunix') && !has('win32unix')
+let s:sys['isOSX'] = has('macunix')
 
 " denite option
 let s:denite_options = {
