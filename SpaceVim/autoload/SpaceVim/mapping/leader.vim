@@ -32,6 +32,8 @@ function! SpaceVim#mapping#leader#defindglobalMappings() abort
   vmap <Leader>p "+p
   vmap <Leader>P "+P
 
+  nnoremap <Leader>q :q<CR>
+  nnoremap <Leader>ff :FZF<CR>
   " Allow using the repeat operator with a visual selection (!)
   " http://stackoverflow.com/a/8064607/127816
   vnoremap . :normal .<CR>

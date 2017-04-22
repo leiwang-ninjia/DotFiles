@@ -220,6 +220,11 @@ function! SpaceVim#default#SetOptions() abort
   set ttimeout
   set ttimeoutlen=50
   set background=dark
+  set nostartofline
+
+  if exists('&colorcolumn')
+    set colorcolumn=80
+  endif
 endfunction
 
 function! SpaceVim#default#SetPlugins() abort
@@ -326,7 +331,12 @@ function! SpaceVim#default#SetMappings() abort
   "mapping
   " Yank from the cursor to the end of the line, to be consistent with C and D.
   nnoremap Y y$
+  nnoremap <F10> :NERDTreeToggle<cr>
 
+  inoremap <C-h> <C-o>h
+  inoremap <C-l> <C-o>a
+  inoremap <C-j> <C-o>j
+  inoremap <C-k> <C-o>k
   imap <silent><expr><TAB> <SID>SpaceVimmappingtabi_tab()
   imap <expr><S-TAB> pumvisible() ? "\<C-p>" : ""
   imap <silent><expr><S-TAB> SpaceVim#mapping#shift_tab()

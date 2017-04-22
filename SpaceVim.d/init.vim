@@ -51,28 +51,4 @@ let g:spacevim_simple_mode = 0
 let g:spacevim_lint_on_save = 0
 let g:spacevim_enable_vimfiler_welcome = 0
 
-"nnoremap <space>w :w<cr>
-
-nnoremap <space>q :q<CR>
-
-set scrolloff=4
-set pastetoggle=<F9>
-
-silent! set ttymouse=xterm2
-set mouse=a
-
-if exists('&colorcolumn')
-  set colorcolumn=80
-endif
-
-set nostartofline
-nnoremap <F10> :NERDTreeToggle<cr>
-nnoremap <Leader>ff :FZF<CR>
-
-inoremap <C-h> <C-o>h
-inoremap <C-l> <C-o>a
-inoremap <C-j> <C-o>j
-inoremap <C-k> <C-o>k
-inoremap <C-^> <C-o><C-^>
-
 
