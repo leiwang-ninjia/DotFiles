@@ -34,7 +34,7 @@ install_vim () {
             echo -e "${Blue}Installed SpaceVim for vim${Color_off}"
         fi
     else
-        ln -s "$HOME/DotFiles/.SpaceVim" "$HOME/.vim"
+        ln -s "$HOME/DotFiles/SpaceVim" "$HOME/.vim"
         echo -e "${Blue}Installed SpaceVim for vim${Color_off}"
     fi
 }
