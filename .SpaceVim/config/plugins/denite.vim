@@ -1,10 +1,4 @@
 scriptencoding utf-8
-" load api
-let s:sys = {}
-
-let s:sys['isWindows'] = has('win16') || has('win32') || has('win64')
-let s:sys['isLinux'] = has('unix') && !has('macunix') && !has('win32unix')
-let s:sys['isOSX'] = has('macunix')
 
 " denite option
 let s:denite_options = {
@@ -35,7 +29,7 @@ call denite#custom#var(
       \ 'date_format', '%m-%d-%Y %H:%M:%S')
 
 " denite command
-if !s:sys.isWindows
+if WINDOWS()
   if executable('rg')
     " For ripgrep
     " Note: It is slower than ag
