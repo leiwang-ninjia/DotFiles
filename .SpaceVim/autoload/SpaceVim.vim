@@ -48,11 +48,6 @@ let g:spacevim_max_column              = 120
 " <
 let g:spacevim_enable_guicolors = 1
 ""
-" Enable/Disable Google suggestions for neocomplete. Default is 0.
-" >
-"   let g:spacevim_enable_googlesuggest = 1
-" <
-let g:spacevim_enable_googlesuggest    = 0
 ""
 " Window functions leader for SpaceVim. Default is `s`. 
 " Set to empty to disable this feature, or you can set to another char.
@@ -93,12 +88,6 @@ let g:spacevim_plugin_bundle_dir
 " <
 let g:spacevim_realtime_leader_guide   = 0
 ""
-" Enable/Disable key frequency catching of SpaceVim. default value is 0. to
-" enable it:
-" >
-"   let g:spacevim_enable_key_frequency = 1
-" <
-let g:spacevim_enable_key_frequency = 0
 let g:spacevim_autocomplete_method     = ''
 let g:spacevim_enable_cursorcolumn     = 0
 ""
@@ -166,8 +155,6 @@ let g:spacevim_use_colorscheme         = 1
 " Set the help language of vim. Default is 'en'. 
 " You can change it to Chinese.
 " >
-"   let g:spacevim_vim_help_language = 'chinese'
-" <
 let g:spacevim_vim_help_language       = 'en'
 ""
 " Set the message language of vim. Default is 'en_US.UTF-8'.
@@ -212,13 +199,7 @@ let g:spacevim_checkinstall            = 1
 ""
 " Enable/Disable debug mode for SpaceVim. Default is 0.
 " >
-"   let g:spacevim_enable_debug = 1
-" <
-let g:spacevim_enable_debug            = 0
 ""
-" Set the debug level of SpaceVim. Default is 1. see
-" |SpaceVim#logger#setLevel()|
-let g:spacevim_debug_level             = 1
 let g:spacevim_hiddenfileinfo          = 1
 let g:spacevim_plugin_groups_exclude   = []
 ""
