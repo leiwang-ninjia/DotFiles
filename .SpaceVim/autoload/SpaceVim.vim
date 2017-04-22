@@ -400,10 +400,6 @@ function! SpaceVim#end() abort
   if !empty(g:spacevim_denite_leader)
     call SpaceVim#mapping#leader#defindDeniteLeader(g:spacevim_denite_leader)
   endif
-  if !SpaceVim#mapping#guide#has_configuration()
-    let g:leaderGuide_map = {}
-    call SpaceVim#mapping#guide#register_prefix_descriptions('', 'g:leaderGuide_map')
-  endif
   call SpaceVim#mapping#leader#defindglobalMappings()
   if g:spacevim_simple_mode
     let g:spacevim_plugin_groups = ['core']
