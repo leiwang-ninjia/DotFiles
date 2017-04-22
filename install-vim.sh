@@ -18,16 +18,6 @@ need_cmd () {
     fi
 }
 
-fetch_repo () {
-    if [[ -d "$HOME/.SpaceVim" ]]; then
-        git --git-dir "$HOME/.SpaceVim/.git" pull
-        echo -e "${Blue}Successfully update SpaceVim${Color_off}"
-    else
-        git clone https://github.com/SpaceVim/SpaceVim.git "$HOME/.SpaceVim"
-        echo -e "${Blue}Successfully clone SpaceVim${Color_off}"
-    fi
-}
-
 install_vim () {
     if [[ -f "$HOME/.vimrc" ]]; then
         mv "$HOME/.vimrc" "$HOME/.vimrc_back"
@@ -35,39 +25,39 @@ install_vim () {
     fi
 
     if [[ -d "$HOME/.vim" ]]; then
-        if [[ "$(readlink $HOME/.vim)" =~ \.SpaceVim$ ]]; then
+        if [[ "$(readlink $HOME/.vim)" =~ \Dotfiles\SpaceVim$ ]]; then
             echo -e "${Blue}Installed SpaceVim for vim${Color_off}"
         else
             mv "$HOME/.vim" "$HOME/.vim_back"
             echo -e "${Blue}BackUp $HOME/.vim${Color_off}"
-            ln -s "$HOME/.SpaceVim" "$HOME/.vim"
+            ln -s "$HOME/DotFiles/.SpaceVim" "$HOME/.vim"
             echo -e "${Blue}Installed SpaceVim for vim${Color_off}"
         fi
     else
-        ln -s "$HOME/.SpaceVim" "$HOME/.vim"
+        ln -s "$HOME/DotFiles/.SpaceVim" "$HOME/.vim"
         echo -e "${Blue}Installed SpaceVim for vim${Color_off}"
     fi
 }
 
 install_neovim () {
     if [[ -d "$HOME/.config/nvim" ]]; then
-        if [[ "$(readlink $HOME/.config/nvim)" =~ \.SpaceVim$ ]]; then
+        if [[ "$(readlink $HOME/.config/nvim)" =~ \Dotfiles\SpaceVim$ ]]; then
             echo -e "${Blue}Installed SpaceVim for neovim${Color_off}"
         else
             mv "$HOME/.config/nvim" "$HOME/.config/nvim_back"
             echo -e "${Blue}BackUp $HOME/.config/nvim${Color_off}"
-            ln -s "$HOME/.SpaceVim" "$HOME/.config/nvim"
+            ln -s "$HOME/DotFiles/SpaceVim" "$HOME/.config/nvim"
             echo -e "${Blue}Installed SpaceVim for neovim${Color_off}"
         fi
     else
-        ln -s "$HOME/.SpaceVim" "$HOME/.config/nvim"
+        ln -s "$HOME/DotFiles/SpaceVim" "$HOME/.config/nvim"
         echo -e "${Blue}Installed SpaceVim for neovim${Color_off}"
     fi
 }
 
 uninstall_vim () {
     if [[ -d "$HOME/.vim" ]]; then
-        if [[ "$(readlink $HOME/.vim)" =~ \.SpaceVim$ ]]; then
+        if [[ "$(readlink $HOME/.vim)" =~ \SpaceVim$ ]]; then
             rm "$HOME/.vim"
             echo -e "${Blue}Uninstall SpaceVim for vim${Color_off}"
             if [[ -d "$HOME/.vim_back" ]]; then
@@ -84,7 +74,7 @@ uninstall_vim () {
 
 uninstall_neovim () {
     if [[ -d "$HOME/.config/nvim" ]]; then
-        if [[ "$(readlink $HOME/.config/nvim)" =~ \.SpaceVim$ ]]; then
+        if [[ "$(readlink $HOME/.config/nvim)" =~ \SpaceVim$ ]]; then
             rm "$HOME/.config/nvim"
             echo -e "${Blue}Uninstall SpaceVim for neovim${Color_off}"
             if [[ -d "$HOME/.config/nvim_back" ]]; then
@@ -117,8 +107,6 @@ then
             exit 0
             ;;
         install)
-            need_cmd 'git'
-            fetch_repo
             if [ $# -eq 2 ]
             then
                 case $2 in
@@ -142,7 +130,6 @@ then
 fi
 # if no argv, installer will install SpaceVim
 need_cmd 'git'
-fetch_repo
 install_vim
 install_neovim
 
