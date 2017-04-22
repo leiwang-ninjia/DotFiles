@@ -290,7 +290,7 @@ function! SpaceVim#default#SetMappings() abort
   " Yank from the cursor to the end of the line, to be consistent with C and D.
   nnoremap Y y$
 
-  imap <silent><expr><TAB> s:SpaceVimmappingtabi_tab()
+  imap <silent><expr><TAB> <SID>SpaceVimmappingtabi_tab()
   imap <expr><S-TAB> pumvisible() ? "\<C-p>" : ""
   imap <silent><expr><S-TAB> SpaceVim#mapping#shift_tab()
   smap <expr><TAB> neosnippet#expandable_or_jumpable() ? "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
