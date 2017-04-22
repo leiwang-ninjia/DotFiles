@@ -23,6 +23,7 @@ function! SpaceVim#default#SetOptions() abort
         set clipboard=unnamed
       endif
     endif
+    set clipboard=unnamed
 
     " Most prefer to automatically switch to the current file directory when
     " a new buffer is opened; to prevent this behavior, add the following to
@@ -44,6 +45,12 @@ function! SpaceVim#default#SetOptions() abort
     set iskeyword-=#                    " '#' is an end of word designator
     set iskeyword-=-                    " '-' is an end of word designator
 
+    if has('termguicolors')
+      let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
+      let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
+      set termguicolors
+    endif
+
     " http://vim.wikia.com/wiki/Restore_cursor_to_file_position_in_previous_editing_session
     " Restore cursor to file position in previous editing session
     " To disable this, add the following to your .vimrc.before.local file:
@@ -61,6 +68,14 @@ function! SpaceVim#default#SetOptions() abort
         autocmd BufWinEnter * call ResCur()
       augroup END
     endif
+
+    " Annoying temporary files
+    "TODO
+    "set backupdir=/tmp//,.
+    "set directory=/tmp//,.
+    "if v:version >= 703
+    "  set undodir=/tmp//,.
+    "endif
 
     " Setting up the directories {
         "set backup                   Backups are nice ...
@@ -353,6 +368,26 @@ function! SpaceVim#default#SetMappings() abort
   nnoremap <silent>[e  :<c-u>execute 'move -1-'. v:count1<cr>
   nnoremap <silent>]e  :<c-u>execute 'move +'. v:count1<cr>
 
+  " ----------------------------------------------------------------------------
+  " Quickfix
+  " ----------------------------------------------------------------------------
+  nnoremap ]q :cnext<cr>zz
+  nnoremap [q :cprev<cr>zz
+  nnoremap ]l :lnext<cr>zz
+  nnoremap [l :lprev<cr>zz
+
+  " ----------------------------------------------------------------------------
+  " Buffers
+  " ----------------------------------------------------------------------------
+  nnoremap ]b :bnext<cr>
+  nnoremap [b :bprev<cr>
+
+  " ----------------------------------------------------------------------------
+  " Tabs
+  " ----------------------------------------------------------------------------
+  nnoremap ]t :tabn<cr>
+  nnoremap [t :tabp<cr>
+
   "]<End> or ]<Home> move current line to the end or the begin of current buffer
   nnoremap <silent>]<End> ddGp``
   nnoremap <silent>]<Home> ddggP``
@@ -402,7 +437,7 @@ function! SpaceVim#default#SetMappings() abort
   nnoremap <silent><expr> gp '`['.strpart(getregtype(), 0, 1).'`]'
 
   " Use Q format lines
-  map Q gq
+  map Q @q
 
   " Navigate window
   nnoremap <silent><C-q> <C-w>
@@ -412,12 +447,7 @@ function! SpaceVim#default#SetMappings() abort
   cnoremap <C-a> <Home>
   cnoremap <C-b> <Left>
   cnoremap <C-f> <Right>
-
-
-  " Fast saving
-  nnoremap <C-s> :<C-u>w<CR>
-  vnoremap <C-s> :<C-u>w<CR>
-  cnoremap <C-s> <C-u>w<CR>
+  cnoremap <expr> <C-d> getcmdpos()>strlen(getcmdline())?"\<Lt>C-D>":"\<Lt>Del>"
 
   " Tabs
   nnoremap <silent>g0 :<C-u>tabfirst<CR>

@@ -10,6 +10,24 @@
 function! SpaceVim#autocmds#init() abort
   augroup SpaceVim_core
     au!
+    au BufWritePost vimrc,.vimrc nested if expand('%') !~ 'fugitive' | source % | endif
+
+    " File types
+    au FileType slim IndentLinesEnable
+
+    " File types
+    au BufNewFile,BufRead *.icc               set filetype=cpp
+    au BufNewFile,BufRead *.pde               set filetype=java
+    au BufNewFile,BufRead *.coffee-processing set filetype=coffee
+    au BufNewFile,BufRead Dockerfile*         set filetype=dockerfile
+
+    " http://vim.wikia.com/wiki/Highlight_unwanted_spaces
+    au BufNewFile,BufRead,InsertLeave * silent! match ExtraWhitespace /\s\+$/
+    au InsertEnter * silent! match ExtraWhitespace /\s\+\%#\@<!$/
+
+    " Unset paste on InsertLeave
+    au InsertLeave * silent! set nopaste
+
     autocmd BufWinEnter quickfix nnoremap <silent> <buffer>
           \   q :cclose<cr>:lclose<cr>
     autocmd BufEnter * if (winnr('$') == 1 && &buftype ==# 'quickfix' ) |
