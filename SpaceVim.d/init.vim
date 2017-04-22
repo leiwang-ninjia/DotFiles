@@ -54,12 +54,6 @@ let g:spacevim_enable_vimfiler_welcome = 0
 "nnoremap <space>w :w<cr>
 
 nnoremap <space>q :q<CR>
-nnoremap  [q  :cprev<CR>
-nnoremap  ]q  :cprev<CR>
-nnoremap  [l  :lprev<CR>
-nnoremap  ]l  :lprev<CR>
-nnoremap [b :bprevious<cr>
-nnoremap ]b :bnext<cr>
 
 set scrolloff=4
 set pastetoggle=<F9>
@@ -81,7 +75,4 @@ inoremap <C-j> <C-o>j
 inoremap <C-k> <C-o>k
 inoremap <C-^> <C-o><C-^>
 
-"map  gc  <Plug>Commentary
-nnoremap ]t :tabn<cr>
-nnoremap [t :tabp<cr>
 
