@@ -457,33 +457,7 @@ function! s:get_register() "{{{
   endif
   return clip
 endfunction "}}}
-function! SpaceVim#mapping#guide#start_by_prefix(vis, key) " {{{
-  let s:vis = a:vis ? 'gv' : ''
-  let s:count = v:count != 0 ? v:count : ''
-  let s:toplevel = a:key ==? '  '
-  let s:prefix_key = a:key
 
-  if has('nvim') && !exists('s:reg')
-    let s:reg = ''
-  else
-    let s:reg = v:register != s:get_register() ? '"'.v:register : ''
-  endif
-
-  if !has_key(s:cached_dicts, a:key) || g:leaderGuide_run_map_on_popup
-    "first run
-    let s:cached_dicts[a:key] = {}
-    call s:start_parser(a:key, s:cached_dicts[a:key])
-  endif
-
-  if has_key(s:desc_lookup, a:key) || has_key(s:desc_lookup , 'top')
-    let rundict = s:create_target_dict(a:key)
-  else
-    let rundict = s:cached_dicts[a:key]
-  endif
-  let s:lmap = rundict
-
-  call s:start_buffer()
-endfunction " }}}
 function! SpaceVim#mapping#guide#start(vis, dict) " {{{
   let s:vis = a:vis ? 'gv' : 0
   let s:lmap = a:dict

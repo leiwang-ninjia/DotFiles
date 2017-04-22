@@ -222,23 +222,6 @@ let g:spacevim_debug_level             = 1
 let g:spacevim_hiddenfileinfo          = 1
 let g:spacevim_plugin_groups_exclude   = []
 ""
-" Set SpaceVim buffer index type, default is 0.
-" >
-"   " types:
-"   " 0: 1 ➛ ➊ 
-"   " 1: 1 ➛ ➀
-"   " 2: 1 ➛ ⓵
-"   " 3: 1 ➛ ¹
-"   " 4: 1 ➛ 1
-"   let g:spacevim_buffer_index_type = 1
-" <
-let g:spacevim_buffer_index_type = 0
-""
-" Enable/Disable tabline filetype icon. default is 0.
-let g:spacevim_enable_tabline_filetype_icon = 0
-""
-" Enable/Disable os fileformat icon. default is 0.
-let g:spacevim_enable_os_fileformat_icon = 0
 ""
 " Plugin groups to be loaded.
 " >
@@ -369,10 +352,6 @@ endif
 let g:spacevim_leader_guide_submode_mappings = {'<C-C>': "win_close"}
 
 
-
-command -nargs=1 LeaderGuide call SpaceVim#mapping#guide#start_by_prefix('0', <args>)
-"====
-
 function! s:SpaceVimutilglobpath(path, expr) abort
   if has('patch-7.4.279')
     return globpath(a:path, a:expr, 1, 1)
@@ -481,10 +460,6 @@ function! SpaceVim#default() abort
   call SpaceVim#default#SetMappings()
   call SpaceVim#commands#load()
 endfunction
-
-function! SpaceVim#defindFuncs() abort
-endfunction
-
 
 function! SpaceVim#welcome() abort
   if exists(':Startify') == 2
