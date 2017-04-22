@@ -284,6 +284,28 @@ elseif g:spacevim_snippet_engine ==# 'ultisnips'
   endfunction
 endif
 
+if g:spacevim_snippet_engine ==# 'neosnippet'
+  function! s:SpaceVimmappingenteri_enter() abort
+    if pumvisible()
+      if neosnippet#expandable()
+        return "\<plug>(neosnippet_expand)"
+      else
+        return "\<c-y>"
+      endif
+    else
+      return "\<Enter>"
+    endif
+  endfunction
+elseif g:spacevim_snippet_engine ==# 'ultisnips'
+  function! s:SpaceVimmappingenteri_enter() abort
+    if pumvisible()
+      return "\<c-y>"
+    else
+      return "\<Enter>"
+    endif
+  endfunction
+endif
+
 function! SpaceVim#default#SetMappings() abort
 
   "mapping
@@ -294,7 +316,7 @@ function! SpaceVim#default#SetMappings() abort
   imap <expr><S-TAB> pumvisible() ? "\<C-p>" : ""
   imap <silent><expr><S-TAB> SpaceVim#mapping#shift_tab()
   smap <expr><TAB> neosnippet#expandable_or_jumpable() ? "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
-  imap <silent><expr><CR> SpaceVim#mapping#enter#i_enter()
+  imap <silent><expr><CR> <SID>SpaceVimmappingenteri_enter()
   inoremap <expr> <Down>     pumvisible() ? "\<C-n>" : "\<Down>"
   inoremap <expr> <Up>       pumvisible() ? "\<C-p>" : "\<Up>"
   inoremap <expr> <PageDown> pumvisible() ? "\<PageDown>\<C-p>\<C-n>" : "\<PageDown>"
