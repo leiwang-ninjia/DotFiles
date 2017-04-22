@@ -76,9 +76,19 @@ let g:spacevim_vim_plug_installed      = 0
 " >
 "   let g:spacevim_plugin_bundle_dir = '~/.cache/vimplugs'
 " <
+
+let s:file = {}
+let s:system = SpaceVim#api#import('system')
+
+if s:system.isWindows
+  let s:file['separator'] = '\'
+else
+  let s:file['separator'] = '/'
+endif
+
 let g:spacevim_plugin_bundle_dir
       \ = $HOME. join(['', '.cache', 'vimfiles', ''],
-      \ SpaceVim#api#import('file').separator)
+      \ s:file.separator)
 ""
 " Enable/Disable realtime leader guide. Default is 0.
 " >
