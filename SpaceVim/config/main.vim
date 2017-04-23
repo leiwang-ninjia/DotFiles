@@ -22,9 +22,11 @@ endfunction
 try
     call <SID>source_rc('functions.vim')
     execute 'set runtimepath +=' . fnamemodify(g:Config_Main_Home, ':p:h:h') . s:Fsep . 'core'
+    let g:spacevim_dir = fnamemodify(g:Config_Main_Home, ':p:h:h')
 catch
     execute 'set runtimepath +=' . fnamemodify(g:Config_Main_Home, ':p:h:h')
     execute 'set runtimepath +=' . fnamemodify(g:Config_Main_Home, ':p:h:h') . s:Fsep . 'core'
+    let g:spacevim_dir = fnamemodify(g:Config_Main_Home, ':p:h:h')
     call <SID>source_rc('functions.vim')
 endtry
 
@@ -40,7 +42,7 @@ call SpaceVim#end()
 
 call <SID>source_rc('general.vim')
 
-" Layer 'spacevim'
+Layer 'spacevim'
 
 "call spacevim#end()
 
