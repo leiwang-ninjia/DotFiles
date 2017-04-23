@@ -2,7 +2,7 @@ function! SpaceVim#commands#load() abort
   ""
   " Load exist layer, {layers} can be a string of a layer name, or a list
   " of layer names.
-  command! -nargs=+ SPLayer call SpaceVim#layers#load(<f-args>)
+  command! -nargs=+ SPLayer call SpaceVim#commands#loadlayers(<f-args>)
   ""
   ""
   " edit custom config file of SpaceVim, by default this command will open
@@ -25,25 +25,24 @@ function! SpaceVim#commands#load() abort
 
 endfunction
 
-" @vimlint(EVL103, 1, a:ArgLead)
-" @vimlint(EVL103, 1, a:CmdLine)
-" @vimlint(EVL103, 1, a:CursorPos)
+function! SpaceVim#commands#loadlayers(layer, ...) abort
+  if index(g:spacevim_plugin_groups, a:layer) == -1
+    call add(g:spacevim_plugin_groups, a:layer)
+  endif
+  if a:0 > 1
+    for l in a:000
+      call SpaceVim#commands#loadlayers(l)
+    endfor
+  endif
+endfunction
+
 function! SpaceVim#commands#complete_plugin(ArgLead, CmdLine, CursorPos) abort
   return join(keys(dein#get()), "\n")
 endfunction
-" @vimlint(EVL103, 0, a:ArgLead)
-" @vimlint(EVL103, 0, a:CmdLine)
-" @vimlint(EVL103, 0, a:CursorPos)
 
-" @vimlint(EVL103, 1, a:ArgLead)
-" @vimlint(EVL103, 1, a:CmdLine)
-" @vimlint(EVL103, 1, a:CursorPos)
 function! SpaceVim#commands#complete_SPConfig(ArgLead, CmdLine, CursorPos) abort
   return ['-g', '-l']
 endfunction
-" @vimlint(EVL103, 0, a:ArgLead)
-" @vimlint(EVL103, 0, a:CmdLine)
-" @vimlint(EVL103, 0, a:CursorPos)
 
 function! SpaceVim#commands#config(...) abort
   if (a:0 > 0 && a:1 ==# '-g') || a:0 == 0
