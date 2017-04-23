@@ -152,7 +152,8 @@ function! spacevim#end()
             " let g:spacevim_plug_home = g:spacevim_nvim ? '~/.local/share/nvim/plugged' : '~/.vim/plugged/'
         endif
 
-        call plug#begin(g:spacevim_plug_home)
+        call SpaceVim#plug#begin(g:spacevim_plug_home)
+        "call plug#begin(g:spacevim_plug_home)
 
         if exists('*Layers')
             call Layers()
@@ -163,13 +164,15 @@ function! spacevim#end()
         call s:load_packages()
 
         call s:filter_plugins()
-        call s:invoke_plug()
+        "todo
+        "call s:invoke_plug()
 
         if exists('*UserInit')
             call UserInit()
         endif
 
-        call plug#end()
+        call SpaceVim#plug#end()
+        "call plug#end()
 
         "let g:mapleader = get(g:, 'spacevim_leader', "\<Space>")
         "let g:maplocalleader = get(g:, 'spacevim_localleader', ',')
