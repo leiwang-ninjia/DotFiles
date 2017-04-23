@@ -40,6 +40,10 @@ call SpaceVim#end()
 
 call <SID>source_rc('general.vim')
 
+" Layer 'spacevim'
+
+"call spacevim#end()
+
 call SpaceVim#autocmds#init()
 
 if has('nvim')

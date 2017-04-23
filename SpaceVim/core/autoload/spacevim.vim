@@ -12,7 +12,7 @@ let g:spacevim_excluded = []
 let g:spacevim_plugins = []
 let g:plug_options = {}
 
-let s:dot_spacevim = $HOME.'/.spacevim'
+" let s:dot_spacevim = $HOME.'/.spacevim'
 let s:py_exe = has('python') ? 'python' : 'python3'
 let s:TYPE = {
 \   'string':  type(''),
@@ -33,27 +33,27 @@ function! s:warn(cmd, msg)
     echohl None
 endfunction
 
-function! s:check_vim_plug(plug_path)
-    if empty(glob(a:plug_path))
-        echo '==> Downloading vim-plug ......'
-        execute '!curl -fLo ' . a:plug_path . ' --create-dirs ' .
-                    \   'https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
-    endif
-endfunction
+" function! s:check_vim_plug(plug_path)
+"     if empty(glob(a:plug_path))
+"         echo '==> Downloading vim-plug ......'
+"         execute '!curl -fLo ' . a:plug_path . ' --create-dirs ' .
+"                     \   'https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+"     endif
+" endfunction
 
 function! spacevim#begin()
 
-    let l:vim_plug_path = '~/.vim/autoload/plug.vim'
-    let l:nvim_plug_path = '~/.local/share/nvim/site/autoload/plug.vim'
+    " let l:vim_plug_path = '~/.vim/autoload/plug.vim'
+    " let l:nvim_plug_path = '~/.local/share/nvim/site/autoload/plug.vim'
 
-    " Download vim-plug if unavailable
-    if g:WINDOWS
-        if g:spacevim_nvim
-            call s:check_vim_plug(l:nvim_plug_path)
-        else
-            call s:check_vim_plug(l:vim_plug_path)
-        endif
-    endif
+    " " Download vim-plug if unavailable
+    " if g:WINDOWS
+    "     if g:spacevim_nvim
+    "         call s:check_vim_plug(l:nvim_plug_path)
+    "     else
+    "         call s:check_vim_plug(l:vim_plug_path)
+    "     endif
+    " endif
 
     call s:define_command()
 
@@ -132,23 +132,24 @@ function! s:layers_info() abort
     endif
 endfunction
 
-function! s:check_dot_spacevim()
-    if filereadable(expand(s:dot_spacevim))
-        call s:Source(s:dot_spacevim)
-        return 1
-    else
-        echom '.spacevim does not exist!!!'
-        return 0
-    endif
-endfunction
+" function! s:check_dot_spacevim()
+"     if filereadable(expand(s:dot_spacevim))
+"         call s:Source(s:dot_spacevim)
+"         return 1
+"     else
+"         echom '.spacevim does not exist!!!'
+"         return 0
+"     endif
+" endfunction
 
 function! spacevim#end()
 
-    if s:check_dot_spacevim()
+    "if s:check_dot_spacevim()
 
         if !exists('g:spacevim_plug_home')
             " https://github.com/junegunn/vim-plug/issues/559
-            let g:spacevim_plug_home = g:spacevim_nvim ? '~/.local/share/nvim/plugged' : '~/.vim/plugged/'
+            let g:spacevim_plug_home = g:spacevim_plugin_bundle_dir
+            " let g:spacevim_plug_home = g:spacevim_nvim ? '~/.local/share/nvim/plugged' : '~/.vim/plugged/'
         endif
 
         call plug#begin(g:spacevim_plug_home)
@@ -170,8 +171,8 @@ function! spacevim#end()
 
         call plug#end()
 
-        let g:mapleader = get(g:, 'spacevim_leader', "\<Space>")
-        let g:maplocalleader = get(g:, 'spacevim_localleader', ',')
+        "let g:mapleader = get(g:, 'spacevim_leader', "\<Space>")
+        "let g:maplocalleader = get(g:, 'spacevim_localleader', ',')
 
         " Make vim-better-default settings can be overrided
         silent! runtime! plugin/default.vim
@@ -183,7 +184,7 @@ function! spacevim#end()
         endif
 
         call s:post_user_config()
-    endif
+    " endif
 
 endfunction
 
