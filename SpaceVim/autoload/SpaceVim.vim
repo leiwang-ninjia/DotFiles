@@ -72,15 +72,15 @@ let g:spacevim_vim_plug_installed      = 0
 "   let g:spacevim_plugin_bundle_dir = '~/.cache/vimplugs'
 " <
 
-if WINDOWS()
-  let s:fileseparator = '\'
+if g:WINDOWS
+    let s:Fsep = '\'
 else
-  let s:fileseparator = '/'
+    let s:Fsep = '/'
 endif
 
 let g:spacevim_plugin_bundle_dir
       \ = $HOME. join(['', '.cache', 'vimfiles', ''],
-      \ s:fileseparator)
+      \ s:Fsep)
 ""
 " Enable/Disable realtime leader guide. Default is 0.
 " >

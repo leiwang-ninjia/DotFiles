@@ -29,7 +29,7 @@ call denite#custom#var(
       \ 'date_format', '%m-%d-%Y %H:%M:%S')
 
 " denite command
-if WINDOWS()
+if g:WINDOWS
   if executable('rg')
     " For ripgrep
     " Note: It is slower than ag

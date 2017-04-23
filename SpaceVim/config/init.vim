@@ -6,18 +6,10 @@ if has('vim_starting')
     endif
 endif
 
-" Fsep && Psep
-if has('win16') || has('win32') || has('win64')
-    let s:Psep = ';'
-    let s:Fsep = '\'
-else
-    let s:Psep = ':'
-    let s:Fsep = '/'
-endif
 "Use English for anything in vim
-if WINDOWS()
+if g:WINDOWS
     silent exec 'lan mes en_US.UTF-8'
-elseif OSX()
+elseif g:OSX
     silent exec 'language en_US'
 else
     let s:uname = system('uname -s')
@@ -31,7 +23,7 @@ else
 endif
 
 " try to set encoding to utf-8
-if WINDOWS()
+if g:WINDOWS
     " Be nice and check for multi_byte even if the config requires
     " multi_byte support most of the time
     if has('multi_byte')

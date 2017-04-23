@@ -115,10 +115,10 @@ function! SpaceVim#default#SetOptions() abort
     set guioptions-=r " Hide right-hand scrollbar
     set guioptions-=b " Hide bottom scrollbar
     set showtabline=0 " Hide tabline
-    if WINDOWS()
+    if g:WINDOWS
       " please install the font in 'Dotfiles\font'
       set guifont=DejaVu_Sans_Mono_for_Powerline:h11:cANSI:qDRAFT
-    elseif OSX()
+    elseif g:OSX
       set guifont=DejaVu\ Sans\ Mono\ for\ Powerline:h11
     else
       set guifont=DejaVu\ Sans\ Mono\ for\ Powerline\ 11
@@ -262,13 +262,13 @@ function! SpaceVim#default#SetPlugins() abort
   else
     call add(g:spacevim_plugin_groups, 'nvim')
   endif
-  if OSX()
+  if g:OSX
     call add(g:spacevim_plugin_groups, 'osx')
   endif
-  if WINDOWS()
+  if g:WINDOWS
     call add(g:spacevim_plugin_groups, 'windows')
   endif
-  if LINUX()
+  if g:LINUX
     call add(g:spacevim_plugin_groups, 'linux')
   endif
 endfunction
