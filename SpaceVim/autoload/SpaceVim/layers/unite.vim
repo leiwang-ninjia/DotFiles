@@ -9,7 +9,7 @@ function! SpaceVim#layers#unite#plugins() abort
                 \ ['Shougo/unite-help'],
                 \ ['mileszs/ack.vim',{'on_cmd' : 'Ack'}],
                 \ ['albfan/ag.vim',{'on_cmd' : 'Ag' , 'loadconf' : 1}],
-                \ ['dyng/ctrlsf.vim',{'on_cmd' : 'CtrlSF', 'on_map' : '<Plug>CtrlSF', 'loadconf' : 1 , 'loadconf_before' : 1}],
+                \ ['dyng/ctrlsf.vim',{'on_cmd' : 'CtrlSF', 'on_map' : '<Plug>CtrlSF', 'loadconf' : 1}],
                 \ ['Shougo/unite-session'],
                 \ ['osyo-manga/unite-quickfix'],
                 \ ['lambdalisue/unite-grep-vcs', {

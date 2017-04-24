@@ -260,14 +260,4 @@ function! SpaceVim#mapping#leader#defindUniteLeader(key) abort
   endif
 endfunction
 
-function! SpaceVim#mapping#leader#getName(key) abort
-  if a:key == g:spacevim_unite_leader
-    return '[unite]'
-  elseif a:key == g:spacevim_denite_leader
-    return '[denite]'
-  else
-    return '<leader>'
-  endif
-endfunction
-
 " vim:set et sw=2 cc=80:

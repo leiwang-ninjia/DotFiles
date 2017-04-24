@@ -12,7 +12,7 @@ let g:spacevim_excluded = []
 let g:spacevim_plugins = []
 let g:plug_options = {}
 
-" let s:dot_spacevim = $HOME.'/.spacevim'
+let s:dot_spacevim = $HOME.'/.spacevim'
 let s:py_exe = has('python') ? 'python' : 'python3'
 let s:TYPE = {
 \   'string':  type(''),
@@ -132,19 +132,19 @@ function! s:layers_info() abort
     endif
 endfunction
 
-" function! s:check_dot_spacevim()
-"     if filereadable(expand(s:dot_spacevim))
-"         call s:Source(s:dot_spacevim)
-"         return 1
-"     else
-"         echom '.spacevim does not exist!!!'
-"         return 0
-"     endif
-" endfunction
+function! s:check_dot_spacevim()
+    if filereadable(expand(s:dot_spacevim))
+        call s:Source(s:dot_spacevim)
+        return 1
+    else
+        echom '.spacevim does not exist!!!'
+        return 0
+    endif
+endfunction
 
 function! spacevim#end()
 
-    "if s:check_dot_spacevim()
+    if s:check_dot_spacevim()
 
         if !exists('g:spacevim_plug_home')
             " https://github.com/junegunn/vim-plug/issues/559
@@ -187,7 +187,7 @@ function! spacevim#end()
         endif
 
         call s:post_user_config()
-    " endif
+    endif
 
 endfunction
 
