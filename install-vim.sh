@@ -30,7 +30,7 @@ install_vim () {
         else
             mv "$HOME/.vim" "$HOME/.vim_back"
             echo -e "${Blue}BackUp $HOME/.vim${Color_off}"
-            ln -s "$HOME/DotFiles/.SpaceVim" "$HOME/.vim"
+            ln -s "$HOME/DotFiles/SpaceVim" "$HOME/.vim"
             echo -e "${Blue}Installed SpaceVim for vim${Color_off}"
         fi
     else
