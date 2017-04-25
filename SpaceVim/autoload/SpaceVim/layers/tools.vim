@@ -7,8 +7,7 @@ function! SpaceVim#layers#tools#plugins() abort
         \ ['Yggdroot/LeaderF',                { 'on_cmd' : 'LeaderfFile',
         \ 'loadconf' : 1,
         \ 'merged' : 0}],
-        \ ['MattesGroeger/vim-bookmarks',     { 'on_map' : '<Plug>Bookmark',
-        \ 'loadconf_before' : 1}],
+        \ ['MattesGroeger/vim-bookmarks',     { 'on_map' : '<Plug>Bookmark'}],
         \ ['simnalamburt/vim-mundo',          { 'on_cmd' : 'MundoToggle'}],
         \ ['mhinz/vim-grepper' ,              { 'on_cmd' : 'Grepper',
         \ 'loadconf' : 1} ],
@@ -34,6 +33,13 @@ function! SpaceVim#layers#tools#config() abort
   nmap ma <Plug>BookmarkShowAll
   nmap mn <Plug>BookmarkNext
   nmap mp <Plug>BookmarkPrev
+  nmap <Leader>m <Plug>BookmarkToggle
+  nmap <Leader>mi <Plug>BookmarkAnnotate
+  nmap <Leader>ma <Plug>BookmarkShowAll
+  nmap <Leader>mj <Plug>BookmarkNext
+  nmap <Leader>mk <Plug>BookmarkPrev
+  nmap <Leader>mc <Plug>BookmarkClear
+  nmap <Leader>mx <Plug>BookmarkClearAll
   nnoremap <silent> <F7> :MundoToggle<CR>
   augroup rainbow_lisp
     autocmd!

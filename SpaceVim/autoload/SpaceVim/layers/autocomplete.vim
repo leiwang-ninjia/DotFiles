@@ -41,7 +41,7 @@ function! SpaceVim#layers#autocomplete#plugins() abort
     call add(plugins, ['SirVer/ultisnips',{ 'merged' : 0 }])
   endif
   if g:spacevim_autocomplete_method ==# 'ycm'
-    call add(plugins, ['ervandew/supertab',                 { 'loadconf_before' : 1, 'merged' : 0}])
+    call add(plugins, ['ervandew/supertab',                 { 'merged' : 0}])
     call add(plugins, ['Valloric/YouCompleteMe',            { 'merged' : 0}])
   elseif g:spacevim_autocomplete_method ==# 'neocomplete'
     call add(plugins, ['Shougo/neocomplete', {
@@ -67,6 +67,10 @@ function! SpaceVim#layers#autocomplete#config() abort
   if g:spacevim_autocomplete_method ==# 'ycm'
     sunmap <S-TAB>
     iunmap <S-TAB>
+    let g:SuperTabContextDefaultCompletionType = '<c-n>'
+    let g:SuperTabDefaultCompletionType = '<C-n>'
+    "autocmd InsertLeave * if pumvisible() ==# 0|pclose|endif
+    let g:neobundle#install_process_timeout = 1500
   endif
 endfunction
 
