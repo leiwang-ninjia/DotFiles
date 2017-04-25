@@ -5,12 +5,10 @@ function! SpaceVim#layers#tools#plugins() abort
         \ ['junegunn/goyo.vim',               { 'on_cmd' : 'Goyo'}],
         \ ['junegunn/limelight.vim',          { 'on_cmd' : 'Limelight'}],
         \ ['Yggdroot/LeaderF',                { 'on_cmd' : 'LeaderfFile',
-        \ 'loadconf' : 1,
         \ 'merged' : 0}],
         \ ['MattesGroeger/vim-bookmarks',     { 'on_map' : '<Plug>Bookmark'}],
         \ ['simnalamburt/vim-mundo',          { 'on_cmd' : 'MundoToggle'}],
-        \ ['mhinz/vim-grepper' ,              { 'on_cmd' : 'Grepper',
-        \ 'loadconf' : 1} ],
+        \ ['mhinz/vim-grepper' ,              { 'on_cmd' : 'Grepper'}],
         \ ['tpope/vim-projectionist',         { 'on_cmd' : ['A', 'AS', 'AV',
         \ 'AT', 'AD', 'Cd', 'Lcd', 'ProjectDo']}],
         \ ['ntpeters/vim-better-whitespace',  { 'on_cmd' : 'StripWhitespace'}],
@@ -20,9 +18,8 @@ function! SpaceVim#layers#tools#plugins() abort
         \ ['airblade/vim-gitgutter',      { 'on_cmd' : 'GitGutterEnable'}],
         \ ['junegunn/fzf',                { 'on_cmd' : 'FZF'}],
         \ ['TaskList.vim',                { 'on_cmd' : 'TaskList'}],
-        \ ['taglist.vim',         { 'on_cmd' : 'TlistToggle', 'loadconf' : 1}],
-        \ ['scrooloose/nerdtree', { 'on_cmd' : 'NERDTreeToggle',
-        \ 'loadconf' : 1}],
+        \ ['taglist.vim',         { 'on_cmd' : 'TlistToggle'}],
+        \ ['scrooloose/nerdtree', { 'on_cmd' : 'NERDTreeToggle'}],
         \ ['Xuyuanp/nerdtree-git-plugin'],
         \ ]
 endfunction
@@ -77,6 +74,16 @@ function! SpaceVim#layers#tools#config() abort
     autocmd FileType nerdtree nnoremap <silent><buffer><Space>
           \ :call OpenOrCloseNERDTree()<cr>
   augroup END
+  if !executable('ctags')
+    let g:Tlist_Ctags_Cmd = get(g:, 'Tlist_Ctags_Cmd', '/usr/bin/ctags')  "设置ctags执行路径
+  endif
+  let g:Tlist_Auto_Update = get(g:, 'Tlist_Auto_Update', 1)
+  let g:Tlist_Auto_Open = get(g:, 'Tlist_Auto_Open', 0)
+  let g:Tlist_Use_Right_Window = get(g:, 'Tlist_Use_Right_Window', 1)
+  let g:Tlist_Show_One_File = get(g:, 'Tlist_Show_One_File', 0)
+  let g:Tlist_File_Fold_Auto_Close = get(g:, 'Tlist_File_Fold_Auto_Close', 1)
+  let g:Tlist_Exit_OnlyWindow = get(g:, 'Tlist_Exit_OnlyWindow', 1)
+  let g:Tlist_Show_Menu = get(g:, 'Tlist_Show_Menu', 1)
 endfunction
 
 " vim:set et sw=2 cc=80:

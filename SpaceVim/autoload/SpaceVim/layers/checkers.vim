@@ -7,9 +7,9 @@ function! SpaceVim#layers#checkers#plugins() abort
     let plugins = []
 
     if g:spacevim_enable_neomake
-        call add(plugins, ['neomake/neomake', {'merged' : 0, 'loadconf' : 1 }])
+        call add(plugins, ['neomake/neomake', {'merged' : 0}])
     else
-        call add(plugins, ['wsdjeg/syntastic', {'on_event': 'WinEnter', 'loadconf' : 1, 'merged' : 0}])
+        call add(plugins, ['wsdjeg/syntastic', {'on_event': 'WinEnter', 'merged' : 0}])
     endif
 
     return plugins
@@ -45,4 +45,24 @@ function! SpaceVim#layers#checkers#config() abort
             autocmd! TextChangedI * Neomake
         augroup END
     endif
+
+
+    if !filereadable('pom.xml') && !filereadable('build.gradle') && isdirectory('bin') 
+    let g:syntastic_java_javac_options = '-d bin'
+    endif
+    let g:syntastic_java_javac_config_file_enabled = get(g:, 'syntastic_java_javac_config_file_enabled', 1)
+    let g:syntastic_java_javac_delete_output = get(g:, 'syntastic_java_javac_delete_output', 0)
+    let g:syntastic_always_populate_loc_list = get(g:, 'syntastic_always_populate_loc_list', 1)
+    let g:syntastic_auto_loc_list = get(g:, 'syntastic_auto_loc_list', 1)
+    let g:syntastic_check_on_open = get(g:, 'syntastic_check_on_open', 0)
+    let g:syntastic_check_on_wq = get(g:, 'syntastic_check_on_wq', 0)
+    let g:syntastic_error_symbol = get(g:, 'spacevim_error_symbol', '✖')
+    let g:syntastic_warning_symbol = get(g:, 'spacevim_warning_symbol', '➤')
+    let g:syntastic_vimlint_options = get(g:, 'syntastic_vimlint_options', {
+                \'EVL102': 1 ,
+                \'EVL103': 1 ,
+                \'EVL205': 1 ,
+                \'EVL105': 1 ,
+                \})
+
 endfunction

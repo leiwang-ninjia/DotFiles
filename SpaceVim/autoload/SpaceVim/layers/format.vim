@@ -14,6 +14,6 @@
 
 function! SpaceVim#layers#format#plugins() abort
     return [
-                \ ['sbdchd/neoformat', {'merged' : 0, 'loadconf' : 1}],
+                \ ['sbdchd/neoformat', {'merged' : 0}],
                 \ ]
 endfunction

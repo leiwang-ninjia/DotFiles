@@ -50,10 +50,10 @@
 function! SpaceVim#layers#lang#java#plugins() abort
   let plugins = [
         \ ['wsdjeg/vim-dict',                        { 'on_ft' : 'java'}],
-        \ ['wsdjeg/java_getset.vim',                 { 'on_ft' : 'java', 'loadconf' : 1}],
+        \ ['wsdjeg/java_getset.vim',                 { 'on_ft' : 'java'}],
         \ ['wsdjeg/JavaUnit.vim',                    { 'on_ft' : 'java'}],
         \ ['vim-jp/vim-java',                        { 'on_ft' : 'java'}],
-        \ ['artur-shaik/vim-javacomplete2',          { 'on_ft' : ['java','jsp'], 'loadconf' : 1}],
+        \ ['artur-shaik/vim-javacomplete2',          { 'on_ft' : ['java','jsp']}],
         \ ]
   return plugins
 endfunction
@@ -116,6 +116,30 @@ function! SpaceVim#layers#lang#java#config() abort
     set tags +=~/others/openjdksrc/java/tags
     set tags +=~/others/openjdksrc/javax/tags
   augroup END
+
+  let g:java_getset_disable_map = get(g:, 'java_getset_disable_map', 1) let g:javagetset_setterTemplate = get(g:, 'javagetset_setterTemplate',
+        \ "/**\n" .
+        \ " * Set %varname%.\n" .
+        \ " *\n" .
+        \ " * @param %varname% the value to set.\n" .
+        \ " */\n" .
+        \ "%modifiers% void %funcname%(%type% %varname%){\n" .
+        \ "    this.%varname% = %varname%;\n" .
+        \ "}")
+  let g:javagetset_getterTemplate = get(g:, 'javagetset_getterTemplate',
+        \ "/**\n" .
+        \ " * Get %varname%.\n" .
+        \ " *\n" .
+        \ " * @return %varname% as %type%.\n" .
+        \ " */\n" .
+        \ "%modifiers% %type% %funcname%(){\n" .
+        \ "    return %varname%;\n" .
+        \ "}")
+
+  let g:JavaComplete_UseFQN = 1
+  let g:JavaComplete_ServerAutoShutdownTime = 300
+  let g:JavaComplete_MavenRepositoryDisable = 0
+
 endfunction
 
 " vim:set et sw=2 cc=80:
