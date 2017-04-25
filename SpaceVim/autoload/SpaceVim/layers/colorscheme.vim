@@ -141,7 +141,7 @@
 
 function! SpaceVim#layers#colorscheme#plugins() abort
     return [
-                \ ['morhetz/gruvbox', {'loadconf' : 1}],
+                \ ['morhetz/gruvbox'],
                 \ ['altercation/vim-colors-solarized'],
                 \ ['nanotech/jellybeans.vim'],
                 \ ['mhartington/oceanic-next'],

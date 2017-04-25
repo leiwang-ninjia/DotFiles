@@ -12,7 +12,7 @@
 
 function! SpaceVim#layers#lang#puppet#plugins() abort
     let plugins = []
-    call add(plugins, ['voxpupuli/vim-puppet', { 'on_ft' : 'puppet', 'loadconf_before' : 1}])
+    call add(plugins, ['voxpupuli/vim-puppet', { 'on_ft' : 'puppet' i}])
     return plugins
 endfunction
 

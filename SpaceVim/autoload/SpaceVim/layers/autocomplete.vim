@@ -22,7 +22,7 @@
 
 function! SpaceVim#layers#autocomplete#plugins() abort
   let plugins = [
-        \ ['honza/vim-snippets',          { 'on_i' : 1, 'loadconf_before' : 1}],
+        \ ['honza/vim-snippets',          { 'on_i' : 1}],
         \ ['Shougo/neco-syntax',          { 'on_i' : 1}],
         \ ['ujihisa/neco-look',           { 'on_i' : 1}],
         \ ['Shougo/context_filetype.vim', { 'on_i' : 1}],
@@ -38,12 +38,11 @@ function! SpaceVim#layers#autocomplete#plugins() abort
           \ 'loadconf' : 1,
           \ 'on_cmd' : 'NeoSnippetEdit'}])
   elseif g:spacevim_snippet_engine ==# 'ultisnips'
-    call add(plugins, ['SirVer/ultisnips',{ 'loadconf_before' : 1,
-          \ 'merged' : 0}])
+    call add(plugins, ['SirVer/ultisnips',{ 'merged' : 0 }])
   endif
   if g:spacevim_autocomplete_method ==# 'ycm'
     call add(plugins, ['ervandew/supertab',                 { 'loadconf_before' : 1, 'merged' : 0}])
-    call add(plugins, ['Valloric/YouCompleteMe',            { 'loadconf_before' : 1, 'merged' : 0}])
+    call add(plugins, ['Valloric/YouCompleteMe',            { 'merged' : 0}])
   elseif g:spacevim_autocomplete_method ==# 'neocomplete'
     call add(plugins, ['Shougo/neocomplete', {
           \ 'on_i' : 1,

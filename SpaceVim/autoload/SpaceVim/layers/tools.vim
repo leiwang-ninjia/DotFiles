@@ -2,8 +2,7 @@ function! SpaceVim#layers#tools#plugins() abort
   return [
         \ ['tpope/vim-scriptease'],
         \ ['SpaceVim/cscope.vim'],
-        \ ['junegunn/goyo.vim',               { 'on_cmd' : 'Goyo',
-        \ 'loadconf' : 1}],
+        \ ['junegunn/goyo.vim',               { 'on_cmd' : 'Goyo'}],
         \ ['junegunn/limelight.vim',          { 'on_cmd' : 'Limelight'}],
         \ ['Yggdroot/LeaderF',                { 'on_cmd' : 'LeaderfFile',
         \ 'loadconf' : 1,

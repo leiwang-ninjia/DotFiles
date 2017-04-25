@@ -8,7 +8,7 @@ function! SpaceVim#layers#unite#plugins() abort
                 \ ['tsukkee/unite-tag'],
                 \ ['Shougo/unite-help'],
                 \ ['mileszs/ack.vim',{'on_cmd' : 'Ack'}],
-                \ ['albfan/ag.vim',{'on_cmd' : 'Ag' , 'loadconf' : 1}],
+                \ ['albfan/ag.vim',{'on_cmd' : 'Ag'}],
                 \ ['dyng/ctrlsf.vim',{'on_cmd' : 'CtrlSF', 'on_map' : '<Plug>CtrlSF', 'loadconf' : 1, 'loadconf_before' : 1}],
                 \ ['Shougo/unite-session'],
                 \ ['osyo-manga/unite-quickfix'],
