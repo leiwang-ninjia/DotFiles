@@ -32,7 +32,7 @@ endtry
 
 call <SID>source_rc('init.vim')
 
-call spacevim#begin()
+"call spacevim#begin()
 
 call SpaceVim#default()
 
@@ -42,7 +42,7 @@ call SpaceVim#end()
 
 call <SID>source_rc('general.vim')
 
-Layer 'spacevim'
+"Layer 'spacevim'
 
 "call spacevim#end()
 
