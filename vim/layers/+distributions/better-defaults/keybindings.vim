@@ -1,10 +1,6 @@
 " Reload .vimrc
 nnoremap <Leader>fR :source $MYVIMRC<CR>
 
-" Use Tab to switch buffer
-nnoremap <Tab> :bn<CR>
-nnoremap <S-Tab> :bp<CR>
-
 " Use Ctrl-Tab and Alt-Tab to switch tab
 map    <C-Tab>  :tabnext<CR>
 imap   <C-Tab>  <C-O>:tabnext<CR>
