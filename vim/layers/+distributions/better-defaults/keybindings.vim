@@ -52,11 +52,11 @@ nnoremap <Leader>q :q<CR>
 nnoremap <Leader>qa :qa<CR>
 
 " http://vimcasts.org/e/14
-" cnoremap %% <C-R>=fnameescape(expand('%:h')).'/'<cr>
-" map <leader>ew :e %%
-" map <leader>es :sp %%
-" map <leader>ev :vsp %%
-" map <leader>et :tabe %%
+cnoremap %% <C-R>=fnameescape(expand('%:h')).'/'<cr>
+map <leader>ew :e %%
+map <leader>es :sp %%
+map <leader>ev :vsp %%
+map <leader>et :tabe %%
 
 "map <Leader>cd :cd %:p:h<CR>:pwd<CR>
 

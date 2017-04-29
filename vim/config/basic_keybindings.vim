@@ -75,6 +75,7 @@
   map Q @q
   " Allow using the repeat operator with a visual selection (!)
   vnoremap . :normal .<CR>
+  cmap cwd lcd %:p:h
 
   " Navigate window
   nnoremap <silent><C-q> <C-w>
