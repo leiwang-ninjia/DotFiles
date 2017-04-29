@@ -6,7 +6,7 @@
 function! Layers()
 
     " Default layers, recommended!
-    "Layer 'fzf'
+    Layer 'fzf'
     "Layer 'unite'
     Layer 'better-defaults'
 
