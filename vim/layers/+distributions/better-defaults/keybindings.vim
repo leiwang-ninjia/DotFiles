@@ -1,5 +1,6 @@
 " Reload .vimrc
-nnoremap <Leader>fR :source $MYVIMRC<CR>
+nnoremap <Leader>feR :source $MYVIMRC<CR>
+nnoremap <Leader>fed :edit $MYVIMRC<CR>
 
 " <Leader>[1-9] move to window [1-9]
 for s:i in range(1, 9)
@@ -27,10 +28,13 @@ nnoremap <Leader>wq :close<CR>
 nnoremap <Leader>ww :wincmd w<CR>
 
 "for buftabs
-noremap <silent><Leader>bp :bprev<CR>
-noremap <silent><Leader>bn :bnext<CR>
-noremap <silent><Leader>bd :bdelete<CR>
-noremap <silent><Leader>fs :w<CR>
+noremap <Leader>bp :bprev<CR>
+noremap <Leader>bn :bnext<CR>
+noremap <Leader>bd :bdelete<CR>
+
+noremap <Leader>fs :write<CR>
+noremap <Leader>fS :wall<CR>
+noremap <Leader>fR :call feedkeys(":Rename ")<CR>
 
 nmap <Leader>ts :setlocal spell!<cr>
 nmap <Leader>tn :setlocal nonumber! norelativenumber!<CR>
