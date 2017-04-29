@@ -73,6 +73,8 @@
 
   " Use Q format lines
   map Q @q
+  " Allow using the repeat operator with a visual selection (!)
+  vnoremap . :normal .<CR>
 
   " Navigate window
   nnoremap <silent><C-q> <C-w>
