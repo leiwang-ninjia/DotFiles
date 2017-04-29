@@ -12,11 +12,15 @@ MP 'itchyny/vim-cursorword'
 
 MP 'terryma/vim-multiple-cursors'
 
+MP 'tpope/vim-repeat'
+
+MP 'tpope/vim-commentary', { 'on': '<Plug>Commentary' }
+
 " Bug here.
 " MP 'kana/vim-operator-user',         { 'on': '<Plug>(operator-flashy)' }
 " MP 'haya14busa/vim-operator-flashy', { 'on': '<Plug>(operator-flashy)' }
 
-MP 'ntpeters/vim-better-whitespace', { 'on': 'StripWhitespace' }
+"MP 'ntpeters/vim-better-whitespace', { 'on': 'StripWhitespace' }
 
 if !g:spacevim_nvim
     MP 'haya14busa/incsearch.vim',       { 'on': [
