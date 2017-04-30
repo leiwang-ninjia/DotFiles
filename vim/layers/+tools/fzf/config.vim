@@ -27,7 +27,7 @@ if !g:spacevim_gui_running
     nnoremap <Leader>w? :Windows<CR>
     nnoremap <Leader>f? :Files<CR>
 
-    nnoremap <Leader>pf :Files ~<CR>
+    nnoremap <Leader>pf :GitFiles<CR>
 
     imap <c-x><c-k> <plug>(fzf-complete-word)
     imap <c-x><c-f> <plug>(fzf-complete-path)

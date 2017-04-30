@@ -6,12 +6,12 @@ nnoremap <Leader>fed :edit $MYVIMRC<CR>
 
 " <Leader>[1-9] move to window [1-9]
 for s:i in range(1, 9)
-    execute 'nnoremap <Leader>' . s:i . ' :' . s:i . 'wincmd w<CR>'
+	execute 'nnoremap <Leader>' . s:i . ' :' . s:i . 'wincmd w<CR>'
 endfor
 
 " <Leader>b[1-9] move to buffer [1-9]
 for s:i in range(1, 9)
-    execute 'nnoremap <Leader>b' . s:i . ' :b' . s:i . '<CR>'
+	execute 'nnoremap <Leader>b' . s:i . ' :b' . s:i . '<CR>'
 endfor
 
 " Startify
@@ -24,42 +24,69 @@ nmap gcc <Plug>CommentaryLine
 nnoremap <Leader>xd :call StripTrailingWhitespace()<CR>
 
 nnoremap <Leader>wm :only<CR>
-nnoremap <Leader>w- :split<CR>
 nnoremap <Leader>w/ :vsplit<CR>
-nnoremap <Leader>wq :close<CR>
+nnoremap <Leader>w- :split<CR>
+nnoremap <Leader>w= :wincmd =<CR>
+nnoremap <Leader>wc :close<CR>
 nnoremap <Leader>ww :wincmd w<CR>
+nnoremap <Leader>ws :split<CR>
+nnoremap <Leader>wS :split<CR>
+nnoremap <Leader>wv :vsplit<CR>
+nnoremap <Leader>wV :vsplit<CR>
 
 "for buftabs
-noremap <Leader>bp :bprev<CR>
-noremap <Leader>bn :bnext<CR>
-noremap <Leader>bd :bdelete<CR>
+nnoremap <Leader>bp :bprev<CR>
+nnoremap <Leader>bn :bnext<CR>
+nnoremap <Leader>bd :bdelete<CR>
 
-noremap <Leader>fs :write<CR>
-noremap <Leader>fS :wall<CR>
-noremap <Leader>fR :call feedkeys(":Rename ")<CR>
+nnoremap <Leader>fs :write<CR>
+nnoremap <Leader>fS :wall<CR>
+nnoremap <Leader>fR :call feedkeys(":Rename ")<CR>
 
-nmap <Leader>ts :setlocal spell!<cr>
-nmap <Leader>tn :setlocal nonumber! norelativenumber!<CR>
-nmap <Leader>tl :setlocal nolist!<CR>
-nmap <Leader>th :nohlsearch<CR>
-nmap <Leader>tw :setlocal wrap! breakindent!<CR>
+nnoremap <Leader>tS :setlocal spell!<cr>
+nnoremap <Leader>tn :setlocal norelativenumber!<CR>
+nnoremap <Leader>tr :setlocal norelativenumber!<CR>
+nnoremap <Leader>tl :setlocal nolist!<CR>
+nnoremap <Leader>th :nohlsearch<CR>
+nnoremap <Leader>tw :setlocal wrap! breakindent!<CR>
 
-nmap <Leader>ss [I:let nr = input("Which one: ")<Bar>exe "normal " . nr ."[\t"<CR>
+nnoremap <Leader>j= mzgg=G`z
+vnoremap <Leader>j= ==
+
+map <Leader>jj i<CR><Esc>
+map <Leader>jJ i<CR><Esc>
+map <Leader>jo i<CR><Esc>k$
+
+nnoremap <leader>n- <C-x>
+nnoremap <leader>n+ <C-a>
+nnoremap <leader>n= <C-a>
+nnoremap <leader>/ :Ag<CR>
+nnoremap <leader>* :call SmartSearchWithInput(0)<CR>
+vnoremap <leader>* :call SmartSearchWithInput(0)<CR>
+
+nnoremap <Leader>ss [I:let nr = input("Which one: ")<Bar>exe "normal " . nr ."[\t"<CR>
 
 " yark and paste
-vmap <Leader>y "+y
-vmap <Leader>d "+d
-nmap <Leader>p "+p
-nmap <Leader>P "+P
-vmap <Leader>p "+p
-vmap <Leader>P "+P
+vnoremap <Leader>y "+y
+vnoremap <Leader>d "+d
+nnoremap <Leader>p "+p
+nnoremap <Leader>P "+P
+vnoremap <Leader>p "+p
+vnoremap <Leader>P "+P
 
-nnoremap <Leader>q :q<CR>
-nnoremap <Leader>qa :qa<CR>
+nnoremap <Leader>qq :qa<CR>
+nnoremap <Leader>qQ :qa!<CR>
+nnoremap <Leader>qs :xall<CR>
 
 " http://vimcasts.org/e/14
 cnoremap %% <C-R>=fnameescape(expand('%:h')).'/'<cr>
 map <leader>ff :e %%
+if exists(':Files')
+	map <leader>ff :Files %:h<CR>
+else
+	map <leader>ff :e %%<CR>
+endif
+
 "map <leader>es :sp %%
 "map <leader>ev :vsp %%
 "map <leader>et :tabe %%
