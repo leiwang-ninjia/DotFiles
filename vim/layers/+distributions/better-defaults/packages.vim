@@ -12,6 +12,10 @@ MP 'itchyny/vim-cursorword'
 
 MP 'terryma/vim-multiple-cursors'
 
+MP 'terryma/vim-expand-region'
+
+MP 'junegunn/vim-easy-align'
+
 MP 'tpope/vim-repeat'
 
 MP 'tpope/vim-commentary', { 'on': '<Plug>Commentary' }

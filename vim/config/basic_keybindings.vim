@@ -1,4 +1,4 @@
- "{ personal key-bindings 
+ "{ personal key-bindings
   nnoremap Y y$
   nnoremap <F10> :NERDTreeToggle<cr>
 
@@ -78,17 +78,20 @@
   cmap cwd lcd %:p:h
 
   " Navigate window
-  nnoremap <silent><C-q> <C-w>
-  nnoremap <silent><C-x> <C-w>x
+  "nnoremap <silent><C-q> <C-w>
+  "nnoremap <silent><C-x> <C-w>x
 
   " Navigation in command line
-  cnoremap <C-a> <Home>
-  cnoremap <C-b> <Left>
-  cnoremap <C-f> <Right>
-  cnoremap <expr> <C-d> getcmdpos()>strlen(getcmdline())?"\<Lt>C-D>":"\<Lt>Del>"
+  " cnoremap <C-a> <Home>
+  " cnoremap <C-b> <Left>
+  " cnoremap <C-f> <Right>
+  " cnoremap <expr> <C-d> getcmdpos()>strlen(getcmdline())?"\<Lt>C-D>":"\<Lt>Del>"
+
+  vmap v <PLUG>(expand_region_expand)
+  vmap V <PLUG>(expand_region_shrink)
 
   " Remove spaces at the end of lines
-  nnoremap <silent> ,<Space> :<C-u>silent! keeppatterns %substitute/\s\+$//e<CR>
+  " nnoremap <silent> ,<Space> :<C-u>silent! keeppatterns %substitute/\s\+$//e<CR>
 
   " C-r: Easier search and replace
   xnoremap <C-r> :<C-u>call <SID>VSetSearch()<CR>:,$s/<C-R>=@/<CR>//gc<left><left><left>

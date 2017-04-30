@@ -1,4 +1,6 @@
 " Reload .vimrc
+" basic leader related keybindings
+"
 nnoremap <Leader>feR :source $MYVIMRC<CR>
 nnoremap <Leader>fed :edit $MYVIMRC<CR>
 
