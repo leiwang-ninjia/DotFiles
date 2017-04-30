@@ -116,7 +116,7 @@ scriptencoding utf-8
   "set ttimeout
   "set ttimeoutlen=50
   "set background=dark
-  "set nostartofline
+  set nostartofline
 
   if exists('&colorcolumn')
     set colorcolumn=80

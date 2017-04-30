@@ -90,6 +90,10 @@
   vmap v <PLUG>(expand_region_expand)
   vmap V <PLUG>(expand_region_shrink)
 
+  " Start interactive EasyAlign with a Vim movement
+  xmap ga <Plug>(EasyAlign)
+  nmap ga <Plug>(EasyAlign)
+
   " Remove spaces at the end of lines
   " nnoremap <silent> ,<Space> :<C-u>silent! keeppatterns %substitute/\s\+$//e<CR>
 
