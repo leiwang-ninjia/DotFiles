@@ -30,7 +30,7 @@ function! UserConfig()
 
     " If you enable airline layer and have installed the powerline fonts, set it here.
     " let g:airline_powerline_fonts=1
-    " color desert
+    colorscheme desert
     filetype plugin indent on   " Automatically detect file types.
 	syntax on
 
