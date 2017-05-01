@@ -14,7 +14,9 @@ if g:WINDOWS
 endif
 " }
 
-execute 'source' fnamemodify(expand('<sfile>'), ':h').'/config/better-default.vim'
+execute 'source' fnamemodify(expand('<sfile>'), ':h').'/config/basic_config.vim'
+execute 'source' fnamemodify(expand('<sfile>'), ':h').'/config/basic_keybindings.vim'
+execute 'source' fnamemodify(expand('<sfile>'), ':h').'/config/basic_functions.vim'
 
 let g:spacevim_dir = fnamemodify(expand('<sfile>'), ':h')
 let g:spacevim_version = '0.5.0'
