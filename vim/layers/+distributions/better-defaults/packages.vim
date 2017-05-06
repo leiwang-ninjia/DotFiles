@@ -20,6 +20,8 @@ MP 'tpope/vim-repeat'
 
 MP 'tpope/vim-commentary', { 'on': '<Plug>Commentary' }
 
+MP 'Shougo/vimproc.vim'  
+
 " Bug here.
 " MP 'kana/vim-operator-user',         { 'on': '<Plug>(operator-flashy)' }
 " MP 'haya14busa/vim-operator-flashy', { 'on': '<Plug>(operator-flashy)' }
