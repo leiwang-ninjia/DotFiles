@@ -9,6 +9,8 @@ augroup SPACEVIM_C
     autocmd FileType c,cpp setlocal cindent
     autocmd FileType c,cpp,objc nnoremap <LocalLeader>= :ClangFormat<CR>
     autocmd FileType c,cpp,objc vnoremap <LocalLeader>= :<C-u>ClangFormat<CR>
+    autocmd BufNewFile,BufRead *.icc               set filetype=cpp
+    autocmd BufNewFile,BufRead *.pde               set filetype=java
 
     if funcs#LayerLoaded('programming')
         autocmd FileType c,cpp nnoremap <buffer> <LocalLeader>m :update<Bar>execute 'AsyncRun! make '.shellescape(@%, 1)<CR>
