@@ -147,5 +147,3 @@ endfor
 
 unlet s:m s:insert_mode_mappings s:normal_mode_mappings
 
-
-" vim:set et sw=2 cc=80:
