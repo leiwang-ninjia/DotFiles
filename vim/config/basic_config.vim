@@ -117,6 +117,7 @@ scriptencoding utf-8
   "set ttimeoutlen=50
   "set background=dark
   set nostartofline
+  set lazyredraw
 
   if exists('&colorcolumn')
     set colorcolumn=80
