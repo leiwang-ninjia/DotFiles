@@ -15,10 +15,10 @@ let g:plug_options = {}
 let s:dot_spacevim = $HOME.'/.spacevim'
 let s:py_exe = has('python') ? 'python' : 'python3'
 let s:TYPE = {
-\   'string':  type(''),
-\   'list':    type([]),
-\   'dict':    type({}),
-\   'funcref': type(function('call'))
+\ 'string':  type(''),
+\ 'list':    type([]),
+\ 'dict':    type({}),
+\ 'funcref': type(function('call'))
 \ }
 
 function! s:err(msg)
@@ -60,13 +60,12 @@ function! spacevim#begin()
 endfunction
 
 function! s:define_command()
-    " MP means MyPlugin
-    command! -nargs=+ -bar MP call s:my_plugins(<args>)
+  " MP means MyPlugin
+  command! -nargs=+ -bar MP          call s:my_plugin(<args>)
+  command! -nargs=+ -bar Layer       call s:layer(<args>)
 
-    command! -nargs=+ -bar Layer call s:layer(<args>)
-
-    command! -nargs=0 -bar LayerStatus call layer#status()
-    command! -nargs=0 -bar LayerUpdate call layer#update(s:py_exe)
+  command! -nargs=0 -bar LayerStatus call layer#status()
+  command! -nargs=0 -bar LayerUpdate call layer#update(s:py_exe)
 endfunction
 
 function! s:layer(name, ...)
@@ -97,17 +96,11 @@ function! s:parse_options(arg)
     endif
 endfunction
 
-function! s:my_plugins(...)
-    if a:0 == 0
-        return s:err('Argument missing: plugin name required.')
-    elseif a:0 == 1
-        call add(g:spacevim_plugins, a:1)
-    elseif a:0 == 2
-        call add(g:spacevim_plugins, a:1)
-        let g:plug_options[a:1] = a:2
-    else
-        return s:err('Too many arguments for MP command.')
-    endif
+function! s:my_plugin(plugin, ...)
+  call add(g:spacevim_plugins, a:plugin)
+  if a:0 == 1
+    let g:plug_options[a:plugin] = a:1
+  endif
 endfunction
 
 silent function! s:Source(file) abort
