@@ -63,9 +63,8 @@ function! s:define_command()
   " MP means MyPlugin
   command! -nargs=+ -bar MP          call s:my_plugin(<args>)
   command! -nargs=+ -bar Layer       call s:layer(<args>)
-
-  command! -nargs=0 -bar LayerStatus call layer#status()
-  command! -nargs=0 -bar LayerUpdate call layer#update(s:py_exe)
+  command! -nargs=0 -bar LayerStatus call spacevim#layer#status()
+  command! -nargs=0 -bar LayerUpdate call spacevim#layer#update(s:py_exe)
 endfunction
 
 function! s:layer(name, ...)
