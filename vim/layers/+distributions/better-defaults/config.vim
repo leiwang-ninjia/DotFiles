@@ -31,25 +31,18 @@ endif
   endif
 " }
 
-" vim-multiple-cursors {
-    let g:multi_cursor_next_key='<C-j>'
-    let g:multi_cursor_prev_key='<C-k>'
-    let g:multi_cursor_skip_key='<C-x>'
-    let g:multi_cursor_quit_key='<Esc>'
-" }
-
 " vim-startify {
-    let g:startify_custom_header = [
-                \'                                             _',
-                \'         ___ _ __   __ _  ___ ___     __   _(_)_ __ ___',
-                \'        / __| -_ \ / _- |/ __/ _ \____\ \ / / | -_ - _ \',
-                \'        \__ \ |_) | (_| | (_|  __/_____\ V /| | | | | | |',
-                \'        |___/ .__/ \__._|\___\___|      \_/ |_|_| |_| |_|',
-                \'            |_|',
-                \'                  [ space-vim ' . g:spacevim_version . ' ＠' . v:version . ' ]',
-                \]
+  let g:startify_custom_header = [
+              \'                                             _',
+              \'         ___ _ __   __ _  ___ ___     __   _(_)_ __ ___',
+              \'        / __| -_ \ / _- |/ __/ _ \____\ \ / / | -_ - _ \',
+              \'        \__ \ |_) | (_| | (_|  __/_____\ V /| | | | | | |',
+              \'        |___/ .__/ \__._|\___\___|      \_/ |_|_| |_| |_|',
+              \'            |_|',
+              \'                  [ space-vim ' . g:spacevim_version . ' ＠' . v:version . ' ]',
+              \]
 
-    augroup SPACEVIM_START
+   augroup SPACEVIM_START
         autocmd!
         autocmd VimEnter *
                     \   if !argc() && exists(':Startify')
@@ -69,7 +62,7 @@ endif
                 \ 'commands',
                 \ ]
 
-    let g:startify_change_to_vcs_root = 1
+  let g:startify_change_to_vcs_root = 1
 
 	" ----------------------------------------------------------------------------
 	" <Enter> | vim-easy-align

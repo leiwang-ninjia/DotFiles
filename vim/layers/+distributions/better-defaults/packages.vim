@@ -19,8 +19,6 @@ MP 'dominikduda/vim_current_word'
 
 MP 'itchyny/vim-cursorword'
 
-MP 'terryma/vim-multiple-cursors'
-
 MP 'terryma/vim-expand-region'
 
 MP 'junegunn/vim-easy-align'
