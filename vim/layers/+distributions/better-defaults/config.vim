@@ -1,18 +1,34 @@
 scriptencoding utf-8
 
-" incsearch.vim {
-    if !g:spacevim_nvim
-        " incsearch.vim has bug with GUI vim
-        if !g:spacevim_gui_running
-            map /  <Plug>(incsearch-forward)
-            map ?  <Plug>(incsearch-backward)
-            map g/ <Plug>(incsearch-stay)
+" Smarter cursorline {
+augroup spacevimCursorline
+  autocmd!
+  autocmd InsertLeave,WinEnter * set cursorline
+  autocmd InsertEnter,WinLeave * set nocursorline
+augroup END
+" }
 
-            map z/ <Plug>(incsearch-fuzzyspell-/)
-            map z? <Plug>(incsearch-fuzzyspell-?)
-            map zg/ <Plug>(incsearch-fuzzyspell-stay)
-        endif
+" From tpope
+if g:spacevim_gui
+  command! Bigger  :let &guifont = substitute(&guifont, '\d\+$', '\=submatch(0)+1', '')
+  command! Smaller :let &guifont = substitute(&guifont, '\d\+$', '\=submatch(0)-1', '')
+  noremap + :Bigger<CR>
+  noremap - :Smaller<CR>
+endif
+
+" incsearch.vim {
+  if !g:spacevim_nvim
+    " incsearch.vim has bug with GUI vim
+    if !g:spacevim_gui
+      map /  <Plug>(incsearch-forward)
+      map ?  <Plug>(incsearch-backward)
+      map g/ <Plug>(incsearch-stay)
+
+      map z/ <Plug>(incsearch-fuzzyspell-/)
+      map z? <Plug>(incsearch-fuzzyspell-?)
+      map zg/ <Plug>(incsearch-fuzzyspell-stay)
     endif
+  endif
 " }
 
 " vim-multiple-cursors {
