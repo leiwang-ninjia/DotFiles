@@ -113,3 +113,7 @@ function! s:ToggleBG()
 		set background=dark
 	endif
 endfunction
+augroup spacevimGUI
+  autocmd!
+  autocmd GUIEnter * nnoremap <Leader>wm :call spacevim#gui#ToggleFullScreen()<CR>
+augroup END
