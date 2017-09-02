@@ -47,6 +47,4 @@ else
     " imap <c-x><c-j> <plug>(fzf-complete-file-ag)
     " imap <c-x><c-l> <plug>(fzf-complete-line)
     " }
-else
-    nnoremap <Leader>? :nmap<CR>
 endif
