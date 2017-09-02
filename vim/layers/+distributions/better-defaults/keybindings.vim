@@ -6,12 +6,17 @@ nnoremap <Leader>fed :edit $MYVIMRC<CR>
 
 " <Leader>[1-9] move to window [1-9]
 for s:i in range(1, 9)
-	execute 'nnoremap <Leader>' . s:i . ' :' . s:i . 'wincmd w<CR>'
+  execute 'nnoremap <Leader>' . s:i . ' :' . s:i . 'wincmd w<CR>'
+endfor
+
+" <Leader><leader>[1-9] move to tab [1-9]
+for s:i in range(1, 9)
+  execute 'nnoremap <Leader><Leader>' . s:i . ' ' . s:i . 'gt'
 endfor
 
 " <Leader>b[1-9] move to buffer [1-9]
 for s:i in range(1, 9)
-	execute 'nnoremap <Leader>b' . s:i . ' :b' . s:i . '<CR>'
+  execute 'nnoremap <Leader>b' . s:i . ' :b' . s:i . '<CR>'
 endfor
 
 " Startify
@@ -22,7 +27,11 @@ nmap gcc <Plug>CommentaryLine
 
 " vim-better-whitespace
 nnoremap <Leader>xd :call StripTrailingWhitespace()<CR>
+" util
+nnoremap <Leader>tc :call spacevim#util#ToggleCursorColumn()<CR>
+nnoremap <Leader>tC :call spacevim#util#ToggleColorColumn()<CR>
 
+command! -bar -nargs=0 Rtp :call spacevim#util#Runtimepath()
 nnoremap <Leader>wm :only<CR>
 nnoremap <Leader>w/ :vsplit<CR>
 nnoremap <Leader>w- :split<CR>
@@ -67,12 +76,12 @@ vnoremap <leader>* :call SmartSearchWithInput(0)<CR>
 nnoremap <Leader>ss [I:let nr = input("Which one: ")<Bar>exe "normal " . nr ."[\t"<CR>
 
 " yark and paste
-vnoremap <Leader>y "+y
-vnoremap <Leader>d "+d
-nnoremap <Leader>p "+p
-nnoremap <Leader>P "+P
-vnoremap <Leader>p "+p
-vnoremap <Leader>P "+P
+"vnoremap <Leader>y "+y
+"vnoremap <Leader>d "+d
+"nnoremap <Leader>p "+p
+"nnoremap <Leader>P "+P
+"vnoremap <Leader>p "+p
+"vnoremap <Leader>P "+P
 
 nnoremap <Leader>qq :qa<CR>
 nnoremap <Leader>qQ :qa!<CR>
