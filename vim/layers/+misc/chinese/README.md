@@ -1,4 +1,4 @@
-# Lightline layer
+# Chinese layer
 
 ## Table of Contents
 
@@ -10,8 +10,8 @@
 
 ## Description
 
-This layer adds support for a beautiful statusline.
+Chinese layer 解决在 GUI 环境下可能会出现的中文乱码问题。
 
 ## Install
 
-To use this configuration layer, add it to your `~/.spacevim`.
+在 `.spacevim` 中添加 `Layer 'chinese'`.
