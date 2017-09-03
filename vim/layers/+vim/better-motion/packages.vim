@@ -1,5 +1,3 @@
-MP 'justinmk/vim-sneak'
-
 MP 'easymotion/vim-easymotion'
 
 MP 'haya14busa/incsearch-easymotion.vim', { 'on': [
