@@ -7,13 +7,13 @@ let g:spacevim_vim8 = exists('*job_start')
 let g:spacevim_gui = has('gui_running')
 let g:spacevim_tmux = !empty($TMUX)
 
+let g:spacevim = {}
 let g:layers_loaded = []
 let g:spacevim_excluded = []
 let g:spacevim_plugins = []
 let g:plug_options = {}
 
 let s:dot_spacevim = $HOME.'/.spacevim'
-let s:py_exe = has('python') ? 'python' : 'python3'
 let s:TYPE = {
 \ 'string':  type(''),
 \ 'list':    type([]),
@@ -37,7 +37,7 @@ function! spacevim#begin() abort
 
   call s:define_command()
 
-  call s:layers_info()
+  call s:cache()
 
   if s:check_dot_spacevim()
     try
@@ -62,7 +62,7 @@ function! s:define_command()
   command! -nargs=+ -bar MP          call s:my_plugin(<args>)
   command! -nargs=+ -bar Layer       call s:layer(<args>)
   command! -nargs=0 -bar LayerStatus call spacevim#layer#status()
-  command! -nargs=0 -bar LayerUpdate call spacevim#layer#update(s:py_exe)
+  command! -nargs=0 -bar LayerUpdate call spacevim#cache#init()
 endfunction
 
 function! s:check_dot_spacevim()
@@ -75,13 +75,13 @@ function! s:check_dot_spacevim()
   endif
 endfunction
 
-function! s:layers_info() abort
+function! s:cache() abort
   let g:spacevim_info_path = g:spacevim_dir. '/autoload/spacevim/info.vim'
   let g:spacevim_info_path = g:WINDOWS ? s:path(g:spacevim_info_path) : g:spacevim_info_path
   if filereadable(g:spacevim_info_path)
     execute 'source ' . g:spacevim_info_path
   else
-    call spacevim#layer#update(s:py_exe)
+    call spacevim#cache#init()
   endif
 endfunction
 
@@ -126,7 +126,7 @@ function! s:Source(file)
   try
     execute 'source ' . fnameescape(a:file)
   catch
-    call spacevim#layer#update(s:py_exe)
+    call spacevim#cache#init()
   endtry
 endfunction
 
@@ -179,16 +179,16 @@ function! s:packages()
   " Load Layer packages
   for l:layer in g:layers_loaded
     try
-      let l:layer_packages = g:layer_path[l:layer] . '/packages.vim'
+      let l:layer_packages = g:spacevim[l:layer].dir . '/packages.vim'
     catch
-      call spacevim#layer#update(s:py_exe)
+      call spacevim#cache#init()
     endtry
     call s:Source(l:layer_packages)
   endfor
 
   " Try private Layer packages
-  if exists('g:private_layers')
-    for l:private_layer in g:private_layers
+  if exists('g:private')
+    for l:private_layer in g:private
       let l:private_layer_packages = g:spacevim_dir . '/private/' . l:private_layer . '/packages.vim'
       if filereadable(expand(l:private_layer_packages))
         execute 'source ' . fnameescape(l:private_layer_packages)
@@ -221,17 +221,13 @@ endfunction
 function! s:config()
   " Load Layer config
   for l:layer in g:layers_loaded
-    try
-      let l:layer_config = g:layer_path[l:layer] . '/config.vim'
-    catch
-      call spacevim#layer#update(s:py_exe)
-    endtry
+    let l:layer_config = g:spacevim[l:layer].dir . '/config.vim'
     call s:Source(l:layer_config)
   endfor
 
   " Try private Layer config
-  if exists('g:private_layers')
-    for l:private_layer in g:private_layers
+  if exists('g:private')
+    for l:private_layer in g:private
       let l:private_layer_config = g:spacevim_dir . '/private/' . l:private_layer . '/config.vim'
       if filereadable(expand(l:private_layer_config))
         execute 'source ' . fnameescape(l:private_layer_config)
@@ -247,9 +243,6 @@ function! s:config()
 endfunction
 
 function! s:post_user_config()
-
-  autocmd BufRead,BufNewFile *.spacevim setlocal filetype=vim
-  autocmd FileType vim setlocal tabstop=2 shiftwidth=2 softtabstop=2
 
   " airline {
   if !exists('g:airline_powerline_fonts')
@@ -283,4 +276,9 @@ function! s:post_user_config()
       \| endif
   augroup END
 
+endfunction
+
+" Util for config.vim and packages.vim
+function! spacevim#LayerLoaded(layer) abort
+    return index(g:layers_loaded, a:layer) > -1 ? 1 : 0
 endfunction
