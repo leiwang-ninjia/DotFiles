@@ -97,7 +97,7 @@ elseif executable('ag')
   call denite#custom#var('grep', 'separator', ['--'])
   call denite#custom#var('grep', 'final_opts', [])
   call denite#custom#var('grep', 'default_opts',
-        \ [ '--vimgrep', '--smart-case' ])
+        \ [ '--smart-case' ])
 elseif executable('ack')
   " Ack command
   call denite#custom#var('grep', 'command', ['ack'])
