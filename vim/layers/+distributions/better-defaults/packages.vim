@@ -27,7 +27,12 @@ MP 'tpope/vim-repeat'
 
 MP 'tpope/vim-commentary', { 'on': '<Plug>Commentary' }
 
-MP 'Shougo/vimproc.vim'  
+MP 'Shougo/vimproc.vim'
+
+MP 'nvim-lua/popup.nvim'
+MP 'nvim-lua/plenary.nvim'
+MP 'nvim-telescope/telescope.nvim'
+MP 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 
 " Bug here.
 " MP 'kana/vim-operator-user',         { 'on': '<Plug>(operator-flashy)' }
