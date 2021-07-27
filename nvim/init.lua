@@ -45,7 +45,11 @@ packer.startup(function()
   use 'sheerun/vim-polyglot'
   use 'lewis6991/gitsigns.nvim'
   use 'neovim/nvim-lspconfig'
-  use {'hrsh7th/nvim-compe', config=[[require('nvim-compe')]],}
+  use {'hrsh7th/nvim-compe', config=require('nvim-compe'),}
+  use {'winston0410/range-highlight.nvim',
+    requires = {'winston0410/cmd-parser.nvim', opt=true, module='cmd-parser',},
+    config = function() require('range-highlight').setup() end,
+    event='BufRead',}
 end)
 
 -- Disable some built-in plugins we don't want
