@@ -33,7 +33,16 @@ packer.startup(function()
  	use {'folke/which-key.nvim', event = 'BufWinEnter',}
   use 'tpope/vim-vinegar'
   use 'itchyny/lightline.vim'
-  use 'tpope/vim-surround'
+  use {
+    "blackCauldron7/surround.nvim",
+    config = function()
+      require "surround".setup {}
+    end
+  }
+  use {
+    'b3nj5m1n/kommentary',
+    config = function() require('kommentary.config').use_extended_mappings() end
+  }
   use 'tpope/vim-fugitive'
   use 'tpope/vim-rhubarb'
   use 'tpope/vim-repeat'
