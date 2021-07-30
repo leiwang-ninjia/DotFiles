@@ -39,13 +39,15 @@ packer.startup(function()
   use 'tpope/vim-repeat'
   use 'tpope/vim-sleuth'
   use 'tpope/vim-commentary'
-  use {'nvim-telescope/telescope.nvim', requires = {{'nvim-lua/popup.nvim'}, {'nvim-lua/plenary.nvim'}} }
+  use 'sbdchd/neoformat'
+  use {'nvim-telescope/telescope.nvim', requires = {{'nvim-lua/popup.nvim'}, {'nvim-lua/plenary.nvim'}},
+  config = function() require('wl-telescope') end }
   use 'joshdick/onedark.vim'
   use { 'lukas-reineke/indent-blankline.nvim', }
   use 'sheerun/vim-polyglot'
   use 'lewis6991/gitsigns.nvim'
   use 'neovim/nvim-lspconfig'
-  use {'hrsh7th/nvim-compe', config=function() require('nvim-compe') end,}
+  use {'hrsh7th/nvim-compe', config=function() require('wl-compe') end,}
   use {'winston0410/range-highlight.nvim',
     requires = {'winston0410/cmd-parser.nvim', opt=true, module='cmd-parser',},
     config = function() require('range-highlight').setup() end,
@@ -66,7 +68,7 @@ local disabled_built_ins = {
   'netrwPlugin',
 }
 
-vim.o.inccommand = "nosplit"
+vim.o.inccommand = "split"
 vim.o.hlsearch = false
 vim.o.incsearch = true
 vim.wo.number = true
