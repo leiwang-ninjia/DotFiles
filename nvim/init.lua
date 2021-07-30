@@ -30,7 +30,7 @@ packer.startup(function()
   use {'kyazdani42/nvim-tree.lua', requires = 'nvim-web-devicons',
     cmd = {'NvimTreeClipboard','NvimTreeClose','NvimTreeFindFile','NvimTreeOpen',
     'NvimTreeRefresh','NvimTreeToggle',},}
- 	use {'folke/which-key.nvim', event = 'BufWinEnter',}
+ 	use {'folke/which-key.nvim',config=function() require('wl-whichkey') end, event = 'BufWinEnter',}
   use 'tpope/vim-vinegar'
   use 'itchyny/lightline.vim'
   use {
