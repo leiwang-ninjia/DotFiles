@@ -170,6 +170,7 @@ vim.api.nvim_set_keymap('n', '<leader>cf', [[<cmd>Neoformat<cr>]], { noremap = t
 
 vim.g.neoformat_enabled_cpp = {"clangformat"}
 vim.g.neoformat_enabled_c = {"clangformat"}
+vim.g.surround_prefix = "S"
 
 -- Highlight on yank
 vim.api.nvim_exec([[
