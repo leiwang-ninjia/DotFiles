@@ -31,7 +31,6 @@ packer.startup(function()
     cmd = {'NvimTreeClipboard','NvimTreeClose','NvimTreeFindFile','NvimTreeOpen',
     'NvimTreeRefresh','NvimTreeToggle',},}
  	use {'folke/which-key.nvim',config=function() require('wl-whichkey') end, event = 'BufWinEnter',}
-  use 'tpope/vim-vinegar'
   use 'itchyny/lightline.vim'
   use {
     "blackCauldron7/surround.nvim",
@@ -159,6 +158,18 @@ vim.api.nvim_set_keymap('n', '<leader>gp', [[<cmd>lua require('telescope.builtin
 
 -- Change preview window location
 vim.g.splitbelow = true
+
+-- neoformat config
+-- map("n", "<Leader>fm", ":Neoformat<CR>", opt)
+vim.api.nvim_set_keymap('n', '<leader>cf', [[<cmd>Neoformat<cr>]], { noremap = true, silent = true})
+
+--[[ vim.g.neoformat_cpp_clangformat = {
+    exe = 'clang-format',
+    args= {'--style="{IndentWidth: 4}"'}
+} ]]
+
+vim.g.neoformat_enabled_cpp = {"clangformat"}
+vim.g.neoformat_enabled_c = {"clangformat"}
 
 -- Highlight on yank
 vim.api.nvim_exec([[
