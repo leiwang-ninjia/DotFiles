@@ -33,20 +33,15 @@ packer.startup(function()
  	use {'folke/which-key.nvim',config=function() require('wl-whichkey') end, event = 'BufWinEnter',}
   use 'itchyny/lightline.vim'
   use {
-    "blackCauldron7/surround.nvim",
-    config = function()
-      require "surround".setup {}
-    end
-  }
-  use {
     'b3nj5m1n/kommentary',
     config = function() require('kommentary.config').use_extended_mappings() end
   }
+  use 'tpope/vim-surround'
   use 'tpope/vim-fugitive'
   use 'tpope/vim-rhubarb'
   use 'tpope/vim-repeat'
   use 'tpope/vim-sleuth'
-  use 'tpope/vim-commentary'
+  --use 'tpope/vim-commentary'
   use 'sbdchd/neoformat'
   use {'nvim-telescope/telescope.nvim', requires = {{'nvim-lua/popup.nvim'}, {'nvim-lua/plenary.nvim'}},
   config = function() require('wl-telescope') end }
