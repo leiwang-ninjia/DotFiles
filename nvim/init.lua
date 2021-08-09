@@ -139,6 +139,7 @@ require('telescope').setup {
   }
 }
 --Add leader shortcuts
+vim.api.nvim_set_keymap('n', '<leader>.', [[<cmd>lua require('telescope.builtin').file_browser()<cr>]], { noremap = true, silent = true})
 vim.api.nvim_set_keymap('n', '<leader>ff', [[<cmd>lua require('telescope.builtin').find_files()<cr>]], { noremap = true, silent = true})
 vim.api.nvim_set_keymap('n', '<leader>bb', [[<cmd>lua require('telescope.builtin').buffers()<cr>]], { noremap = true, silent = true})
 vim.api.nvim_set_keymap('n', '<leader>sb', [[<cmd>lua require('telescope.builtin').current_buffer_fuzzy_find()<cr>]], { noremap = true, silent = true})
@@ -151,6 +152,9 @@ vim.api.nvim_set_keymap('n', '<leader>gc', [[<cmd>lua require('telescope.builtin
 vim.api.nvim_set_keymap('n', '<leader>gb', [[<cmd>lua require('telescope.builtin').git_branches()<cr>]], { noremap = true, silent = true})
 vim.api.nvim_set_keymap('n', '<leader>gs', [[<cmd>lua require('telescope.builtin').git_status()<cr>]], { noremap = true, silent = true})
 vim.api.nvim_set_keymap('n', '<leader>gp', [[<cmd>lua require('telescope.builtin').git_bcommits()<cr>]], { noremap = true, silent = true})
+vim.api.nvim_set_keymap('n', '<space>sd', [[<cmd>lua require('wl-telescope').live_grep_current()<CR>]], { noremap = true, silent = true})
+
+
 
 -- Change preview window location
 vim.g.splitbelow = true
@@ -166,7 +170,6 @@ vim.api.nvim_set_keymap('n', '<leader>cf', [[<cmd>Neoformat<cr>]], { noremap = t
 
 vim.g.neoformat_enabled_cpp = {"clangformat"}
 vim.g.neoformat_enabled_c = {"clangformat"}
-vim.g.surround_prefix = "S"
 
 -- Highlight on yank
 vim.api.nvim_exec([[

@@ -68,3 +68,14 @@ telescope.setup({
 			},
 		},
 	})
+
+local M = {}
+
+function M.live_grep_current()
+  require("telescope.builtin").live_grep {
+    -- shorten_path = true,
+    cwd = vim.fn.expand "%:p:h",
+  }
+end
+
+return M
