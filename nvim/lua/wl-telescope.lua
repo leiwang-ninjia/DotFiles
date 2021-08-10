@@ -69,7 +69,7 @@ telescope.setup({
 		},
 	})
 
-local M = {}
+--[[ local M = {}
 
 function M.live_grep_current()
   require("telescope.builtin").live_grep {
@@ -78,4 +78,4 @@ function M.live_grep_current()
   }
 end
 
-return M
+return M ]]
