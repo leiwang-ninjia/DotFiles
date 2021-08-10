@@ -43,6 +43,7 @@ packer.startup(function()
   use 'tpope/vim-sleuth'
   --use 'tpope/vim-commentary'
   use 'sbdchd/neoformat'
+  use {'nvim-telescope/telescope-fzf-native.nvim', run = 'make'}
   use {'nvim-telescope/telescope.nvim', requires = {{'nvim-lua/popup.nvim'}, {'nvim-lua/plenary.nvim'}},
   config = function() require('wl-telescope') end }
   use 'joshdick/onedark.vim'
