@@ -51,6 +51,8 @@ packer.startup(function()
   use 'sheerun/vim-polyglot'
   use 'lewis6991/gitsigns.nvim'
   use 'neovim/nvim-lspconfig'
+  use {'lotabout/skim', dir = '~/.skim', run = './install' }
+  use 'lotabout/skim.vim'
   use {'hrsh7th/nvim-compe', config=function() require('wl-compe') end,}
   use {'winston0410/range-highlight.nvim',
     requires = {'winston0410/cmd-parser.nvim', opt=true, module='cmd-parser',},
