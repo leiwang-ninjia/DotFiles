@@ -31,7 +31,8 @@ packer.startup(function()
     cmd = {'NvimTreeClipboard','NvimTreeClose','NvimTreeFindFile','NvimTreeOpen',
     'NvimTreeRefresh','NvimTreeToggle',},}
  	use {'folke/which-key.nvim',config=function() require('wl-whichkey') end, event = 'BufWinEnter',}
-  use 'itchyny/lightline.vim'
+  use {'hoob3rt/lualine.nvim', requires = {'kyazdani42/nvim-web-devicons', opt = true},
+  config = function() require('lualine').setup() end}
   use {
     'b3nj5m1n/kommentary',
     config = function() require('kommentary.config').use_extended_mappings() end
