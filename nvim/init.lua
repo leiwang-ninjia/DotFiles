@@ -48,6 +48,7 @@ packer.startup(function()
   use {'nvim-telescope/telescope.nvim', requires = {{'nvim-lua/popup.nvim'}, {'nvim-lua/plenary.nvim'}},
   config = function() require('wl-telescope') end }
   use 'joshdick/onedark.vim'
+  use 'RRethy/nvim-base16'
   use { 'lukas-reineke/indent-blankline.nvim', }
   use 'sheerun/vim-polyglot'
   use 'lewis6991/gitsigns.nvim'
@@ -98,8 +99,8 @@ vim.wo.signcolumn="yes"
 
 --Set colorscheme (order is important here)
 vim.o.termguicolors = true
-vim.g.onedark_terminal_italics = 2
-vim.cmd[[colorscheme onedark]]
+--vim.g.onedark_terminal_italics = 2
+vim.cmd[[colorscheme base16-tomorrow-night-eighties]]
 
 --Remap space as leader key
 vim.api.nvim_set_keymap('', '<Space>', '<Nop>', { noremap = true, silent=true})
