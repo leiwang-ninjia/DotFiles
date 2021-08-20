@@ -77,7 +77,7 @@ local disabled_built_ins = {
 }
 
 vim.o.inccommand = "split"
-vim.o.hlsearch = false
+vim.o.hlsearch = true
 vim.o.incsearch = true
 vim.wo.number = true
 
