@@ -56,7 +56,12 @@ packer.startup(function()
   use 'lewis6991/gitsigns.nvim'
   use 'neovim/nvim-lspconfig'
   use {'lotabout/skim', dir = '~/.skim', run = './install' }
-  use 'lotabout/skim.vim'
+  use { 'ibhagwan/fzf-lua',
+    requires = {
+      'vijaymarupudi/nvim-fzf',
+      'kyazdani42/nvim-web-devicons' },
+    config = function() require('fzf-lua').setup{fzf_bin = 'sk',} end,
+  }
   use {'hrsh7th/nvim-compe', config=function() require('wl-compe') end,}
   use {'winston0410/range-highlight.nvim',
     requires = {'winston0410/cmd-parser.nvim', opt=true, module='cmd-parser',},
@@ -83,6 +88,7 @@ vim.o.hlsearch = true
 vim.o.incsearch = true
 vim.wo.number = true
 
+vim.o.clipboard = "unnamedplus"
 --Do not save when switching buffers
 vim.o.hidden = true
 vim.o.mouse = "a"
