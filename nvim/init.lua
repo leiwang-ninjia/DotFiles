@@ -60,7 +60,7 @@ packer.startup(function()
     requires = {
       'vijaymarupudi/nvim-fzf',
       'kyazdani42/nvim-web-devicons' },
-    config = function() require('fzf-lua').setup{fzf_bin = 'sk',} end,
+    config = function() require('fzf-lua').setup{fzf_bin = 'sk',previewers = {bat = {theme = 'zenburn'},} }end,
   }
   use {'hrsh7th/nvim-compe', config=function() require('wl-compe') end,}
   use {'winston0410/range-highlight.nvim',
