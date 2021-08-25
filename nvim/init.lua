@@ -32,7 +32,10 @@ packer.startup(function()
     'NvimTreeRefresh','NvimTreeToggle',},}
  	use {'folke/which-key.nvim',config=function() require('wl-whichkey') end, event = 'BufWinEnter',}
   use 'RRethy/nvim-base16'
-  use {'hoob3rt/lualine.nvim', requires = {'kyazdani42/nvim-web-devicons', opt = true},}
+  use 'sainnhe/gruvbox-material'
+  use {'akinsho/bufferline.nvim', requires = 'kyazdani42/nvim-web-devicons',
+    config = function() require("bufferline").setup{} end }
+  use {'hoob3rt/lualine.nvim', requires = {'kyazdani42/nvim-web-devicons', opt = true} }
   use {
     'b3nj5m1n/kommentary',
     config = function() require('kommentary.config').use_extended_mappings() end
@@ -98,8 +101,10 @@ vim.wo.signcolumn="yes"
 
 --Set colorscheme (order is important here)
 vim.o.termguicolors = true
+vim.o.background = "dark"
 --vim.g.onedark_terminal_italics = 2
-vim.cmd[[colorscheme base16-tomorrow-night-eighties]]
+--vim.cmd[[colorscheme base16-tomorrow-night-eighties]]
+vim.cmd[[colorscheme gruvbox-material]]
 
 --Remap space as leader key
 vim.api.nvim_set_keymap('', '<Space>', '<Nop>', { noremap = true, silent=true})
