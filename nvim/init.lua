@@ -70,6 +70,13 @@ packer.startup(function()
     requires = {'winston0410/cmd-parser.nvim', opt=true, module='cmd-parser',},
     config = function() require('range-highlight').setup() end,
     event='BufRead',}
+    use {
+      'phaazon/hop.nvim',
+      config = function()
+        -- you can configure Hop the way you like here; see :h hop-config
+        require'hop'.setup()
+      end
+    }
 end)
 
 -- Disable some built-in plugins we don't want
