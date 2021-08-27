@@ -39,7 +39,8 @@ packer.startup(function()
   use 'sainnhe/gruvbox-material'
   use {'akinsho/bufferline.nvim', requires = 'kyazdani42/nvim-web-devicons',
     config = function() require("bufferline").setup{} end }
-  use {'hoob3rt/lualine.nvim', requires = {'kyazdani42/nvim-web-devicons', opt = true} }
+  use {'hoob3rt/lualine.nvim', requires = {'kyazdani42/nvim-web-devicons', opt = true},
+    config = function() require("lualine").setup{options = {theme = 'onedark'}} end }
   use {
     'b3nj5m1n/kommentary',
     config = function() require('kommentary.config').use_extended_mappings() end
@@ -54,7 +55,7 @@ packer.startup(function()
   use {'nvim-telescope/telescope-fzf-native.nvim', run = 'make'}
   use {'nvim-telescope/telescope.nvim', requires = {{'nvim-lua/popup.nvim'}, {'nvim-lua/plenary.nvim'}},
   config = function() require('wl-telescope') end }
-  use 'navarasu/onedark.nvim'
+  use {'navarasu/onedark.nvim',config = function() require('onedark').setup() end,}
   use { 'lukas-reineke/indent-blankline.nvim', }
   use 'sheerun/vim-polyglot'
   use 'lewis6991/gitsigns.nvim'
@@ -122,7 +123,7 @@ vim.o.background = "dark"
 --vim.g.onedark_terminal_italics = 2
 --vim.cmd[[colorscheme base16-tomorrow-night-eighties]]
 -- vim.cmd[[colorscheme gruvbox-material]]
-vim.cmd[[colorscheme onedark]]
+-- vim.cmd[[colorscheme onedark]]
 
 --Remap space as leader key
 vim.api.nvim_set_keymap('', '<Space>', '<Nop>', { noremap = true, silent=true})
