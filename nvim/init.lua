@@ -27,7 +27,7 @@ packer.startup(function()
   use {'wbthomason/packer.nvim', opt = true}
   use {'nvim-treesitter/nvim-treesitter', opt = true, run = ':TSUpdate',
     config = function() require'nvim-treesitter.configs'.setup {
-        ensure_installed = "maintained",highlight = { enable = true,},} end,
+        ensure_installed = "maintained",ignore_install = { "tlaplus" },highlight = { enable = true,},} end,
       event = 'BufRead'}
   use {'kyazdani42/nvim-web-devicons', module = 'nvim-web-devicons',}
   use {'kyazdani42/nvim-tree.lua', requires = 'nvim-web-devicons',
@@ -65,7 +65,7 @@ packer.startup(function()
     requires = {
       'vijaymarupudi/nvim-fzf',
       'kyazdani42/nvim-web-devicons' },
-    config = function() require('fzf-lua').setup{fzf_bin = 'sk',previewers = {bat = {theme = 'zenburn'},} }end,
+    config = function() require('fzf-lua').setup{fzf_bin = 'sk',previewers = {bat = {theme = 'TwoDark'},} }end,
   }
   use {'hrsh7th/nvim-compe', config=function() require('wl-compe') end,}
   use {'winston0410/range-highlight.nvim',
