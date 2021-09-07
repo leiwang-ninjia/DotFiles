@@ -56,7 +56,7 @@ packer.startup(function()
   use {'nvim-telescope/telescope.nvim', requires = {{'nvim-lua/popup.nvim'}, {'nvim-lua/plenary.nvim'}},
   config = function() require('wl-telescope') end }
   use {'olimorris/onedark.nvim',
-    config = function() require('onedark').setup({hlgroups = {ModeMsg = {'Normal'}}}) require('onedark').load() end,}
+    config = function() require('onedark').setup({colors = {bg = '#282C34'},hlgroups = {ModeMsg = {'Normal'}}}) require('onedark').load() end,}
   use { 'lukas-reineke/indent-blankline.nvim', }
   use 'sheerun/vim-polyglot'
   use 'lewis6991/gitsigns.nvim'
