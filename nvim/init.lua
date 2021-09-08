@@ -68,7 +68,7 @@ packer.startup(function()
       'kyazdani42/nvim-web-devicons' },
     config = function() require('fzf-lua').setup{fzf_bin = 'sk',previewers = {bat = {theme = 'TwoDark'},} }end,
   }
-  use {'hrsh7th/nvim-compe', config=function() require('wl-compe') end,}
+  use {"hrsh7th/nvim-cmp", requires = { "hrsh7th/vim-vsnip","hrsh7th/cmp-buffer",},config=function() require('wl-comp') end,}
   use {'winston0410/range-highlight.nvim',
     requires = {'winston0410/cmd-parser.nvim', opt=true, module='cmd-parser',},
     config = function() require('range-highlight').setup() end,
@@ -209,7 +209,4 @@ vim.api.nvim_exec([[
 
 -- Y yank until the end of line
 vim.api.nvim_set_keymap('n', 'Y', 'y$', { noremap = true})
---
--- Set completeopt to have a better completion experience
-vim.o.completeopt="menuone,noinsert,noselect"
 
