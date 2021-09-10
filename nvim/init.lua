@@ -21,6 +21,8 @@ packer.init({
   },
 })
 
+vim.o.termguicolors = true
+vim.o.background = "dark"
  	--use {'kdheepak/lazygit.nvim', requires = 'plenary.nvim', cmd = { 'LazyGit', 'LazyGitConfig' },}
 local use = packer.use
 packer.startup(function()
