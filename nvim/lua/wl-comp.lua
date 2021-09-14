@@ -34,4 +34,10 @@ cmp.setup {
          end
       end,
    },
+   sources = {
+      {
+         name = 'buffer',
+         name = 'path',
+      }
+   }
 }

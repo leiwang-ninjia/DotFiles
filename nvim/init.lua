@@ -70,7 +70,7 @@ packer.startup(function()
       'kyazdani42/nvim-web-devicons' },
     config = function() require('fzf-lua').setup{fzf_bin = 'sk',previewers = {bat = {theme = 'TwoDark'},} }end,
   }
-  use {"hrsh7th/nvim-cmp", requires = { "hrsh7th/vim-vsnip","hrsh7th/cmp-buffer",},config=function() require('wl-comp') end,}
+  use {"hrsh7th/nvim-cmp", requires = { "hrsh7th/vim-vsnip","hrsh7th/cmp-buffer","hrsh7th/cmp-path"},config=function() require('wl-comp') end,}
   use {'winston0410/range-highlight.nvim',
     requires = {'winston0410/cmd-parser.nvim', opt=true, module='cmd-parser',},
     config = function() require('range-highlight').setup() end,
