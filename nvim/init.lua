@@ -122,6 +122,7 @@ vim.wo.signcolumn="yes"
 --Set colorscheme (order is important here)
 vim.o.termguicolors = true
 vim.o.background = "dark"
+vim.g.onedark_italic_comment = false
 --vim.g.onedark_terminal_italics = 2
 --vim.cmd[[colorscheme base16-tomorrow-night-eighties]]
 -- vim.cmd[[colorscheme gruvbox-material]]
@@ -211,3 +212,22 @@ vim.api.nvim_exec([[
 -- Y yank until the end of line
 vim.api.nvim_set_keymap('n', 'Y', 'y$', { noremap = true})
 
+-- spacemacs keybindings
+vim.api.nvim_set_keymap('n', '<leader>wm', ':only<cr>', { noremap = true})
+vim.api.nvim_set_keymap('n', '<leader>ww', ':wincmd w<cr>', { noremap = true})
+vim.api.nvim_set_keymap('n', '<leader>bp', ':bprev<cr>', { noremap = true})
+vim.api.nvim_set_keymap('n', '<leader>bn', ':bnext<cr>', { noremap = true})
+
+vim.api.nvim_set_keymap('n', '<leader>fs', ':write<cr>', { noremap = true})
+vim.api.nvim_set_keymap('n', '<leader>fS', ':wall<cr>', { noremap = true})
+
+vim.api.nvim_set_keymap('n', ']b', ':bnext<cr>', { noremap = true})
+vim.api.nvim_set_keymap('n', '[b', ':bprev<cr>', { noremap = true})
+vim.api.nvim_set_keymap('n', ']t', ':tabn<cr>', { noremap = true})
+vim.api.nvim_set_keymap('n', '[t', ':tabp<cr>', { noremap = true})
+vim.api.nvim_set_keymap('n', ']q', ':cnext<cr>', { noremap = true})
+vim.api.nvim_set_keymap('n', '[q', ':cprev<cr>', { noremap = true})
+vim.api.nvim_set_keymap('n', ']l', ':lnext<cr>', { noremap = true})
+vim.api.nvim_set_keymap('n', '[l', ':lprev<cr>', { noremap = true})
+vim.api.nvim_set_keymap('n', '[q', ':cprev<cr>', { noremap = true})
+-- end
