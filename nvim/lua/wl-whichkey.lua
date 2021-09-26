@@ -163,8 +163,8 @@ wk.register({
 		f = {
 			name = '+file',
 			c = { ':e $MYVIMRC<CR>', 'Edit Neovim configuration' },
-			s = { 'write<CR>', 'Write buffer' },
-			S = { 'wall<CR>', 'Write all buffers' },
+			s = { ':write<CR>', 'Write buffer' },
+			S = { ':wall<CR>', 'Write all buffers' },
 			n = { 'Create a new unnamed buffer' },
 			f = { ':Telescope find_files<CR>', 'Find files' },
 			b = { ':Telescope marks<CR>', 'Bookmarks' },
