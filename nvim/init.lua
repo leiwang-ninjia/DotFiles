@@ -152,13 +152,13 @@ vim.g.onedark_italic_comment = false
 -- vim.cmd[[colorscheme onedark]]
 
 --Remap space as leader key
-vim.api.nvim_set_keymap('', '<Space>', '<Nop>', { noremap = true, silent=true})
+Map('', '<Space>', '<Nop>', { noremap = true, silent=true})
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
 --Remap for dealing with word wrap
-vim.api.nvim_set_keymap('n', 'k', "v:count == 0 ? 'gk' : 'k'", { noremap=true, expr = true, silent = true})
-vim.api.nvim_set_keymap('n', 'j', "v:count == 0 ? 'gj' : 'j'", {noremap= true, expr = true, silent = true})
+Map('n', 'k', "v:count == 0 ? 'gk' : 'k'", {noremap=true, expr = true, silent = true})
+Map('n', 'j', "v:count == 0 ? 'gj' : 'j'", {noremap= true, expr = true, silent = true})
 
 --Remap escape to leave terminal mode
 vim.api.nvim_exec([[
@@ -193,20 +193,20 @@ require('telescope').setup {
   }
 }
 --Add leader shortcuts
-vim.api.nvim_set_keymap('n', '<leader>.', [[<cmd>lua require('telescope.builtin').file_browser()<cr>]], { noremap = true, silent = true})
-vim.api.nvim_set_keymap('n', '<leader>ff', [[<cmd>lua require('telescope.builtin').find_files()<cr>]], { noremap = true, silent = true})
-vim.api.nvim_set_keymap('n', '<leader>bb', [[<cmd>lua require('telescope.builtin').buffers()<cr>]], { noremap = true, silent = true})
-vim.api.nvim_set_keymap('n', '<leader>sb', [[<cmd>lua require('telescope.builtin').current_buffer_fuzzy_find()<cr>]], { noremap = true, silent = true})
-vim.api.nvim_set_keymap('n', '<leader>ta', [[<cmd>lua require('telescope.builtin').tags()<cr>]], { noremap = true, silent = true})
-vim.api.nvim_set_keymap('n', '<leader>fr', [[<cmd>lua require('telescope.builtin').oldfiles()<cr>]], { noremap = true, silent = true})
-vim.api.nvim_set_keymap('n', '<leader>*', [[<cmd>lua require('telescope.builtin').grep_string()<cr>]], { noremap = true, silent = true})
-vim.api.nvim_set_keymap('n', '<leader>/', [[<cmd>lua require('telescope.builtin').live_grep()<cr>]], { noremap = true, silent = true})
-vim.api.nvim_set_keymap('n', '<leader>tb', [[<cmd>lua require('telescope.builtin').tags{ only_current_buffer = true }<cr>]], { noremap = true, silent = true})
-vim.api.nvim_set_keymap('n', '<leader>gc', [[<cmd>lua require('telescope.builtin').git_commits()<cr>]], { noremap = true, silent = true})
-vim.api.nvim_set_keymap('n', '<leader>gb', [[<cmd>lua require('telescope.builtin').git_branches()<cr>]], { noremap = true, silent = true})
-vim.api.nvim_set_keymap('n', '<leader>gs', [[<cmd>lua require('telescope.builtin').git_status()<cr>]], { noremap = true, silent = true})
-vim.api.nvim_set_keymap('n', '<leader>gp', [[<cmd>lua require('telescope.builtin').git_bcommits()<cr>]], { noremap = true, silent = true})
-vim.api.nvim_set_keymap('n', '<leader>sd', [[<cmd>lua require('telescope.builtin').live_grep({cwd = vim.fn.expand "%:p:h"})<cr>]], { noremap = true, silent = true})
+Map('n', '<leader>.', [[<cmd>lua require('telescope.builtin').file_browser()<cr>]])
+Map('n', '<leader>ff', [[<cmd>lua require('telescope.builtin').find_files()<cr>]])
+Map('n', '<leader>bb', [[<cmd>lua require('telescope.builtin').buffers()<cr>]])
+Map('n', '<leader>sb', [[<cmd>lua require('telescope.builtin').current_buffer_fuzzy_find()<cr>]])
+Map('n', '<leader>ta', [[<cmd>lua require('telescope.builtin').tags()<cr>]])
+Map('n', '<leader>fr', [[<cmd>lua require('telescope.builtin').oldfiles()<cr>]])
+Map('n', '<leader>*', [[<cmd>lua require('telescope.builtin').grep_string()<cr>]])
+Map('n', '<leader>/', [[<cmd>lua require('telescope.builtin').live_grep()<cr>]])
+Map('n', '<leader>tb', [[<cmd>lua require('telescope.builtin').tags{ only_current_buffer = true }<cr>]])
+Map('n', '<leader>gc', [[<cmd>lua require('telescope.builtin').git_commits()<cr>]])
+Map('n', '<leader>gb', [[<cmd>lua require('telescope.builtin').git_branches()<cr>]])
+Map('n', '<leader>gs', [[<cmd>lua require('telescope.builtin').git_status()<cr>]])
+Map('n', '<leader>gp', [[<cmd>lua require('telescope.builtin').git_bcommits()<cr>]])
+Map('n', '<leader>sd', [[<cmd>lua require('telescope.builtin').live_grep({cwd = vim.fn.expand "%:p:h"})<cr>]])
 
 
 -- Change preview window location
@@ -214,7 +214,7 @@ vim.g.splitbelow = true
 
 -- neoformat config
 -- map("n", "<Leader>fm", ":Neoformat<CR>", opt)
-vim.api.nvim_set_keymap('n', '<leader>cf', [[<cmd>Neoformat<cr>]], { noremap = true, silent = true})
+Map('n', '<leader>cf', [[<cmd>Neoformat<cr>]])
 
 --[[ vim.g.neoformat_cpp_clangformat = {
     exe = 'clang-format',
@@ -233,16 +233,16 @@ vim.api.nvim_exec([[
 ]], false)
 
 -- Y yank until the end of line
-vim.api.nvim_set_keymap('n', 'Y', 'y$', { noremap = true})
+Map('n', 'Y', 'y$', { noremap = true})
 
 
-vim.api.nvim_set_keymap('n', ']b', ':bnext<cr>', { noremap = true})
-vim.api.nvim_set_keymap('n', '[b', ':bprev<cr>', { noremap = true})
-vim.api.nvim_set_keymap('n', ']t', ':tabn<cr>', { noremap = true})
-vim.api.nvim_set_keymap('n', '[t', ':tabp<cr>', { noremap = true})
-vim.api.nvim_set_keymap('n', ']q', ':cnext<cr>', { noremap = true})
-vim.api.nvim_set_keymap('n', '[q', ':cprev<cr>', { noremap = true})
-vim.api.nvim_set_keymap('n', ']l', ':lnext<cr>', { noremap = true})
-vim.api.nvim_set_keymap('n', '[l', ':lprev<cr>', { noremap = true})
-vim.api.nvim_set_keymap('n', '[q', ':cprev<cr>', { noremap = true})
+Map('n', ']b', ':bnext<cr>')
+Map('n', '[b', ':bprev<cr>')
+Map('n', ']t', ':tabn<cr>')
+Map('n', '[t', ':tabp<cr>')
+Map('n', ']q', ':cnext<cr>')
+Map('n', '[q', ':cprev<cr>')
+Map('n', ']l', ':lnext<cr>')
+Map('n', '[l', ':lprev<cr>')
+Map('n', '[q', ':cprev<cr>')
 -- end

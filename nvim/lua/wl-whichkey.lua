@@ -40,9 +40,6 @@ Api.nvim_set_var('mapleader', ' ')
 -- Additional options for mappings
 local opts = { silent = true }
 
----[[-----------------]]---
---    LSP Keybindings    --
----]]-----------------[[---
 -- then set its mappings.
 -- https://github.com/hrsh7th/nvim-compe#mappings
 Map('n', '<Leader>fn', ':enew<CR>', opts)
@@ -85,18 +82,6 @@ Cmd([[
   nnoremap <silent> <C-Right>  :vertical resize -2<CR>
   nnoremap <silent> <C-Left>  :vertical resize +2<CR>
 ]])
-
----[[-----------------]]---
---     Disable keys      --
----]]-----------------[[---
--- Disable accidentally pressing ctrl-z and suspending
-Map('n', '<c-z>', '<Nop>')
-
--- Disable ex mode
-Map('n', 'Q', '<Nop>')
-
--- Disable recording
-Map('n', 'q', '<Nop>')
 
 ---[[-----------------]]---
 --      Leader keys      --
