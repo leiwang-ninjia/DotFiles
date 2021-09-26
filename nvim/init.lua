@@ -21,8 +21,31 @@ packer.init({
   },
 })
 
-vim.o.termguicolors = true
-vim.o.background = "dark"
+-------------------- HELPERS --------------------
+Api, Cmd, Fn = vim.api, vim.cmd, vim.fn
+Keymap, Execute, G = Api.nvim_set_keymap, Api.nvim_command, vim.g
+Scopes = { o = vim.o, b = vim.bo, w = vim.wo }
+
+-- https://github.com/ojroques/dotfiles/blob/master/nvim/init.lua#L8-L12
+function Map(mode, lhs, rhs, opts)
+	local options = { noremap = true }
+	if opts then
+		options = vim.tbl_extend('force', options, opts)
+	end
+	Keymap(mode, lhs, rhs, options)
+end
+
+-- Options wrapper, extracted from
+-- https://github.com/ojroques/dotfiles/blob/master/nvim/init.lua#L14-L17
+function Opt(scope, key, value)
+	Scopes[scope][key] = value
+	if scope ~= 'o' then
+		Scopes['o'][key] = value
+	end
+end
+
+Opt('o', 'termguicolors', true)
+Opt('o', 'background', "dark")
  	--use {'kdheepak/lazygit.nvim', requires = 'plenary.nvim', cmd = { 'LazyGit', 'LazyGitConfig' },}
 local use = packer.use
 packer.startup(function()
@@ -62,12 +85,12 @@ packer.startup(function()
   use 'sheerun/vim-polyglot'
   use 'lewis6991/gitsigns.nvim'
   use 'neovim/nvim-lspconfig'
-  use {'lotabout/skim', dir = '~/.skim', run = './install' }
+  use {'junegunn/fzf', run = './install --bin', }
   use { 'ibhagwan/fzf-lua',
     requires = {
       'vijaymarupudi/nvim-fzf',
       'kyazdani42/nvim-web-devicons' },
-    config = function() require('fzf-lua').setup{fzf_bin = 'sk',previewers = {bat = {theme = 'TwoDark'},} }end,
+    config = function() require('fzf-lua').setup{previewers = {bat = {theme = 'TwoDark'},} }end,
   }
   use {"hrsh7th/nvim-cmp", requires = { "hrsh7th/vim-vsnip","hrsh7th/cmp-buffer","hrsh7th/cmp-path"},config=function() require('wl-comp') end,}
   use {'winston0410/range-highlight.nvim',
