@@ -235,14 +235,6 @@ vim.api.nvim_exec([[
 -- Y yank until the end of line
 vim.api.nvim_set_keymap('n', 'Y', 'y$', { noremap = true})
 
--- spacemacs keybindings
-vim.api.nvim_set_keymap('n', '<leader>wm', ':only<cr>', { noremap = true})
-vim.api.nvim_set_keymap('n', '<leader>ww', ':wincmd w<cr>', { noremap = true})
-vim.api.nvim_set_keymap('n', '<leader>bp', ':bprev<cr>', { noremap = true})
-vim.api.nvim_set_keymap('n', '<leader>bn', ':bnext<cr>', { noremap = true})
-
-vim.api.nvim_set_keymap('n', '<leader>fs', ':write<cr>', { noremap = true})
-vim.api.nvim_set_keymap('n', '<leader>fS', ':wall<cr>', { noremap = true})
 
 vim.api.nvim_set_keymap('n', ']b', ':bnext<cr>', { noremap = true})
 vim.api.nvim_set_keymap('n', '[b', ':bprev<cr>', { noremap = true})

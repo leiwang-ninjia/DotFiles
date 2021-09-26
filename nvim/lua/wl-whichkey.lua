@@ -117,9 +117,9 @@ wk.register({
 			['9'] = { ':BufferLast<CR>', 'Last buffer' },
 			c = { ':BufferClose<CR>', 'Close buffer' },
 			f = { ':FormatWrite<CR>', 'Format buffer' },
-			n = { ':BufferNext<CR>', 'Next buffer' },
+			n = { ':bnext<CR>', 'Next buffer' },
 			P = { ':BufferPick<CR>', 'Pick buffer' },
-			p = { ':BufferPrevious<CR>', 'Previous buffer' },
+			p = { ':bprev<CR>', 'Previous buffer' },
 		},
 	},
 })
@@ -163,6 +163,8 @@ wk.register({
 		f = {
 			name = '+file',
 			c = { ':e $MYVIMRC<CR>', 'Edit Neovim configuration' },
+			s = { 'write<CR>', 'Write buffer' },
+			S = { 'wall<CR>', 'Write all buffers' },
 			n = { 'Create a new unnamed buffer' },
 			f = { ':Telescope find_files<CR>', 'Find files' },
 			b = { ':Telescope marks<CR>', 'Bookmarks' },
@@ -180,7 +182,8 @@ wk.register({
 	['<leader>'] = {
 		w = {
 			name = '+window',
-			C = { ':only<CR>', 'Close all other windows' },
+			m = { ':only<CR>', 'Close all other windows' },
+			w = { ':wincmd w', 'other windows' },
 			c = { ':close<CR>', 'Close current window' },
 			h = { ':split<CR>', 'Split horizontally' },
 			v = { ':vsplit<CR>', 'Split vertically' },
