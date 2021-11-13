@@ -61,6 +61,7 @@ packer.startup(function()
  	use {'folke/which-key.nvim',config=function() require('wl-whichkey') end, event = 'BufWinEnter',}
   use 'RRethy/nvim-base16'
   use 'liuchengxu/vista.vim'
+  use 'kergoth/vim-bitbake'
   use 'sainnhe/gruvbox-material'
   use {'akinsho/bufferline.nvim', requires = 'kyazdani42/nvim-web-devicons',
     config = function() require("bufferline").setup{} end }
