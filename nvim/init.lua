@@ -195,18 +195,11 @@ require('telescope').setup {
 }
 --Add leader shortcuts
 Map('n', '<leader>.', [[<cmd>lua require('telescope.builtin').file_browser()<cr>]])
-Map('n', '<leader>ff', [[<cmd>lua require('telescope.builtin').find_files()<cr>]])
 Map('n', '<leader>bb', [[<cmd>lua require('telescope.builtin').buffers()<cr>]])
 Map('n', '<leader>sb', [[<cmd>lua require('telescope.builtin').current_buffer_fuzzy_find()<cr>]])
-Map('n', '<leader>ta', [[<cmd>lua require('telescope.builtin').tags()<cr>]])
-Map('n', '<leader>fr', [[<cmd>lua require('telescope.builtin').oldfiles()<cr>]])
 Map('n', '<leader>*', [[<cmd>lua require('telescope.builtin').grep_string()<cr>]])
 Map('n', '<leader>/', [[<cmd>lua require('telescope.builtin').live_grep()<cr>]])
 Map('n', '<leader>tb', [[<cmd>lua require('telescope.builtin').tags{ only_current_buffer = true }<cr>]])
-Map('n', '<leader>gc', [[<cmd>lua require('telescope.builtin').git_commits()<cr>]])
-Map('n', '<leader>gb', [[<cmd>lua require('telescope.builtin').git_branches()<cr>]])
-Map('n', '<leader>gs', [[<cmd>lua require('telescope.builtin').git_status()<cr>]])
-Map('n', '<leader>gp', [[<cmd>lua require('telescope.builtin').git_bcommits()<cr>]])
 Map('n', '<leader>sd', [[<cmd>lua require('telescope.builtin').live_grep({cwd = vim.fn.expand "%:p:h"})<cr>]])
 
 

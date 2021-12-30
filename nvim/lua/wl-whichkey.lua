@@ -218,6 +218,7 @@ wk.register({
 			m = { ':MinimapToggle<CR>', 'Toggle Minimap' },
 			S = { ':SymbolsOutline<CR>', 'Toggle Symbols view' },
 			t = { ':ToggleTerm<CR>', 'Toggle terminal' },
+			a = { ':Telescope tags<CR>', 'Tags' },
 		},
 	},
 })
@@ -233,12 +234,13 @@ wk.register({
 			P = { ':TermExec cmd="git pull"<CR>', 'Pull' },
 			p = { ':TermExec cmd="git push"<CR>', 'Push' },
 			S = { 'Stage hunk' },
-			s = { ':TermExec cmd="git status"<CR>', 'Status' },
+			s = { ':Telescope git_status<CR>', 'Status' },
 			u = { 'Undo stage hunk' },
 			R = { 'Reset buffer' },
 			r = { 'Reset hunk' },
 			h = { 'Preview hunk' },
-			b = { 'Blame line' },
+			b = { ':Telescope git_branches<CR>', 'git branches'},
+      c = { ':Telescope git_commits<CR>', 'git commits' },
 		},
 	},
 })
