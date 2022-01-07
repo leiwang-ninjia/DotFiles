@@ -81,7 +81,6 @@ packer.startup(function()
   use {'nvim-telescope/telescope-fzf-native.nvim', run = 'make'}
   use {'nvim-telescope/telescope.nvim', requires = {{'nvim-lua/popup.nvim'}, {'nvim-lua/plenary.nvim'}},
   config = function() require('wl-telescope') end }
-  use {'navarasu/onedark.nvim', config = function() require('onedark').setup() end,}
   use { 'lukas-reineke/indent-blankline.nvim', }
   use 'sheerun/vim-polyglot'
   use 'lewis6991/gitsigns.nvim'
@@ -120,6 +119,8 @@ local disabled_built_ins = {
   'zip',
   'netrwPlugin',
 }
+
+vim.cmd('colorscheme base16-tomorrow-night-eighties')
 
 vim.o.inccommand = "split"
 vim.o.hlsearch = true
