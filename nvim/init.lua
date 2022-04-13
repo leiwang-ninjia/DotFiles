@@ -59,6 +59,7 @@ packer.startup(function()
     cmd = {'NvimTreeClipboard','NvimTreeClose','NvimTreeFindFile','NvimTreeOpen',
     'NvimTreeRefresh','NvimTreeToggle',},}
  	use {'folke/which-key.nvim',config=function() require('wl-whichkey') end, event = 'BufWinEnter',}
+  use 'navarasu/onedark.nvim'
   use 'RRethy/nvim-base16'
   use 'liuchengxu/vista.vim'
   use 'kergoth/vim-bitbake'
