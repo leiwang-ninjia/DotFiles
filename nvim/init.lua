@@ -59,7 +59,7 @@ packer.startup(function()
     cmd = {'NvimTreeClipboard','NvimTreeClose','NvimTreeFindFile','NvimTreeOpen',
     'NvimTreeRefresh','NvimTreeToggle',},}
  	use {'folke/which-key.nvim',config=function() require('wl-whichkey') end, event = 'BufWinEnter',}
-  use 'navarasu/onedark.nvim'
+  use 'ful1e5/onedark.nvim'
   use 'RRethy/nvim-base16'
   use 'liuchengxu/vista.vim'
   use 'kergoth/vim-bitbake'
@@ -67,7 +67,7 @@ packer.startup(function()
   use {'akinsho/bufferline.nvim', requires = 'kyazdani42/nvim-web-devicons',
     config = function() require("bufferline").setup{} end }
   use {'hoob3rt/lualine.nvim', requires = {'kyazdani42/nvim-web-devicons', opt = true},
-    config = function() require("lualine").setup{options = {theme = 'onedark'}} end }
+    config = function() require("lualine").setup{options = {theme = 'onedark-nvim'}} end }
   use {
     'b3nj5m1n/kommentary',
     config = function() require('kommentary.config').use_extended_mappings() end
@@ -121,7 +121,7 @@ local disabled_built_ins = {
   'netrwPlugin',
 }
 
-vim.cmd('colorscheme base16-tomorrow-night-eighties')
+vim.cmd('colorscheme onedark')
 
 vim.o.inccommand = "split"
 vim.o.hlsearch = true
