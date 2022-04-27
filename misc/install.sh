@@ -6,3 +6,5 @@ curl -o bat.tar.gz -L https://github.com/sharkdp/bat/releases/download/v0.19.0/b
 tar -xvzf bat.tar.gz
 curl -o ripgrep.tar.gz -L https://github.com/BurntSushi/ripgrep/releases/download/13.0.0/ripgrep-13.0.0-x86_64-unknown-linux-musl.tar.gz
 tar -xvzf ripgrep.tar.gz
+#tic -x -o ~/.terminfo terminfo-24bit.src
+#curl -LO https://invisible-island.net/datafiles/current/terminfo.src.gz && gunzip terminfo.src.gz
