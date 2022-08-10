@@ -183,6 +183,10 @@ vim.g.indent_blankline_filetype_exclude = { 'help' }
 vim.g.indent_blankline_buftype_exclude = { 'terminal', 'nofile', 'packer'}
 vim.g.indent_blankline_char_highlight = 'LineNr'
 
+-- use filetype.lua instead of filetype.vim. it's enabled by default in neovim 0.8 (nightly)
+vim.g.did_load_filetypes = 0
+vim.g.do_filetype_lua = 1
+
 -- Telescope
 require('telescope').setup {
   defaults = {
