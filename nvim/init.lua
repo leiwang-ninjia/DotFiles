@@ -70,8 +70,10 @@ packer.startup(function()
   use {'hoob3rt/lualine.nvim', requires = {'kyazdani42/nvim-web-devicons', opt = true},
     config = function() require("lualine").setup{options = {theme = 'onedark-nvim'}} end }
   use {
-    'b3nj5m1n/kommentary',
-    config = function() require('kommentary.config').use_extended_mappings() end
+    'numToStr/Comment.nvim',
+    config = function()
+      require('Comment').setup()
+    end
   }
   use 'tpope/vim-surround'
   use 'tpope/vim-fugitive'
