@@ -52,7 +52,7 @@ packer.startup(function()
   use {'wbthomason/packer.nvim', opt = true}
   use {'nvim-treesitter/nvim-treesitter', opt = true, run = ':TSUpdate',
     config = function() require'nvim-treesitter.configs'.setup {
-        ensure_installed = "maintained",ignore_install = { "tlaplus" },highlight = { enable = true,},} end,
+      ignore_install = { "tlaplus" },highlight = { enable = true,},} end,
       event = 'BufRead'}
   use {'kyazdani42/nvim-web-devicons', module = 'nvim-web-devicons',}
   use {'kyazdani42/nvim-tree.lua', requires = 'nvim-web-devicons',
@@ -82,6 +82,10 @@ packer.startup(function()
   use 'tpope/vim-sleuth'
   --use 'tpope/vim-commentary'
   use 'sbdchd/neoformat'
+  use {
+    "ahmedkhalf/project.nvim",
+    config = function() require("project_nvim").setup {} end
+  }
   use {'nvim-telescope/telescope-fzf-native.nvim', run = 'make'}
   use {'nvim-telescope/telescope.nvim', requires = {{'nvim-lua/popup.nvim'}, {'nvim-lua/plenary.nvim'}},
   config = function() require('wl-telescope') end }
