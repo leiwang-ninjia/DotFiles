@@ -67,8 +67,7 @@ packer.startup(function()
   use 'sainnhe/gruvbox-material'
   use {'akinsho/bufferline.nvim', requires = 'kyazdani42/nvim-web-devicons',
     config = function() require("bufferline").setup{} end }
-  use {'hoob3rt/lualine.nvim', requires = {'kyazdani42/nvim-web-devicons', opt = true},
-    config = function() require("lualine").setup{options = {theme = 'onedark-nvim'}} end }
+  use 'nvim-lualine/lualine.nvim'
   use {
     'numToStr/Comment.nvim',
     config = function()
