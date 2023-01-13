@@ -188,25 +188,6 @@ wk.register({
 	},
 })
 
--- Doom Menu
-wk.register({
-	['<leader>'] = {
-		d = {
-			name = '+doom',
-			c = {
-				':e ~/.config/doom-nvim/doomrc<CR>',
-				'Edit your Doom Nvim configuration',
-			},
-			d = { ':help doom_nvim<CR>', 'Open Doom Nvim documentation' },
-			u = { ':DoomUpdate<CR>', 'Check Doom Nvim udpates' },
-			r = {
-				':lua Create_report()<CR>',
-				'Create crash report',
-			},
-		},
-	},
-})
-
 -- Toggler
 wk.register({
 	['<leader>'] = {
