@@ -49,7 +49,8 @@ require("lazy").setup({
   build = ":TSUpdate",
   },
   {'nvim-treesitter/nvim-treesitter', lazy = true, build = ':TSUpdate'},
-  {'kyazdani42/nvim-tree.lua', dependencies = 'kyazdani42/nvim-web-devicons'},
+  {"nvim-tree/nvim-web-devicons", lazy = true },
+  {'nvim-tree/nvim-tree.lua', dependencies = 'nvim-tree/nvim-web-devicons'},
   -- Useful plugin to show you pending keybinds.
   { 'folke/which-key.nvim', opts = {} },
   { -- Theme inspired by Atom
@@ -72,7 +73,7 @@ require("lazy").setup({
       })
     end,
   },
-  {'akinsho/bufferline.nvim', requires = 'kyazdani42/nvim-web-devicons',},
+  {'akinsho/bufferline.nvim', requires = 'nvim-tree/nvim-web-devicons',},
   { -- Set lualine as statusline
     'nvim-lualine/lualine.nvim',
     -- See `:help lualine.txt`
@@ -121,10 +122,10 @@ require("lazy").setup({
   { 'ibhagwan/fzf-lua',
   dependencies = {
     'vijaymarupudi/nvim-fzf',
-    'kyazdani42/nvim-web-devicons' },
+    'nvim-tree/nvim-web-devicons' },
     config = function() require('fzf-lua').setup{previewers = {bat = {theme = 'TwoDark'},} }end,
   },
-  {"hrsh7th/nvim-cmp", dependencies = { "hrsh7th/vim-vsnip","hrsh7th/cmp-buffer","hrsh7th/cmp-path"}},
+  {"hrsh7th/nvim-cmp", event = "InsertEnter", dependencies = { "hrsh7th/vim-vsnip","hrsh7th/cmp-buffer","hrsh7th/cmp-path", "hrsh7th/cmp-nvim-lsp"}},
   {'winston0410/range-highlight.nvim',
   dependencies = {'winston0410/cmd-parser.nvim', opt=true, module='cmd-parser',},
   config = function() require('range-highlight').setup() end,
@@ -338,18 +339,6 @@ require'lspconfig'.clangd.setup{
 
 -- Change preview window location
 vim.g.splitbelow = true
-
--- neoformat config
--- map("n", "<Leader>fm", ":Neoformat<CR>", opt)
-Map('n', '<leader>cf', [[<cmd>Neoformat<cr>]])
-
---[[ vim.g.neoformat_cpp_clangformat = {
-exe = 'clang-format',
-args= {'--style="{IndentWidth: 4}"'}
-} ]]
-
-vim.g.neoformat_enabled_cpp = {"clangformat"}
-vim.g.neoformat_enabled_c = {"clangformat"}
 
 -- Highlight on yank
 vim.api.nvim_exec([[
