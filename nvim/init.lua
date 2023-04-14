@@ -1,25 +1,16 @@
--- Install packer
-local execute = vim.api.nvim_command
-local install_path = vim.fn.stdpath('data')..'/site/pack/packer/opt/packer.nvim'
-
-if vim.fn.empty(vim.fn.glob(install_path)) > 0 then
-  execute('!git clone https://github.com/wbthomason/packer.nvim '..install_path)
+-- Install lazy.nvim
+local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+if not vim.loop.fs_stat(lazypath) then
+  vim.fn.system({
+    "git",
+    "clone",
+    "--filter=blob:none",
+    "https://github.com/folke/lazy.nvim.git",
+    "--branch=stable", -- latest stable release
+    lazypath,
+  })
 end
-
-vim.cmd [[packadd packer.nvim]]
-vim.api.nvim_exec([[
-  augroup Packer
-    autocmd!
-    autocmd BufWritePost init.lua PackerCompile
-  augroup end
-]], false)
-
-local packer = require('packer')
-packer.init({
-  git = {
-    clone_timeout = 300, -- 5 mins
-  },
-})
+vim.opt.rtp:prepend(lazypath)
 
 -------------------- HELPERS --------------------
 Api, Cmd, Fn = vim.api, vim.cmd, vim.fn
@@ -28,102 +19,124 @@ Scopes = { o = vim.o, b = vim.bo, w = vim.wo }
 
 -- https://github.com/ojroques/dotfiles/blob/master/nvim/init.lua#L8-L12
 function Map(mode, lhs, rhs, opts)
-	local options = { noremap = true }
-	if opts then
-		options = vim.tbl_extend('force', options, opts)
-	end
-	Keymap(mode, lhs, rhs, options)
+  local options = { noremap = true }
+  if opts then
+    options = vim.tbl_extend('force', options, opts)
+  end
+  Keymap(mode, lhs, rhs, options)
 end
 
 -- Options wrapper, extracted from
 -- https://github.com/ojroques/dotfiles/blob/master/nvim/init.lua#L14-L17
 function Opt(scope, key, value)
-	Scopes[scope][key] = value
-	if scope ~= 'o' then
-		Scopes['o'][key] = value
-	end
+  Scopes[scope][key] = value
+  if scope ~= 'o' then
+    Scopes['o'][key] = value
+  end
 end
 
 Opt('o', 'termguicolors', true)
 Opt('o', 'background', "dark")
- 	--use {'kdheepak/lazygit.nvim', requires = 'plenary.nvim', cmd = { 'LazyGit', 'LazyGitConfig' },}
-local use = packer.use
-packer.startup(function()
-  use {'wbthomason/packer.nvim', opt = true}
-  use {'nvim-treesitter/nvim-treesitter', opt = true, run = ':TSUpdate',
-    config = function() require'nvim-treesitter.configs'.setup {
-      ignore_install = { "tlaplus" },highlight = { enable = true,},} end,
-      event = 'BufRead'}
-  use {'kyazdani42/nvim-web-devicons', module = 'nvim-web-devicons',}
-  use {'kyazdani42/nvim-tree.lua', requires = 'nvim-web-devicons',
-    cmd = {'NvimTreeClipboard','NvimTreeClose','NvimTreeFindFile','NvimTreeOpen',
-    'NvimTreeRefresh','NvimTreeToggle',},}
-  use {'folke/which-key.nvim',config=function() require('wl-whichkey') end, event = 'BufWinEnter',}
-  use {'ful1e5/onedark.nvim', config=function() require("onedark").setup({comment_style = "NONE",  keyword_style = "NONE",
-					function_style = "NONE",variable_style = "NONE"}) end}
-  use 'RRethy/nvim-base16'
-  use 'liuchengxu/vista.vim'
-  use 'kergoth/vim-bitbake'
-  use 'sainnhe/gruvbox-material'
-  use({
-      "dhananjaylatkar/cscope_maps.nvim",
-      after = "which-key.nvim",
-      config = function()
-	require("cscope_maps").setup({
-	    disable_maps = false, -- true disables my keymaps, only :Cscope will be loaded
-	    cscope = {
-	      db_file = "./cscope.out", -- location of cscope db file
-	    },
-	  })
-      end,
-    })
-  use {'akinsho/bufferline.nvim', requires = 'kyazdani42/nvim-web-devicons',
-    config = function() require("bufferline").setup{} end }
-  use 'nvim-lualine/lualine.nvim'
-  use {
-    'numToStr/Comment.nvim',
+require("lazy").setup({
+  git = {
+    timeout = 120,
+  },
+  { -- Highlight, edit, and navigate code
+  'nvim-treesitter/nvim-treesitter',
+  dependencies = {
+    'nvim-treesitter/nvim-treesitter-textobjects',
+  },
+  build = ":TSUpdate",
+  },
+  {'nvim-treesitter/nvim-treesitter', lazy = true, build = ':TSUpdate'},
+  {'kyazdani42/nvim-tree.lua', dependencies = 'kyazdani42/nvim-web-devicons'},
+  -- Useful plugin to show you pending keybinds.
+  { 'folke/which-key.nvim', opts = {} },
+  { -- Theme inspired by Atom
+    'navarasu/onedark.nvim',
+    priority = 1000,
+  },
+  'RRethy/nvim-base16',
+  'liuchengxu/vista.vim',
+  'kergoth/vim-bitbake',
+  'sainnhe/gruvbox-material',
+  {
+    "dhananjaylatkar/cscope_maps.nvim",
+    dependencies = "which-key.nvim",
     config = function()
-      require('Comment').setup()
-    end
-  }
-  use 'tpope/vim-surround'
-  use 'tpope/vim-fugitive'
-  use 'tpope/vim-rhubarb'
-  use 'tpope/vim-repeat'
-  use 'tpope/vim-sleuth'
+      require("cscope_maps").setup({
+        disable_maps = false, -- true disables my keymaps, only :Cscope will be loaded
+        cscope = {
+          db_file = "./cscope.out", -- location of cscope db file
+        },
+      })
+    end,
+  },
+  {'akinsho/bufferline.nvim', requires = 'kyazdani42/nvim-web-devicons',},
+  { -- Set lualine as statusline
+    'nvim-lualine/lualine.nvim',
+    -- See `:help lualine.txt`
+    opts = {
+      options = {
+        icons_enabled = false,
+        theme = 'onedark',
+        component_separators = '|',
+        section_separators = '',
+      },
+    },
+  },
+  -- "gc" to comment visual regions/lines
+  { 'numToStr/Comment.nvim', opts = {} },
+  'tpope/vim-surround',
+  'tpope/vim-fugitive',
+  'tpope/vim-rhubarb',
+  'tpope/vim-repeat',
+  'tpope/vim-sleuth',
   --use 'tpope/vim-commentary'
-  use 'sbdchd/neoformat'
-  use {
+  {
     "ahmedkhalf/project.nvim",
     config = function() require("project_nvim").setup {} end
-  }
-  use {'nvim-telescope/telescope-fzf-native.nvim', run = 'make'}
-  use {'nvim-telescope/telescope.nvim', requires = {{'nvim-lua/popup.nvim'}, {'nvim-lua/plenary.nvim'}},
-  config = function() require('wl-telescope') end }
-  use { 'lukas-reineke/indent-blankline.nvim', }
-  use 'sheerun/vim-polyglot'
-  use 'lewis6991/gitsigns.nvim'
-  use 'neovim/nvim-lspconfig'
-  use {'junegunn/fzf', run = './install --bin', }
-  use { 'ibhagwan/fzf-lua',
-    requires = {
-      'vijaymarupudi/nvim-fzf',
-      'kyazdani42/nvim-web-devicons' },
+  },
+  {
+    'nvim-telescope/telescope-fzf-native.nvim',
+    build = 'make',
+    cond = function()
+      return vim.fn.executable 'make' == 1
+    end,
+  },
+  { 'nvim-telescope/telescope.nvim', version = '*', dependencies = { 'nvim-lua/plenary.nvim' } },
+  { -- Add indentation guides even on blank lines
+    'lukas-reineke/indent-blankline.nvim',
+    -- Enable `lukas-reineke/indent-blankline.nvim`
+    -- See `:help indent_blankline.txt`
+    opts = {
+      char = '┊',
+      show_trailing_blankline_indent = false,
+    },
+  },
+  --  'sheerun/vim-polyglot',
+  'lewis6991/gitsigns.nvim',
+  'neovim/nvim-lspconfig',
+  {'junegunn/fzf', build = './install --bin', },
+  { 'ibhagwan/fzf-lua',
+  dependencies = {
+    'vijaymarupudi/nvim-fzf',
+    'kyazdani42/nvim-web-devicons' },
     config = function() require('fzf-lua').setup{previewers = {bat = {theme = 'TwoDark'},} }end,
-  }
-  use {"hrsh7th/nvim-cmp", requires = { "hrsh7th/vim-vsnip","hrsh7th/cmp-buffer","hrsh7th/cmp-path"},config=function() require('wl-comp') end,}
-  use {'winston0410/range-highlight.nvim',
-    requires = {'winston0410/cmd-parser.nvim', opt=true, module='cmd-parser',},
-    config = function() require('range-highlight').setup() end,
-    event='BufRead',}
-    use {
-      'phaazon/hop.nvim',
-      config = function()
-        -- you can configure Hop the way you like here; see :h hop-config
-        require'hop'.setup()
-      end
-    }
-end)
+  },
+  {"hrsh7th/nvim-cmp", dependencies = { "hrsh7th/vim-vsnip","hrsh7th/cmp-buffer","hrsh7th/cmp-path"}},
+  {'winston0410/range-highlight.nvim',
+  dependencies = {'winston0410/cmd-parser.nvim', opt=true, module='cmd-parser',},
+  config = function() require('range-highlight').setup() end,
+  event='BufRead'},
+  {
+    'phaazon/hop.nvim',
+    config = function()
+      -- you can configure Hop the way you like here; see :h hop-config
+      require'hop'.setup()
+    end
+  },
+}, {})
 
 -- Disable some built-in plugins we don't want
 local disabled_built_ins = {
@@ -188,11 +201,11 @@ Map('n', 'j', "v:count == 0 ? 'gj' : 'j'", {noremap= true, expr = true, silent =
 
 --Remap escape to leave terminal mode
 vim.api.nvim_exec([[
-  augroup Terminal
-    autocmd!
-    au TermOpen * tnoremap <buffer> <Esc> <c-\><c-n>
-    au TermOpen * set nonu
-  augroup end
+augroup Terminal
+autocmd!
+au TermOpen * tnoremap <buffer> <Esc> <c-\><c-n>
+au TermOpen * set nonu
+augroup end
 ]], false)
 
 --Add map to enter paste mode
@@ -209,6 +222,52 @@ vim.g.indent_blankline_char_highlight = 'LineNr'
 vim.g.did_load_filetypes = 0
 vim.g.do_filetype_lua = 1
 
+-- Enable telescope fzf native, if installed
+require('telescope').load_extension('fzf')
+require('telescope').load_extension('projects')
+
+require'nvim-treesitter.configs'.setup {
+  ignore_install = { "tlaplus" },
+  highlight = { enable = true,},
+  event = 'BufRead'
+}
+
+-- nvim-cmp
+local cmp = require 'cmp'
+cmp.setup {
+  mapping = {
+    ["<C-p>"] = cmp.mapping.select_prev_item(),
+    ["<C-n>"] = cmp.mapping.select_next_item(),
+    ["<C-d>"] = cmp.mapping.scroll_docs(-4),
+    ["<C-f>"] = cmp.mapping.scroll_docs(4),
+    ["<C-Space>"] = cmp.mapping.complete(),
+    ["<C-e>"] = cmp.mapping.close(),
+    ["<CR>"] = cmp.mapping.confirm {
+      behavior = cmp.ConfirmBehavior.Replace,
+      select = true,
+    },
+    ["<Tab>"] = function(fallback)
+      if vim.fn.pumvisible() == 1 then
+        vim.fn.feedkeys(vim.api.nvim_replace_termcodes("<C-n>", true, true, true), "n")
+      else
+        fallback()
+      end
+    end,
+    ["<S-Tab>"] = function(fallback)
+      if vim.fn.pumvisible() == 1 then
+        vim.fn.feedkeys(vim.api.nvim_replace_termcodes("<C-p>", true, true, true), "n")
+      else
+        fallback()
+      end
+    end,
+  },
+  sources = {
+    {
+      name = 'buffer',
+      name = 'path',
+    }
+  }
+}
 -- Telescope
 require('telescope').setup {
   defaults = {
@@ -218,19 +277,20 @@ require('telescope').setup {
         ["<C-d>"] = false,
       },
     },
-    generic_sorter =  require'telescope.sorters'.get_fzy_sorter,
-    file_sorter =  require'telescope.sorters'.get_fzy_sorter,
   }
 }
 --Add leader shortcuts
-Map('n', '<leader>.', [[<cmd>lua require('telescope.builtin').file_browser()<cr>]])
-Map('n', '<leader>bb', [[<cmd>lua require('telescope.builtin').buffers()<cr>]])
-Map('n', '<leader>sb', [[<cmd>lua require('telescope.builtin').current_buffer_fuzzy_find()<cr>]])
-Map('n', '<leader>*', [[<cmd>lua require('telescope.builtin').grep_string()<cr>]])
-Map('n', '<leader>/', [[<cmd>lua require('telescope.builtin').live_grep()<cr>]])
-Map('n', '<leader>tb', [[<cmd>lua require('telescope.builtin').tags{ only_current_buffer = true }<cr>]])
-Map('n', '<leader>sd', [[<cmd>lua require('telescope.builtin').live_grep({cwd = vim.fn.expand "%:p:h"})<cr>]])
-
+vim.keymap.set('n', '<leader>?', require('telescope.builtin').oldfiles, { desc = '[?] Find recently opened files' })
+vim.keymap.set('n', '<leader><space>', require('telescope.builtin').buffers, { desc = '[ ] Find existing buffers' })
+vim.keymap.set('n', '<leader>bb', require('telescope.builtin').buffers, { desc = '[B]find buffer [B]buffers' })
+--vim.keymap.set('n', '<leader>.', require('telescope.builtin').file_browser, { desc = '[.]File browser' })
+vim.keymap.set('n', '<leader>ff', require('telescope.builtin').find_files, { desc = '[F]ind [F]iles' })
+vim.keymap.set('n', '<leader>fh', require('telescope.builtin').help_tags, { desc = '[F]earch [H]elp' })
+vim.keymap.set('n', '<leader>*', require('telescope.builtin').grep_string, { desc = '[*]earch current [W]ord' })
+vim.keymap.set('n', '<leader>/', require('telescope.builtin').live_grep, { desc = '[/] live grep' })
+--vim.keymap.set('n', '<leader>sd', require('telescope.builtin').live_grep({cwd = vim.fn.expand "%:p:h"}), { desc = '[S]earch by [D]current directory' })
+vim.keymap.set('n', '<leader>sb', require('telescope.builtin').current_buffer_fuzzy_find, { desc = '[S]earch by [B]current directory' })
+vim.keymap.set('n', '<leader>sD', require('telescope.builtin').diagnostics, { desc = '[S]earch [D]iagnostics' })
 
 
 -- Mappings.
@@ -284,8 +344,8 @@ vim.g.splitbelow = true
 Map('n', '<leader>cf', [[<cmd>Neoformat<cr>]])
 
 --[[ vim.g.neoformat_cpp_clangformat = {
-    exe = 'clang-format',
-    args= {'--style="{IndentWidth: 4}"'}
+exe = 'clang-format',
+args= {'--style="{IndentWidth: 4}"'}
 } ]]
 
 vim.g.neoformat_enabled_cpp = {"clangformat"}
@@ -293,10 +353,10 @@ vim.g.neoformat_enabled_c = {"clangformat"}
 
 -- Highlight on yank
 vim.api.nvim_exec([[
-  augroup YankHighlight
-    autocmd!
-    autocmd TextYankPost * silent! lua vim.highlight.on_yank()
-  augroup end
+augroup YankHighlight
+autocmd!
+autocmd TextYankPost * silent! lua vim.highlight.on_yank()
+augroup end
 ]], false)
 
 -- Y yank until the end of line
