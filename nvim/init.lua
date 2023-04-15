@@ -43,12 +43,12 @@ require("lazy").setup({
   },
   { -- Highlight, edit, and navigate code
   'nvim-treesitter/nvim-treesitter',
+  event = { "BufReadPost", "BufNewFile" },
+  build = ":TSUpdate",
   dependencies = {
     'nvim-treesitter/nvim-treesitter-textobjects',
   },
-  build = ":TSUpdate",
   },
-  {'nvim-treesitter/nvim-treesitter', lazy = true, build = ':TSUpdate'},
   {"nvim-tree/nvim-web-devicons", lazy = true },
   {'nvim-tree/nvim-tree.lua', dependencies = 'nvim-tree/nvim-web-devicons'},
   -- Useful plugin to show you pending keybinds.
@@ -56,6 +56,9 @@ require("lazy").setup({
   { -- Theme inspired by Atom
     'navarasu/onedark.nvim',
     priority = 1000,
+    config = function()
+      vim.cmd.colorscheme 'onedark'
+    end,
   },
   'RRethy/nvim-base16',
   'liuchengxu/vista.vim',
@@ -105,7 +108,7 @@ require("lazy").setup({
       return vim.fn.executable 'make' == 1
     end,
   },
-  { 'nvim-telescope/telescope.nvim', version = '*', dependencies = { 'nvim-lua/plenary.nvim' } },
+  { 'nvim-telescope/telescope.nvim', version = '*',cmd = "Telescope", dependencies = { 'nvim-lua/plenary.nvim', lazy = true } },
   { -- Add indentation guides even on blank lines
     'lukas-reineke/indent-blankline.nvim',
     -- Enable `lukas-reineke/indent-blankline.nvim`
@@ -116,9 +119,9 @@ require("lazy").setup({
     },
   },
   --  'sheerun/vim-polyglot',
-  'lewis6991/gitsigns.nvim',
-  'neovim/nvim-lspconfig',
-  {'junegunn/fzf', build = './install --bin', },
+  {'lewis6991/gitsigns.nvim', event = { "BufReadPre", "BufNewFile" },},
+  {'neovim/nvim-lspconfig', event = { "BufReadPre", "BufNewFile" },},
+  {'junegunn/fzf', build = './install --bin',event = "VeryLazy" },
   { 'ibhagwan/fzf-lua',
   dependencies = {
     'vijaymarupudi/nvim-fzf',
@@ -153,7 +156,7 @@ local disabled_built_ins = {
   'netrwPlugin',
 }
 
-vim.cmd('colorscheme onedark')
+--vim.cmd('colorscheme onedark')
 
 vim.o.inccommand = "split"
 vim.o.hlsearch = true
@@ -180,7 +183,7 @@ vim.wo.signcolumn="yes"
 --Set colorscheme (order is important here)
 vim.o.termguicolors = true
 vim.o.background = "dark"
-vim.g.onedark_italic_comment = false
+--vim.g.onedark_italic_comment = false
 --vim.g.onedark_terminal_italics = 2
 --vim.cmd[[colorscheme base16-tomorrow-night-eighties]]
 -- vim.cmd[[colorscheme gruvbox-material]]
