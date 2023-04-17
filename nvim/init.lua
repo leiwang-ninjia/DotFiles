@@ -163,7 +163,7 @@ vim.o.hlsearch = true
 vim.o.incsearch = true
 vim.wo.number = true
 
-vim.o.clipboard = "unnamedplus"
+--vim.o.clipboard = "unnamed"
 --Do not save when switching buffers
 vim.o.hidden = true
 vim.o.mouse = "a"
