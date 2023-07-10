@@ -55,10 +55,10 @@ require("lazy").setup({
   { 'folke/which-key.nvim', opts = {} },
   { -- Theme inspired by Atom
     'navarasu/onedark.nvim',
-    priority = 1000,
-    config = function()
-      vim.cmd.colorscheme 'onedark'
-    end,
+    priority = 100,
+    -- config = function()
+    --   vim.cmd.colorscheme 'onedark'
+    -- end,
   },
   'RRethy/nvim-base16',
   'liuchengxu/vista.vim',
@@ -83,11 +83,17 @@ require("lazy").setup({
     opts = {
       options = {
         icons_enabled = false,
-        theme = 'onedark',
+        theme = 'tokyonight',
         component_separators = '|',
         section_separators = '',
       },
     },
+  },
+  {
+  "folke/tokyonight.nvim",
+  lazy = false,
+  priority = 1000,
+  opts = {},
   },
   -- "gc" to comment visual regions/lines
   { 'numToStr/Comment.nvim', opts = {} },
@@ -157,6 +163,7 @@ local disabled_built_ins = {
 }
 
 --vim.cmd('colorscheme onedark')
+vim.cmd[[colorscheme tokyonight-storm]]
 
 vim.o.inccommand = "split"
 vim.o.hlsearch = true
@@ -285,6 +292,7 @@ require('telescope').setup {
 }
 --Add leader shortcuts
 vim.keymap.set('n', '<leader>?', require('telescope.builtin').oldfiles, { desc = '[?] Find recently opened files' })
+vim.keymap.set('n', '<leader>fr', require('telescope.builtin').oldfiles, { desc = '[F] Find [R] Recently opened files' })
 vim.keymap.set('n', '<leader><space>', require('telescope.builtin').buffers, { desc = '[ ] Find existing buffers' })
 vim.keymap.set('n', '<leader>bb', require('telescope.builtin').buffers, { desc = '[B]find buffer [B]buffers' })
 --vim.keymap.set('n', '<leader>.', require('telescope.builtin').file_browser, { desc = '[.]File browser' })
