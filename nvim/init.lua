@@ -105,7 +105,7 @@ require("lazy").setup({
   --use 'tpope/vim-commentary'
   {
     "ahmedkhalf/project.nvim",
-    config = function() require("project_nvim").setup {} end
+    config = function() require("project_nvim").setup {manual_mode = true,} end
   },
   {
     'nvim-telescope/telescope-fzf-native.nvim',
@@ -162,8 +162,8 @@ local disabled_built_ins = {
   'netrwPlugin',
 }
 
---vim.cmd('colorscheme onedark')
-vim.cmd[[colorscheme tokyonight-storm]]
+vim.cmd('colorscheme onedark')
+--vim.cmd[[colorscheme tokyonight-storm]]
 
 vim.o.inccommand = "split"
 vim.o.hlsearch = true
