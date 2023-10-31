@@ -117,12 +117,9 @@ require("lazy").setup({
   { 'nvim-telescope/telescope.nvim', version = '*',cmd = "Telescope", dependencies = { 'nvim-lua/plenary.nvim', lazy = true } },
   { -- Add indentation guides even on blank lines
     'lukas-reineke/indent-blankline.nvim',
+    main = "ibl",
     -- Enable `lukas-reineke/indent-blankline.nvim`
     -- See `:help indent_blankline.txt`
-    opts = {
-      char = '┊',
-      show_trailing_blankline_indent = false,
-    },
   },
   --  'sheerun/vim-polyglot',
   {'lewis6991/gitsigns.nvim', event = { "BufReadPre", "BufNewFile" },},
@@ -219,8 +216,6 @@ au TermOpen * set nonu
 augroup end
 ]], false)
 
---Add map to enter paste mode
-vim.o.pastetoggle="<F3>"
 
 --Map blankline
 vim.g.indent_blankline_enabled = 0
