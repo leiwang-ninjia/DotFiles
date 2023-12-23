@@ -291,7 +291,7 @@ vim.keymap.set('n', '<leader>fr', require('telescope.builtin').oldfiles, { desc 
 vim.keymap.set('n', '<leader><space>', require('telescope.builtin').buffers, { desc = '[ ] Find existing buffers' })
 vim.keymap.set('n', '<leader>bb', require('telescope.builtin').buffers, { desc = '[B]find buffer [B]buffers' })
 --vim.keymap.set('n', '<leader>.', require('telescope.builtin').file_browser, { desc = '[.]File browser' })
-vim.keymap.set('n', '<leader>ff', require('telescope.builtin').find_files, { desc = '[F]ind [F]iles' })
+vim.keymap.set('n', '<leader>pf', require('telescope.builtin').find_files, { desc = '[F]ind [F]iles' })
 vim.keymap.set('n', '<leader>fh', require('telescope.builtin').help_tags, { desc = '[F]earch [H]elp' })
 vim.keymap.set('n', '<leader>*', require('telescope.builtin').grep_string, { desc = '[*]earch current [W]ord' })
 vim.keymap.set('n', '<leader>/', require('telescope.builtin').live_grep, { desc = '[/] live grep' })
