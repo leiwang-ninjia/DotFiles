@@ -156,6 +156,7 @@ local disabled_built_ins = {
   'tar',
   'zipPlugin',
   'zip',
+  'netrw',
   'netrwPlugin',
 }
 
@@ -238,6 +239,8 @@ require'nvim-treesitter.configs'.setup {
   event = 'BufRead'
 }
 
+require("nvim-tree").setup()
+
 -- nvim-cmp
 local cmp = require 'cmp'
 cmp.setup {
@@ -283,21 +286,24 @@ require('telescope').setup {
         ["<C-d>"] = false,
       },
     },
-  }
+  },
 }
 --Add leader shortcuts
 vim.keymap.set('n', '<leader>?', require('telescope.builtin').oldfiles, { desc = '[?] Find recently opened files' })
 vim.keymap.set('n', '<leader>fr', require('telescope.builtin').oldfiles, { desc = '[F] Find [R] Recently opened files' })
 vim.keymap.set('n', '<leader><space>', require('telescope.builtin').buffers, { desc = '[ ] Find existing buffers' })
 vim.keymap.set('n', '<leader>bb', require('telescope.builtin').buffers, { desc = '[B]find buffer [B]buffers' })
---vim.keymap.set('n', '<leader>.', require('telescope.builtin').file_browser, { desc = '[.]File browser' })
-vim.keymap.set('n', '<leader>pf', require('telescope.builtin').find_files, { desc = '[F]ind [F]iles' })
+vim.keymap.set('n', '<leader>ff', ":NvimTreeFindFile<CR>", { desc = '[.]File browser' })
+vim.keymap.set('n', '<leader>.', ":NvimTreeFindFile<CR>", { desc = '[.]File browser' })
+vim.keymap.set('n', '<leader>pf', require('telescope.builtin').git_files, { desc = '[F]ind [F]iles' })
+vim.keymap.set('n', '<leader>fF', require('telescope.builtin').find_files, { desc = '[F]ind [F]iles' })
 vim.keymap.set('n', '<leader>fh', require('telescope.builtin').help_tags, { desc = '[F]earch [H]elp' })
 vim.keymap.set('n', '<leader>*', require('telescope.builtin').grep_string, { desc = '[*]earch current [W]ord' })
 vim.keymap.set('n', '<leader>/', require('telescope.builtin').live_grep, { desc = '[/] live grep' })
 --vim.keymap.set('n', '<leader>sd', require('telescope.builtin').live_grep({cwd = vim.fn.expand "%:p:h"}), { desc = '[S]earch by [D]current directory' })
 vim.keymap.set('n', '<leader>sb', require('telescope.builtin').current_buffer_fuzzy_find, { desc = '[S]earch by [B]current directory' })
 vim.keymap.set('n', '<leader>sD', require('telescope.builtin').diagnostics, { desc = '[S]earch [D]iagnostics' })
+vim.keymap.set('n', '<leader>sr', require('telescope.builtin').resume, { desc = '[S]earch [R]esume' })
 
 
 -- Mappings.
