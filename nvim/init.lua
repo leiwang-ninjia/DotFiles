@@ -50,7 +50,6 @@ require("lazy").setup({
   },
   },
   {"nvim-tree/nvim-web-devicons", lazy = true },
-  {'nvim-tree/nvim-tree.lua', dependencies = 'nvim-tree/nvim-web-devicons'},
   -- Useful plugin to show you pending keybinds.
   { 'folke/which-key.nvim', opts = {} },
   { -- Theme inspired by Atom
@@ -115,6 +114,7 @@ require("lazy").setup({
     end,
   },
   { 'nvim-telescope/telescope.nvim', version = '*',cmd = "Telescope", dependencies = { 'nvim-lua/plenary.nvim', lazy = true } },
+  {"nvim-telescope/telescope-file-browser.nvim", dependencies = { "nvim-telescope/telescope.nvim", "nvim-lua/plenary.nvim" } },
   { -- Add indentation guides even on blank lines
     'lukas-reineke/indent-blankline.nvim',
     main = "ibl",
@@ -156,8 +156,6 @@ local disabled_built_ins = {
   'tar',
   'zipPlugin',
   'zip',
-  'netrw',
-  'netrwPlugin',
 }
 
 vim.cmd('colorscheme onedark')
@@ -232,14 +230,12 @@ vim.g.do_filetype_lua = 1
 -- Enable telescope fzf native, if installed
 require('telescope').load_extension('fzf')
 require('telescope').load_extension('projects')
-
+require("telescope").load_extension "file_browser"
 require'nvim-treesitter.configs'.setup {
   ignore_install = { "tlaplus" },
   highlight = { enable = true,},
   event = 'BufRead'
 }
-
-require("nvim-tree").setup()
 
 -- nvim-cmp
 local cmp = require 'cmp'
@@ -287,14 +283,21 @@ require('telescope').setup {
       },
     },
   },
+  extensions = {
+      file_browser = {
+	  theme = "ivy",
+	  -- disables netrw and use telescope-file-browser in its place
+	  hijack_netrw = true,
+      }
+  },
 }
 --Add leader shortcuts
 vim.keymap.set('n', '<leader>?', require('telescope.builtin').oldfiles, { desc = '[?] Find recently opened files' })
 vim.keymap.set('n', '<leader>fr', require('telescope.builtin').oldfiles, { desc = '[F] Find [R] Recently opened files' })
 vim.keymap.set('n', '<leader><space>', require('telescope.builtin').buffers, { desc = '[ ] Find existing buffers' })
 vim.keymap.set('n', '<leader>bb', require('telescope.builtin').buffers, { desc = '[B]find buffer [B]buffers' })
-vim.keymap.set('n', '<leader>ff', ":NvimTreeFindFile<CR>", { desc = '[.]File browser' })
-vim.keymap.set('n', '<leader>.', ":NvimTreeFindFile<CR>", { desc = '[.]File browser' })
+--vim.keymap.set('n', '<leader>ff', ":NvimTreeFindFile<CR>", { desc = '[.]File browser' })
+--vim.keymap.set('n', '<leader>.', ":NvimTreeFindFile<CR>", { desc = '[.]File browser' })
 vim.keymap.set('n', '<leader>pf', require('telescope.builtin').git_files, { desc = '[F]ind [F]iles' })
 vim.keymap.set('n', '<leader>fF', require('telescope.builtin').find_files, { desc = '[F]ind [F]iles' })
 vim.keymap.set('n', '<leader>fh', require('telescope.builtin').help_tags, { desc = '[F]earch [H]elp' })
