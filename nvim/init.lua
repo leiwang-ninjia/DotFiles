@@ -114,7 +114,6 @@ require("lazy").setup({
     end,
   },
   { 'nvim-telescope/telescope.nvim', version = '*',cmd = "Telescope", dependencies = { 'nvim-lua/plenary.nvim', lazy = true } },
-  {"nvim-telescope/telescope-file-browser.nvim", dependencies = { "nvim-telescope/telescope.nvim", "nvim-lua/plenary.nvim" } },
   { -- Add indentation guides even on blank lines
     'lukas-reineke/indent-blankline.nvim',
     main = "ibl",
@@ -230,7 +229,6 @@ vim.g.do_filetype_lua = 1
 -- Enable telescope fzf native, if installed
 require('telescope').load_extension('fzf')
 require('telescope').load_extension('projects')
-require("telescope").load_extension "file_browser"
 require'nvim-treesitter.configs'.setup {
   ignore_install = { "tlaplus" },
   highlight = { enable = true,},
@@ -282,13 +280,6 @@ require('telescope').setup {
         ["<C-d>"] = false,
       },
     },
-  },
-  extensions = {
-      file_browser = {
-	  theme = "ivy",
-	  -- disables netrw and use telescope-file-browser in its place
-	  hijack_netrw = true,
-      }
   },
 }
 --Add leader shortcuts
