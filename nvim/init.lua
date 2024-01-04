@@ -114,6 +114,10 @@ require("lazy").setup({
     end,
   },
   { 'nvim-telescope/telescope.nvim', version = '*',cmd = "Telescope", dependencies = { 'nvim-lua/plenary.nvim', lazy = true } },
+  {
+    "nvim-telescope/telescope-file-browser.nvim",
+    dependencies = { "nvim-telescope/telescope.nvim", "nvim-lua/plenary.nvim" }
+  },
   { -- Add indentation guides even on blank lines
     'lukas-reineke/indent-blankline.nvim',
     main = "ibl",
@@ -281,7 +285,17 @@ require('telescope').setup {
       },
     },
   },
+    extensions = {
+    file_browser = {
+      theme = "ivy",
+      -- disables netrw and use telescope-file-browser in its place
+      hijack_netrw = true,
+    },
+  },
 }
+
+require("telescope").load_extension "file_browser"
+
 --Add leader shortcuts
 vim.keymap.set('n', '<leader>?', require('telescope.builtin').oldfiles, { desc = '[?] Find recently opened files' })
 vim.keymap.set('n', '<leader>fr', require('telescope.builtin').oldfiles, { desc = '[F] Find [R] Recently opened files' })
