@@ -226,6 +226,8 @@ vim.g.indent_blankline_char_highlight = 'LineNr'
 vim.g.did_load_filetypes = 0
 vim.g.do_filetype_lua = 1
 
+vim.g.netrw_winsize = 30
+
 -- Enable telescope fzf native, if installed
 require('telescope').load_extension('fzf')
 require('telescope').load_extension('projects')
@@ -288,8 +290,8 @@ vim.keymap.set('n', '<leader>?', require('telescope.builtin').oldfiles, { desc =
 vim.keymap.set('n', '<leader>fr', require('telescope.builtin').oldfiles, { desc = '[F] Find [R] Recently opened files' })
 vim.keymap.set('n', '<leader><space>', require('telescope.builtin').buffers, { desc = '[ ] Find existing buffers' })
 vim.keymap.set('n', '<leader>bb', require('telescope.builtin').buffers, { desc = '[B]find buffer [B]buffers' })
-vim.keymap.set('n', '<leader>ff', ":Hexplore %:p:h<CR>", { desc = '[.]File browser current file' })
-vim.keymap.set('n', '<leader>.', ":Hexplore<CR>", { desc = '[.]File browser current folder' })
+vim.keymap.set('n', '<leader>ff', ":Lexplore %:p:h<CR>", { desc = '[.]File browser current file' })
+vim.keymap.set('n', '<leader>.', ":Lexplore<CR>", { desc = '[.]File browser current folder' })
 vim.keymap.set('n', '<leader>wm', ":only<CR>", { desc = '[.]Max' })
 --vim.keymap.set('n', '<leader>.', ":NvimTreeFindFile<CR>", { desc = '[.]File browser' })
 vim.keymap.set('n', '<leader>pf', require('telescope.builtin').git_files, { desc = '[F]ind [F]iles' })
