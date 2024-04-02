@@ -130,6 +130,20 @@ require("lazy").setup({
     'nvim-tree/nvim-web-devicons' },
     config = function() require('fzf-lua').setup{previewers = {bat = {theme = 'TwoDark'},} }end,
   },
+  { -- Autoformat
+    'stevearc/conform.nvim',
+    lazy = false,
+    keys = {
+      {
+        '<leader>f',
+        function()
+          require('conform').format { async = true, lsp_fallback = true }
+        end,
+        mode = '',
+        desc = '[F]ormat buffer',
+      },
+    },
+  },
   {"hrsh7th/nvim-cmp", event = "InsertEnter", dependencies = { "hrsh7th/vim-vsnip","hrsh7th/cmp-buffer","hrsh7th/cmp-path", "hrsh7th/cmp-nvim-lsp"}},
   {'winston0410/range-highlight.nvim',
   dependencies = {'winston0410/cmd-parser.nvim', opt=true, module='cmd-parser',},
