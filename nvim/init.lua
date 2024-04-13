@@ -77,6 +77,7 @@ require("lazy").setup({
         return '%2l:%-2v'
       end
       require('mini.trailspace').setup({})
+      require('mini.comment').setup()
 
       -- ... and there is more!
       --  Check out: https://github.com/echasnovski/mini.nvim
@@ -126,8 +127,6 @@ require("lazy").setup({
   priority = 1000,
   opts = {},
   },
-  -- "gc" to comment visual regions/lines
-  { 'numToStr/Comment.nvim', opts = {} },
   'tpope/vim-surround',
   'tpope/vim-fugitive',
   'tpope/vim-rhubarb',
