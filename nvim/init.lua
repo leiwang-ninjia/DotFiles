@@ -76,6 +76,7 @@ require("lazy").setup({
       statusline.section_location = function()
         return '%2l:%-2v'
       end
+      require('mini.trailspace').setup({})
 
       -- ... and there is more!
       --  Check out: https://github.com/echasnovski/mini.nvim
@@ -85,9 +86,12 @@ require("lazy").setup({
   'nvim-treesitter/nvim-treesitter',
   event = { "BufReadPost", "BufNewFile" },
   build = ":TSUpdate",
-  dependencies = {
-    'nvim-treesitter/nvim-treesitter-textobjects',
-  },
+  config = function()
+    require("nvim-treesitter.configs").setup {
+      ensure_installed = { "c", "lua", "rust" },
+      highlight = { enable = true, }
+    }
+  end,
   },
   {"nvim-tree/nvim-web-devicons", lazy = true },
   -- Useful plugin to show you pending keybinds.
@@ -207,7 +211,7 @@ vim.o.hlsearch = true
 vim.o.incsearch = true
 vim.wo.number = true
 
---vim.o.clipboard = "unnamed"
+vim.o.clipboard = "unnamed"
 --Do not save when switching buffers
 vim.o.hidden = true
 vim.o.mouse = "a"
@@ -273,11 +277,11 @@ vim.g.netrw_winsize = 30
 -- Enable telescope fzf native, if installed
 require('telescope').load_extension('fzf')
 require('telescope').load_extension('projects')
-require'nvim-treesitter.configs'.setup {
-  ignore_install = { "tlaplus" },
-  highlight = { enable = true,},
-  event = 'BufRead'
-}
+-- require'nvim-treesitter.configs'.setup {
+--   ignore_install = { "tlaplus" },
+--   highlight = { enable = true,},
+--   event = 'BufRead'
+-- }
 
 -- nvim-cmp
 local cmp = require 'cmp'
@@ -415,3 +419,4 @@ Map('n', ']l', ':lnext<cr>')
 Map('n', '[l', ':lprev<cr>')
 Map('n', '[q', ':cprev<cr>')
 -- end
+
