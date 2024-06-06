@@ -78,6 +78,7 @@ require("lazy").setup({
       end
       require('mini.trailspace').setup({})
       require('mini.comment').setup()
+      require('mini.files').setup()
 
       -- ... and there is more!
       --  Check out: https://github.com/echasnovski/mini.nvim
@@ -202,7 +203,7 @@ local disabled_built_ins = {
   'zip',
 }
 
--- vim.cmd('colorscheme onedark')
+--vim.cmd('colorscheme onedark')
 --vim.cmd[[colorscheme tokyonight-storm]]
 
 vim.o.inccommand = "split"
@@ -335,7 +336,7 @@ vim.keymap.set('n', '<leader>?', require('telescope.builtin').oldfiles, { desc =
 vim.keymap.set('n', '<leader>fr', require('telescope.builtin').oldfiles, { desc = '[F] Find [R] Recently opened files' })
 vim.keymap.set('n', '<leader><space>', require('telescope.builtin').buffers, { desc = '[ ] Find existing buffers' })
 vim.keymap.set('n', '<leader>bb', require('telescope.builtin').buffers, { desc = '[B]find buffer [B]buffers' })
-vim.keymap.set('n', '<leader>ff', ":Lexplore %:p:h<CR>", { desc = '[.]File browser current file' })
+vim.keymap.set('n', '<leader>ff', ":lua MiniFiles.open()<CR>", { desc = '[.]File browser current file' })
 vim.keymap.set('n', '<leader>.', ":Lexplore<CR>", { desc = '[.]File browser current folder' })
 vim.keymap.set('n', '<leader>wm', ":only<CR>", { desc = '[.]Max' })
 --vim.keymap.set('n', '<leader>.', ":NvimTreeFindFile<CR>", { desc = '[.]File browser' })
