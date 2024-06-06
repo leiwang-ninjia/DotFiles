@@ -202,7 +202,7 @@ local disabled_built_ins = {
   'zip',
 }
 
-vim.cmd('colorscheme onedark')
+-- vim.cmd('colorscheme onedark')
 --vim.cmd[[colorscheme tokyonight-storm]]
 
 vim.o.inccommand = "split"
