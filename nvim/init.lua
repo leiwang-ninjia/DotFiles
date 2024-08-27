@@ -79,6 +79,7 @@ require("lazy").setup({
       require('mini.trailspace').setup({})
       require('mini.comment').setup()
       require('mini.files').setup()
+      require('mini.align').setup()
 
       -- ... and there is more!
       --  Check out: https://github.com/echasnovski/mini.nvim
@@ -101,9 +102,20 @@ require("lazy").setup({
   { -- Theme inspired by Atom
     'navarasu/onedark.nvim',
     priority = 100,
-    -- config = function()
-    --   vim.cmd.colorscheme 'onedark'
-    -- end,
+    config = function()
+      require('onedark').setup {
+        colors = {
+            black= "#282C34",
+            blue= "#61AFEF",
+            cyan= "#56B6C2",
+            green= "#98C379",
+            purple= "#C678DD",
+            red= "#E06C75",
+            white= "#DCDFE4",
+            yellow= "#E5C07B",
+        },
+      }
+    end,
   },
   'RRethy/nvim-base16',
   'liuchengxu/vista.vim',
@@ -203,7 +215,7 @@ local disabled_built_ins = {
   'zip',
 }
 
---vim.cmd('colorscheme onedark')
+vim.cmd('colorscheme onedark')
 --vim.cmd[[colorscheme tokyonight-storm]]
 
 vim.o.inccommand = "split"
