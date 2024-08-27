@@ -111,7 +111,7 @@ require("lazy").setup({
             green= "#98C379",
             purple= "#C678DD",
             red= "#E06C75",
-            white= "#DCDFE4",
+            fg= "#DCDFE4",
             yellow= "#E5C07B",
         },
       }
