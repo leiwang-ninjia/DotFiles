@@ -357,7 +357,7 @@ vim.keymap.set('n', '<leader>fF', require('fzf-lua').files, { desc = '[F]ind [F]
 vim.keymap.set('n', '<leader>fh', require('fzf-lua').help_tags, { desc = '[F]earch [H]elp' })
 vim.keymap.set('n', '<leader>*', require('fzf-lua').grep_cword, { desc = '[*]earch current [W]ord' })
 vim.keymap.set('n', '<leader>/', require('fzf-lua').live_grep, { desc = '[/] live grep' })
---vim.keymap.set('n', '<leader>sd', require('fzf-lua').live_grep({cwd = vim.fn.expand "%:p:h"}), { desc = '[S]earch by [D]current directory' })
+vim.keymap.set('n', '<leader>sd', function() require('fzf-lua').live_grep({ cwd=vim.fn.expand('%:p:h') }) end, { desc = '[S]earch by [D]current directory' })
 vim.keymap.set('n', '<leader>sb', require('fzf-lua').lgrep_curbuf, { desc = '[S]earch by [B]current buffer' })
 vim.keymap.set('n', '<leader>sr', require('fzf-lua').grep_last, { desc = '[S]earch [R]esume' })
 
