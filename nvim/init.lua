@@ -172,7 +172,14 @@ require("lazy").setup({
   dependencies = {
     'vijaymarupudi/nvim-fzf',
     'nvim-tree/nvim-web-devicons' },
-    config = function() require('fzf-lua').setup{previewers = {bat = {theme = 'TwoDark'},}, fzf_opts = {["--no-sort"] = true,} }end,
+    config = function()
+      require('fzf-lua').setup
+      {
+        previewers = {bat = {theme = 'TwoDark'},},
+        fzf_opts = {["--no-sort"] = true,},
+        defaults = {file_icons = false, git_icons = false; color_icons= false}
+      }
+    end,
   },
   { -- Autoformat
     'stevearc/conform.nvim',
