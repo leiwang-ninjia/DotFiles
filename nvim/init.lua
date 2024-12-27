@@ -80,6 +80,7 @@ require("lazy").setup({
       require('mini.comment').setup()
       require('mini.files').setup()
       require('mini.align').setup()
+      require('mini.pairs').setup()
 
       -- ... and there is more!
       --  Check out: https://github.com/echasnovski/mini.nvim
@@ -150,13 +151,6 @@ require("lazy").setup({
     "ahmedkhalf/project.nvim",
     config = function() require("project_nvim").setup {manual_mode = true,} end
   },
-  {
-    'nvim-telescope/telescope-fzf-native.nvim',
-    build = 'make',
-    cond = function()
-      return vim.fn.executable 'make' == 1
-    end,
-  },
   { 'nvim-telescope/telescope.nvim', version = '*',cmd = "Telescope", dependencies = { 'nvim-lua/plenary.nvim', lazy = true } },
   { -- Add indentation guides even on blank lines
     'lukas-reineke/indent-blankline.nvim',
@@ -170,14 +164,13 @@ require("lazy").setup({
   {'junegunn/fzf', build = './install --bin',event = "VeryLazy" },
   { 'ibhagwan/fzf-lua',
   dependencies = {
-    'vijaymarupudi/nvim-fzf',
     'nvim-tree/nvim-web-devicons' },
     config = function()
       require('fzf-lua').setup
       {
         previewers = {bat = {theme = 'TwoDark'},},
         fzf_opts = {["--no-sort"] = true,},
-        defaults = {file_icons = false, git_icons = false; color_icons= false}
+        defaults = {file_icons = false, git_icons = false; color_icons= false},
       }
     end,
   },
@@ -294,7 +287,6 @@ vim.g.do_filetype_lua = 1
 vim.g.netrw_winsize = 30
 
 -- Enable telescope fzf native, if installed
-require('telescope').load_extension('fzf')
 require('telescope').load_extension('projects')
 -- require'nvim-treesitter.configs'.setup {
 --   ignore_install = { "tlaplus" },
@@ -350,6 +342,7 @@ require('telescope').setup {
   },
 }
 
+
 --Add leader shortcuts
 vim.keymap.set('n', '<leader>?', require('fzf-lua').oldfiles, { desc = '[?] Find recently opened files' })
 vim.keymap.set('n', '<leader>fr', require('fzf-lua').oldfiles, { desc = '[F] Find [R] Recently opened files' })
@@ -366,7 +359,7 @@ vim.keymap.set('n', '<leader>*', require('fzf-lua').grep_cword, { desc = '[*]ear
 vim.keymap.set('n', '<leader>/', require('fzf-lua').live_grep, { desc = '[/] live grep' })
 vim.keymap.set('n', '<leader>sd', function() require('fzf-lua').live_grep({ cwd=vim.fn.expand('%:p:h') }) end, { desc = '[S]earch by [D]current directory' })
 vim.keymap.set('n', '<leader>sb', require('fzf-lua').lgrep_curbuf, { desc = '[S]earch by [B]current buffer' })
-vim.keymap.set('n', '<leader>sr', require('fzf-lua').grep_last, { desc = '[S]earch [R]esume' })
+vim.keymap.set('n', '<leader>sr', require('fzf-lua').resume, { desc = '[S]earch [R]esume' })
 
 
 -- Mappings.
