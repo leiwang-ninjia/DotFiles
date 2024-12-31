@@ -169,7 +169,6 @@ require("lazy").setup({
       require('fzf-lua').setup
       {
         previewers = {bat = {theme = 'TwoDark'},},
-        fzf_opts = {["--no-sort"] = true,},
         defaults = {file_icons = false, git_icons = false; color_icons= false},
       }
     end,
@@ -358,8 +357,9 @@ vim.keymap.set('n', '<leader>fh', require('fzf-lua').help_tags, { desc = '[F]ear
 vim.keymap.set('n', '<leader>*', require('fzf-lua').grep_cword, { desc = '[*]earch current [W]ord' })
 vim.keymap.set('n', '<leader>/', require('fzf-lua').live_grep, { desc = '[/] live grep' })
 vim.keymap.set('n', '<leader>sd', function() require('fzf-lua').live_grep({ cwd=vim.fn.expand('%:p:h') }) end, { desc = '[S]earch by [D]current directory' })
-vim.keymap.set('n', '<leader>sb', require('fzf-lua').lgrep_curbuf, { desc = '[S]earch by [B]current buffer' })
+vim.keymap.set('n', '<leader>sb', function() require('fzf-lua').grep_curbuf({["--no-sort"] = true}) end, { desc = '[S]earch by [B]current buffer' })
 vim.keymap.set('n', '<leader>sr', require('fzf-lua').resume, { desc = '[S]earch [R]esume' })
+vim.keymap.set('n', '<leader>gg', require('fzf-lua').git_status, { desc = '[G]it [G]status' })
 
 
 -- Mappings.
