@@ -45,6 +45,27 @@ require("lazy").setup({
     timeout = 120,
   },
   { -- Collection of various small independent plugins/modules
+      {
+	  "folke/snacks.nvim",
+	  priority = 1000,
+	  lazy = false,
+	  opts = {
+	      -- your configuration comes here
+	      -- or leave it empty to use the default settings
+	      -- refer to the configuration section below
+	      bigfile = { enabled = true },
+	      dashboard = { enabled = true },
+	      explorer = { enabled = true },
+	      input = { enabled = true },
+	      picker = { enabled = true },
+	      notifier = { enabled = true },
+	      quickfile = { enabled = true },
+	      scope = { enabled = true },
+	      scroll = { enabled = true },
+	      statuscolumn = { enabled = true },
+	      words = { enabled = true },
+	  },
+      },
     'echasnovski/mini.nvim',
     config = function()
       -- Better Around/Inside textobjects
@@ -78,9 +99,7 @@ require("lazy").setup({
       end
       require('mini.trailspace').setup({})
       require('mini.comment').setup()
-      require('mini.files').setup()
       require('mini.align').setup()
-      require('mini.pairs').setup()
 
       -- ... and there is more!
       --  Check out: https://github.com/echasnovski/mini.nvim
@@ -122,6 +141,7 @@ require("lazy").setup({
   'liuchengxu/vista.vim',
   'kergoth/vim-bitbake',
   'sainnhe/gruvbox-material',
+  'rebelot/kanagawa.nvim',
   {
     "dhananjaylatkar/cscope_maps.nvim",
     dependencies = "which-key.nvim",
@@ -214,7 +234,8 @@ local disabled_built_ins = {
   'zip',
 }
 
-vim.cmd('colorscheme onedark')
+--vim.cmd('colorscheme onedark')
+vim.cmd('colorscheme kanagawa')
 --vim.cmd[[colorscheme tokyonight-storm]]
 
 vim.o.inccommand = "split"
@@ -347,7 +368,6 @@ vim.keymap.set('n', '<leader>?', require('fzf-lua').oldfiles, { desc = '[?] Find
 vim.keymap.set('n', '<leader>fr', require('fzf-lua').oldfiles, { desc = '[F] Find [R] Recently opened files' })
 vim.keymap.set('n', '<leader><space>', require('fzf-lua').buffers, { desc = '[ ] Find existing buffers' })
 vim.keymap.set('n', '<leader>bb', require('fzf-lua').buffers, { desc = '[B]find buffer [B]buffers' })
-vim.keymap.set('n', '<leader>ff', ":lua MiniFiles.open()<CR>", { desc = '[.]File browser current file' })
 vim.keymap.set('n', '<leader>.', ":Lexplore<CR>", { desc = '[.]File browser current folder' })
 vim.keymap.set('n', '<leader>wm', ":only<CR>", { desc = '[.]Max' })
 --vim.keymap.set('n', '<leader>.', ":NvimTreeFindFile<CR>", { desc = '[.]File browser' })
