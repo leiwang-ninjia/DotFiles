@@ -107,25 +107,9 @@ require("lazy").setup({
   { -- Theme inspired by Atom
     'navarasu/onedark.nvim',
     priority = 100,
-    config = function()
-      require('onedark').setup {
-        colors = {
-            black= "#282C34",
-            blue= "#61AFEF",
-            cyan= "#56B6C2",
-            green= "#98C379",
-            purple= "#C678DD",
-            red= "#E06C75",
-            fg= "#DCDFE4",
-            yellow= "#E5C07B",
-        },
-      }
-    end,
   },
   'RRethy/nvim-base16',
-  'liuchengxu/vista.vim',
   'kergoth/vim-bitbake',
-  'sainnhe/gruvbox-material',
   'rebelot/kanagawa.nvim',
   {
     "dhananjaylatkar/cscope_maps.nvim",
@@ -139,7 +123,6 @@ require("lazy").setup({
       })
     end,
   },
-  {'akinsho/bufferline.nvim', requires = 'nvim-tree/nvim-web-devicons',},
   {
   "folke/tokyonight.nvim",
   lazy = false,
