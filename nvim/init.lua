@@ -157,12 +157,6 @@ require("lazy").setup({
     config = function() require("project_nvim").setup {manual_mode = true,} end
   },
   { 'nvim-telescope/telescope.nvim', version = '*',cmd = "Telescope", dependencies = { 'nvim-lua/plenary.nvim', lazy = true } },
-  { -- Add indentation guides even on blank lines
-    'lukas-reineke/indent-blankline.nvim',
-    main = "ibl",
-    -- Enable `lukas-reineke/indent-blankline.nvim`
-    -- See `:help indent_blankline.txt`
-  },
   --  'sheerun/vim-polyglot',
   {'lewis6991/gitsigns.nvim', event = { "BufReadPre", "BufNewFile" },},
   {'neovim/nvim-lspconfig', event = { "BufReadPre", "BufNewFile" },},
@@ -277,18 +271,6 @@ au TermOpen * set nonu
 augroup end
 ]], false)
 
-
---Map blankline
-vim.g.indent_blankline_enabled = 0
-vim.g.indent_blankline_char = "┊"
-vim.g.indent_blankline_filetype_exclude = { 'help' }
-vim.g.indent_blankline_buftype_exclude = { 'terminal', 'nofile', 'packer'}
-vim.g.indent_blankline_char_highlight = 'LineNr'
-
--- use filetype.lua instead of filetype.vim. it's enabled by default in neovim 0.8 (nightly)
-vim.g.did_load_filetypes = 0
-vim.g.do_filetype_lua = 1
-
 vim.g.netrw_winsize = 30
 
 -- Enable telescope fzf native, if installed
@@ -376,6 +358,8 @@ vim.keymap.set('n', '<leader>s/', function() Snacks.picker.search_history() end,
 vim.keymap.set('n', '<leader>*', function() Snacks.picker.grep_word() end, {desc ="grep word" })
 vim.keymap.set('n', '<leader>sw', function() Snacks.picker.grep_word() end, {desc ="grep word" })
 vim.keymap.set('n', '<leader>e', function() Snacks.explorer() end, {desc ="smart find" })
+vim.keymap.set('n', '<leader>ug', function() Snacks.indent.disable() end, {desc ="disable indent" })
+vim.keymap.set('n', '<leader>rg', function() Snacks.indent.enable() end, {desc ="enable indent" })
 --vim.keymap.set('n', '<leader>sr', require('fzf-lua').resume, { desc = '[S]earch [R]esume' })
 --vim.keymap.set('n', '<leader>gg', require('fzf-lua').git_status, { desc = '[G]it [G]status' })
 vim.keymap.set('n', '<leader>gs', function() Snacks.picker.git_status() end, {desc ="git status" })
