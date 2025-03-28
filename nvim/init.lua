@@ -333,7 +333,7 @@ vim.keymap.set('n', '<leader>sd', function() Snacks.picker.grep({ cwd=vim.fn.exp
 vim.keymap.set('n', '<leader>fr', function() Snacks.picker.recent() end, {desc ="Recent" })
 vim.keymap.set('n', '<leader>ff', function() Snacks.picker.files() end, {desc ="Find files" })
 vim.keymap.set('n', '<leader>bb', function() Snacks.picker.buffers() end, {desc ="find buffer" })
-vim.keymap.set('n', '<leader>sb', function() Snacks.picker.lines() end, {desc ="buffer lines" })
+vim.keymap.set('n', '<leader>sb', function() Snacks.picker.lines({sort={fields={"idx"}}}) end, {desc ="buffer lines" })
 vim.keymap.set('n', '<leader>pf', function() Snacks.picker.git_files() end, {desc ="Find git files" })
 vim.keymap.set('n', '<leader><space>', function() Snacks.picker.smart() end, {desc ="smart find" })
 vim.keymap.set('n', '<leader>sr', function() Snacks.picker.resume() end, {desc ="resume" })
