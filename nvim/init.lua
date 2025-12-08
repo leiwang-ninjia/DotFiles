@@ -119,6 +119,7 @@ require("lazy").setup({
         disable_maps = false, -- true disables my keymaps, only :Cscope will be loaded
         cscope = {
           db_file = "./cscope.out", -- location of cscope db file
+	  exec = "gtags-cscope", -- "cscope" or "gtags-cscope"
         },
       })
     end,
