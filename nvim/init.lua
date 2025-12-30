@@ -90,17 +90,6 @@ require("lazy").setup({
       --  Check out: https://github.com/echasnovski/mini.nvim
     end,
   },
-  { -- Highlight, edit, and navigate code
-  'nvim-treesitter/nvim-treesitter',
-  event = { "BufReadPost", "BufNewFile" },
-  build = ":TSUpdate",
-  config = function()
-    require("nvim-treesitter.configs").setup {
-      ensure_installed = { "c", "lua", "rust" },
-      highlight = { enable = true, }
-    }
-  end,
-  },
   {"nvim-tree/nvim-web-devicons", lazy = true },
   -- Useful plugin to show you pending keybinds.
   { 'folke/which-key.nvim', opts = {} },
