@@ -90,6 +90,7 @@ require("lazy").setup({
       --  Check out: https://github.com/echasnovski/mini.nvim
     end,
   },
+  { "catppuccin/nvim", name = "catppuccin", priority = 1000 },
   {"nvim-tree/nvim-web-devicons", lazy = true },
   -- Useful plugin to show you pending keybinds.
   { 'folke/which-key.nvim', opts = {} },
@@ -187,7 +188,8 @@ local disabled_built_ins = {
 }
 
 --vim.cmd('colorscheme onedark')
-vim.cmd('colorscheme kanagawa')
+--vim.cmd('colorscheme catppuccin')
+vim.cmd.colorscheme "catppuccin"
 --vim.cmd[[colorscheme tokyonight-storm]]
 
 vim.o.inccommand = "split"
