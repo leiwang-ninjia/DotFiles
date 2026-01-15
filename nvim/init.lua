@@ -189,7 +189,7 @@ local disabled_built_ins = {
 
 --vim.cmd('colorscheme onedark')
 --vim.cmd('colorscheme catppuccin')
-vim.cmd.colorscheme "catppuccin"
+vim.cmd.colorscheme "onedark"
 --vim.cmd[[colorscheme tokyonight-storm]]
 
 vim.o.inccommand = "split"
