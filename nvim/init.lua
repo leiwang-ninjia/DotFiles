@@ -107,7 +107,7 @@ pack.add({
 Snacks = require("snacks")
 Snacks.setup({
   bigfile = { enabled = true },
-  dashboard = { enabled = true },
+  dashboard = { enabled = false },
   explorer = { enabled = true },
   input = { enabled = true },
   picker = { enabled = true },
