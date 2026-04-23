@@ -243,6 +243,8 @@ api.nvim_create_autocmd("TextYankPost", {
 map("n", "<leader>ff", function() Snacks.picker.files() end)
 map("n", "<leader>/",  function() Snacks.picker.grep() end)
 map("n", "<leader>*",  function() Snacks.picker.grep_word() end)
+map("n", "<leader>sb",  function() Snacks.picker.lines() end)
+map("n", "<leader>fr",  function() Snacks.picker.recent() end)
 map("n", "<leader>sd",  function() Snacks.picker.grep({ cwd = vim.fn.expand('%:p:h') }) end)
 map("n", "<leader>bb", function() Snacks.picker.buffers() end)
 map("n", "<leader>gs", function() Snacks.picker.git_status() end)
