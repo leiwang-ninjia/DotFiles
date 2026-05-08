@@ -83,7 +83,7 @@ pack.add({
   -- Misc
   "https://github.com/kergoth/vim-bitbake",
   "https://github.com/dhananjaylatkar/cscope_maps.nvim",
-  "https://github.com/phaazon/hop.nvim",
+  "https://github.com/smoka7/hop.nvim",
   "https://github.com/winston0410/range-highlight.nvim",
 })
 
